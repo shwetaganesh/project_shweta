@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" verbose="0" name="Failed suite [Suite]">
-  <test thread-count="5" verbose="0" name="Test(failed)">
+<suite verbose="0" name="Failed suite [com.bp.saviynt.TestCase1]">
+  <test thread-count="5" verbose="0" name="Command line test(failed)">
     <classes>
-      <class name="com.maven.test.TestCase">
+      <class name="com.bp.saviynt.TestCase1">
         <methods>
-          <include name="TC"/>
+          <include name="TC1"/>
+          <include name="openApplication"/>
+          <include name="CloseApplication"/>
         </methods>
-      </class> <!-- com.maven.test.TestCase -->
+      </class> <!-- com.bp.saviynt.TestCase1 -->
     </classes>
-  </test> <!-- Test(failed) -->
-</suite> <!-- Failed suite [Suite] -->
+  </test> <!-- Command line test(failed) -->
+</suite> <!-- Failed suite [com.bp.saviynt.TestCase1] -->

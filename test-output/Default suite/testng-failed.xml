@@ -3,11 +3,14 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.maven.test.TestCase">
+      <class name="com.bp.saviynt.TestCase1">
         <methods>
-          <include name="TC"/>
+          <include name="TC3"/>
+          <include name="openApplication"/>
+          <include name="CloseApplication"/>
+          <include name="TC2"/>
         </methods>
-      </class> <!-- com.maven.test.TestCase -->
+      </class> <!-- com.bp.saviynt.TestCase1 -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
