@@ -15,11 +15,11 @@ public class Screenshot
 		
 		File SrcFile=scrShot.getScreenshotAs(OutputType.FILE);
 		
-		String fileWithPath=".\\Reports\\Screenshots\\"+System.currentTimeMillis()+".png";
+		String fileWithPath=".\\Reports\\"+System.currentTimeMillis()+".png";
 		
 		File DestFile=new File(fileWithPath);
 		
-		try 
+		try
 		{
 			FileUtils.copyFile(SrcFile, DestFile);
 		} 

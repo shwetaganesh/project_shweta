@@ -7,10 +7,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import com.bp.testbase.TestBase;
+
 
 public class FindUserPage extends TestBase
 {
+	
 	@FindBy(xpath = "//input[@id='dtsearch_myDataTable']")
 	private WebElement searchbox_user;
 	
@@ -29,11 +32,11 @@ public class FindUserPage extends TestBase
 	{
 		driver=ldriver;
 		PageFactory.initElements(driver, this);
-		wait = new WebDriverWait(driver,30);
-		
+		wait = new WebDriverWait(driver,30);	
 	}
+	//method to search for End user using END USER ID
 	public void searchEndUser(String end_user_id )
-	{		
+	{
 		wait.until(ExpectedConditions.visibilityOf(searchbox_user));
 		searchbox_user.sendKeys(end_user_id);
 		search_button_user.click();
@@ -41,4 +44,5 @@ public class FindUserPage extends TestBase
 		first_radio_button.click();
 		next_green_button.click();
 	}
+
 }

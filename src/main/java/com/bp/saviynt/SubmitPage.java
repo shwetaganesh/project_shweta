@@ -1,5 +1,6 @@
 package com.bp.saviynt;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,6 +9,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.bp.testbase.TestBase;
+
+
 
 public class SubmitPage extends TestBase
 {
@@ -38,32 +41,41 @@ public class SubmitPage extends TestBase
 	@FindBy(xpath = "//*[@class='select2-result-label' and contains(text(),'50000005')]")
 	private WebElement select_value;
 	
+	@FindBy(xpath = "//*[contains(text(),'Request Home')]")
+	private WebElement request_home_link;
+	
 	WebDriverWait wait;
 	
 	public SubmitPage(WebDriver ldriver) 
 	{
 		driver=ldriver;
-		
 		PageFactory.initElements(driver, this);
-		wait = new WebDriverWait(driver,30);
-		
+		wait = new WebDriverWait(driver,30);	
 	}
 	
-	public String submitAccessRequest()
+	//method to click on submit button and return the request number of the corresponding request raised by the requester.
+	public String submitAccessRequest() throws InterruptedException
 	{
 		String request_number="";
-		TestBase.scrollDownToElement(driver, submit_button);
-		submit_button.click();
+		if(driver.toString().contains("Firefox"))
+			Thread.sleep(10000);
+		((JavascriptExecutor) driver)
+		    .executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		TestBase.javaScriptClickbyElement(driver, submit_button);
 		wait.until(ExpectedConditions.visibilityOf(req_number));
 		request_number=req_number.getText();
 		return request_number;
+		
 	}
 	
+	//method to click on submit button and return the request number of the corresponding request raised by the requester.
+	//used for test scenario 3.
 	public String submitAccessAndRevokeRequest()
 	{
 		String request_number="";
 		TestBase.scrollDownToElement(driver, submit_button);
-		submit_button.click();
+		TestBase.javaScriptClickbyElement(driver, submit_button);
+		//submit_button.click();
 		wait.until(ExpectedConditions.visibilityOf(req_num_first));
 		//For revoke and invoke of roles...2 request numbers are getting generated
 		//So merging those to return and in the methods where we'll call it, need to split as well
@@ -73,17 +85,14 @@ public class SubmitPage extends TestBase
 	
 	public void nonRegressionRoleRequest() throws InterruptedException
 	{
-		
 		wait.until(ExpectedConditions.visibilityOf(business_justification_first));
+
 		Thread.sleep(20000);
 		wait.until(ExpectedConditions.elementToBeClickable(expand_url_first));
 		expand_url_first.click();
-		try 
-		{
+		try {
 			select_org_node_first.click();
-		} 
-		catch (Exception e2) 
-		{
+		} catch (Exception e2) {
 			System.out.println("Normal click did not worked");
 		}
 		TestBase.javaScriptClickbyElement(driver, select_org_node_first);

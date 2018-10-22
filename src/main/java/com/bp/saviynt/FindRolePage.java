@@ -11,6 +11,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.bp.testbase.TestBase;
 
+
+
 public class FindRolePage extends TestBase 
 {
 	@FindBy(xpath = "//input[@id='dtsearch_applicationlist']")
@@ -34,20 +36,25 @@ public class FindRolePage extends TestBase
 	@FindBy(xpath = "//a[@id='showcheckout']")
 	private WebElement checkout_button;
 	
+	@FindBy(xpath ="(//td[@class=' sorting_1'])[1]")
+	private WebElement firstRow;
+	
 	WebDriverWait wait;
 	
 	public FindRolePage(WebDriver ldriver) 
 	{
 		driver=ldriver;
-		
 		PageFactory.initElements(driver, this);
 		wait = new WebDriverWait(driver,30);
-		
 	}
 	
+	//method to search for the required role and add the corresponding role to the cart.
 	public void searchandAddtoCart(String role_description)
-	{		
+	{
 		wait.until(ExpectedConditions.visibilityOf(role_searchbox));
+		//wait.until(ExpectedConditions.visibilityOf(first_addtocart_button));
+		wait.until(ExpectedConditions.visibilityOf(firstRow));
+		role_searchbox.clear();
 		role_searchbox.sendKeys(role_description);
 		role_searchbox.sendKeys(Keys.ENTER);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tbody[@role='alert']//a[contains(text(),'"+role_description+"')]")));
@@ -56,16 +63,19 @@ public class FindRolePage extends TestBase
 		wait.until(ExpectedConditions.visibilityOf(remove_cart));
 		role_searchbox.clear();
 	}
-		
-	public void clickOnCheckout()
-	{
+	
+	//method to click on the CheckOut button after adding/removing required roles 
+	public void clickOnCheckout(){
 		TestBase.javaScriptClickbyElement(driver, checkout_button);
 		wait.until(ExpectedConditions.visibilityOf(business_justification_first));
 	}
 	
+	//method to search for the required role and remove the corresponding role from the cart
 	public void searchAndRemoveFromCart(String role_description)
 	{	
 		wait.until(ExpectedConditions.visibilityOf(role_searchbox));
+		//wait.until(ExpectedConditions.visibilityOf(first_addtocart_button));
+		wait.until(ExpectedConditions.visibilityOf(firstRow));
 		role_searchbox.sendKeys(role_description);
 		role_searchbox.sendKeys(Keys.ENTER);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tbody[@role='alert']//a[contains(text(),'"+role_description+"')]")));
@@ -74,4 +84,10 @@ public class FindRolePage extends TestBase
 		wait.until(ExpectedConditions.visibilityOf(remove_from_cart_button));
 		role_searchbox.clear();
 	}
+	
+	
+	
 }
+	
+
+

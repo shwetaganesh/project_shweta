@@ -12,9 +12,12 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.bp.lib.Screenshot;
 import com.bp.testbase.TestBase;
 
-public class RequestHistoryPage extends TestBase 
+
+
+public class RequestHistoryPage extends TestBase
 {
 	@FindBy(xpath = "//input[@id='dtsearch_sample2']")
 	private WebElement role_search_input;
@@ -47,49 +50,68 @@ public class RequestHistoryPage extends TestBase
 		driver=ldriver;
 		PageFactory.initElements(driver, this);
 		wait = new WebDriverWait(driver,30);
+		
 	}
 	
-	public void searchRequestAndOpen(String request_number)
-	{
-		wait.until(ExpectedConditions.visibilityOf(first_result_row));
-		role_search_input.clear();
-		role_search_input.sendKeys(request_number);
-		role_search_button.click();
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'"+request_number+"')]")));
-		driver.findElement(By.xpath("//a[contains(text(),'"+request_number+"')]")).click();
+	// method to search for the request and open it accordingly
+	public void searchRequestAndOpen(String request_number){
+		
+	//boolean verify_endpoints=true;
+	wait.until(ExpectedConditions.visibilityOf(first_result_row));
+	role_search_input.clear();
+	role_search_input.sendKeys(request_number);
+	role_search_button.click();
+	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'"+request_number+"')]")));
+	driver.findElement(By.xpath("//a[contains(text(),'"+request_number+"')]")).click();
 	}
 	
-	
+	// method to fetch the END POINTS after the roles requested are accepted.
 	public ArrayList<String> clickOnTaskAndFetchEndPoints()
 	{
 		TestBase.scrollDownToElement(driver, task_history);
 		task_link.click();
 		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table[@id='#scroller1']/child::tbody")));
-		List<WebElement> end_points=driver.findElements(By.xpath("//table[@id='#scroller1']/child::tbody/child::tr"));
+		////table[@id='#scroller1']/child::tbody/child::tr
+		List<WebElement> end_points=driver.findElements(By.xpath("//div[@id='ui-tabs-1']//div//tbody//tr"));
 		ArrayList<String> arlist = new ArrayList<String>();
+		String temp;
 		for(int i=1;i<=end_points.size();i++)
-			arlist.add(driver.findElement(By.xpath("//table[@id='#scroller1']/child::tbody/child::tr["+i+"]/child::td[8]")).getText());
+		{
+			temp=driver.findElement(By.xpath("//div[@id='ui-tabs-1']//div//tbody//tr["+i+"]//td[8]")).getText();
+			////table[@id='#scroller1']/child::tbody/child::tr["+i+"]/child::td[8]
+			arlist.add(temp);
+		}
+		TestBase.scrollToEndOfPage(driver);
 		System.out.println("Current Endpoints are");
 		System.out.println(arlist);
 		return arlist;
 	}
 	
+	// method to validate the END POINTS with reference to those provided in the spread sheet.
 	public boolean validateEndPoints(ArrayList<String>arlist,ArrayList<String>validate)
 	{
 		boolean verify_endpoints=true;
 		for(String validate_check:validate)
 		{
-			if(arlist.contains(validate_check))
-				System.out.println(validate_check+" is found");
-			else
+			for(String temp:arlist)
 			{
-				System.out.println(validate_check+" is missing");
-				verify_endpoints=false;
+				if(temp.contains(validate_check))
+				{
+					verify_endpoints=true;
+					System.out.println(validate_check+" is found");
+					break;
+				}
+				else
+					verify_endpoints=false;
 			}
+			if(!verify_endpoints)
+				System.out.println(validate_check+" is missing");
 		}
 		return verify_endpoints;
 	}
+	
+	// method to verify whether the request number is for removing the role.
 	public boolean isRoleRevokeRequest(String req_num)
 	{
 		wait.until(ExpectedConditions.visibilityOf(first_result_row));
@@ -103,4 +125,5 @@ public class RequestHistoryPage extends TestBase
 		else
 			return false;
 	}
+
 }

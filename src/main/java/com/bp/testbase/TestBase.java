@@ -1,5 +1,6 @@
 package com.bp.testbase;
 
+import org.apache.commons.mail.EmailException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -17,6 +18,8 @@ import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.bp.lib.ConfigReader;
 import com.bp.lib.Screenshot;
+import com.bp.lib.SendReport;
+import com.bp.lib.ZipFolder;
 
 public class TestBase 
 {
@@ -24,17 +27,27 @@ public class TestBase
 	
 	public ConfigReader config=new ConfigReader();
 	
-	public ExtentHtmlReporter reporter=new ExtentHtmlReporter("./Reports/ExtentReport.html");
+	public ExtentHtmlReporter reporter=new ExtentHtmlReporter("./Reports/TestReport.html");
 	
-	public ExtentReports extent=new ExtentReports();
+	public  static ExtentReports extent=new ExtentReports();
 	
-	public ExtentTest logger;
+	public static  ExtentTest logger;
 	
-	String browser_name=config.getValue("Browser");
+	public String browser_name=System.getProperty("BROWSER");
+	
+	String Sav_URL=System.getProperty("URL");
 	
 	@BeforeMethod
 	public void openApplication()
-	{		
+	{
+		if(browser_name==null)
+			
+			browser_name=config.getValue("Browser");
+		
+		if(Sav_URL==null)
+			
+			Sav_URL=config.getValue("URL");;
+		
 		extent.attachReporter(reporter);
 		
 		if(browser_name.equalsIgnoreCase("Firefox"))
@@ -62,7 +75,7 @@ public class TestBase
 		
 		driver.manage().window().maximize();
 		
-		driver.get(config.getValue("URL"));
+		driver.get(Sav_URL);
 	}
 	
 	@AfterMethod
@@ -74,7 +87,9 @@ public class TestBase
 			
 			System.out.println("===== Screenshot Taken on failure=====");
 			
-			logger.fail(result.getThrowable().getMessage(), MediaEntityBuilder.createScreenCaptureFromPath(path.replace("Reports","")).build());
+			System.out.println(result.getThrowable().getMessage());
+			
+			logger.fail("Test Failed. Please find the details in the screenshot and report log", MediaEntityBuilder.createScreenCaptureFromPath(path.replace("Reports","")).build());
 		}
 		
 		driver.quit();
@@ -82,6 +97,18 @@ public class TestBase
 		extent.flush();
 		
 		System.out.println("===== Browser Session Closed =====");
+	}
+	
+	@AfterSuite
+	public void sendReport() throws EmailException
+	{	
+		//extent.flush();
+		
+		ZipFolder.zipReport(".\\Reports", ".\\zip\\Report.zip");
+		
+		SendReport report1=new SendReport();
+		
+		report1.sendReportToMail();
 	}
 	
 	public static void actionClickById(WebDriver local_driver,String obj_id)
@@ -102,4 +129,19 @@ public class TestBase
 		
 		js.executeScript("arguments[0].scrollIntoView();", element);
 	}
+	
+	public static void scrollUp(WebDriver local_driver)
+	{
+		JavascriptExecutor js = (JavascriptExecutor) local_driver;
+		
+		js.executeScript("window.scrollTo(0, 0);");
+	}
+		
+	public static void scrollToEndOfPage(WebDriver local_driver)
+	{
+		JavascriptExecutor js = (JavascriptExecutor) local_driver;
+		
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+	}
 }
+

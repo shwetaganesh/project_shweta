@@ -4,7 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
 import com.bp.testbase.TestBase;
+
+
 
 public class LaunchPage extends TestBase
 {
@@ -23,25 +26,30 @@ public class LaunchPage extends TestBase
 	public LaunchPage(WebDriver ldriver) 
 	{
 		driver=ldriver;
-		
 		PageFactory.initElements(driver, this);
 	}
+	//this method verifies presence of text field for user name
 	public boolean verifyUname()
 	{
 		return u_name.isDisplayed();
 	}
+	//this method verifies presence of text field for password
 	public boolean verifyPwd()
 	{
 		return pwd.isDisplayed();
 	}
+	//this method verifies presence of Login Button
 	public boolean verifyLoginButton()
 	{
 		return login_button.isDisplayed();
 	}
+	//this method verifies presence of Forgot Password Link.
 	public boolean verifyForgotPassword()
 	{
 		return forgot_password_link.isDisplayed();
 	}
+	
+	//login with user name and password if all the specified fields i.e.,User Name, Password, Login Button,Forgot Password link, are displayed in the launch page.
 	public void login(String username, String password) 
 	{
 		if(this.verifyUname()&&this.verifyPwd()&&this.verifyLoginButton()&&this.verifyForgotPassword())

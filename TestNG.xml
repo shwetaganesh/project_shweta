@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Saviynt" parallel="none">
+
+	<test name="New User: ADD_Enterprise_Role_Request_Escalation_And_Rejection">
+		<classes>
+			<class
+				name="com.bp.saviynt.ADD_Enterprise_Role_Request_Escalation_And_Rejection" />
+		</classes>
+	</test>
+	<test name="trigger job">
+	<classes>
+		<class name="com.bp.saviynt.JobTrigger">
+		</class>
+	</classes>
+</test>
+	<test name="New User: ADD Enterprise Role Request-Basic">
+		<classes>
+			<class name="com.bp.saviynt.ADD_Enterprise_Role_Request_Basic_Test" />
+		</classes>
+	</test>
+	<test name="trigger job 2">
+	<classes>
+		<class name="com.bp.saviynt.JobTrigger">
+		</class>
+	</classes>
+</test>
+	<test name="Existing User: ADD_Enterprise_Role_Request_SOD">
+		<classes>
+			<class name="com.bp.saviynt.ADD_Enterprise_Role_Request_SOD" />
+		</classes>
+	</test>
+	<test name="Existing User: REMOVE_and_ADD_Enterprise_Role_Request">
+		<classes>
+			<class name="com.bp.saviynt.REMOVE_and_ADD_Enterprise_Role_Request" />
+		</classes>
+	</test>
+</suite>

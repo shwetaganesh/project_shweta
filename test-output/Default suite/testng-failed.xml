@@ -3,14 +3,14 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.bp.saviynt.TestCase1">
+      <class name="com.bp.saviynt.ADD_Enterprise_Role_Request_Escalation_And_Rejection">
         <methods>
-          <include name="TC3"/>
+          <include name="sendReport"/>
           <include name="openApplication"/>
           <include name="CloseApplication"/>
-          <include name="TC2"/>
+          <include name="UpdatedTC2"/>
         </methods>
-      </class> <!-- com.bp.saviynt.TestCase1 -->
+      </class> <!-- com.bp.saviynt.ADD_Enterprise_Role_Request_Escalation_And_Rejection -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

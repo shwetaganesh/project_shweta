@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Saviynt]">
+  <test thread-count="5" name="New User: ADD Enterprise Role Request-Basic(failed)">
+    <classes>
+      <class name="com.bp.saviynt.ADD_Enterprise_Role_Request_Basic_Test">
+        <methods>
+          <include name="sendReport"/>
+          <include name="openApplication"/>
+          <include name="CloseApplication"/>
+          <include name="TC1"/>
+        </methods>
+      </class> <!-- com.bp.saviynt.ADD_Enterprise_Role_Request_Basic_Test -->
+    </classes>
+  </test> <!-- New User: ADD Enterprise Role Request-Basic(failed) -->
+</suite> <!-- Failed suite [Saviynt] -->
