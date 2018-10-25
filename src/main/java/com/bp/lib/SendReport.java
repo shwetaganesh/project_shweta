@@ -25,7 +25,9 @@ public class SendReport
 		// email.addTo("sourav.behura@bp.com","sourav behura");
 		email.addTo("sourav187@gmail.com", "Sourav Kumar Behura");
 		email.addTo("prosenjitmondal90@gmail.com", "Sourav Kumar Behura");
-		email.addTo("shankar.duddu@in.ibm.com","Shankar");
+		email.addTo("shankar.duddu@in.ibm.com","Shankar Duddu");
+		email.addTo("anitabrao95@gmail.com","Anitha");
+		//email.addTo("Suzhen.Moey@bp.com","Su Zhen");
 		email.setFrom("extentreport@gmail.com", "Saviynt QA Report");	
 		email.setSubject("Saviynt Execution Report");
 		email.setMsg("This is an auto generated email from QA team regarding the execution report");

@@ -1,43 +1,148 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="3" ignored="0" total="4" passed="1">
+<testng-results skipped="0" failed="3" ignored="0" total="5" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name="Saviynt" duration-ms="1799443" started-at="2018-10-16T09:12:48Z" finished-at="2018-10-16T09:42:47Z">
+  <suite name="Saviynt" duration-ms="859381" started-at="2018-10-25T06:25:20Z" finished-at="2018-10-25T06:39:39Z">
     <groups>
     </groups>
-    <test name="New User: ADD_Enterprise_Role_Request_Escalation_And_Rejection" duration-ms="467553" started-at="2018-10-16T09:12:48Z" finished-at="2018-10-16T09:20:36Z">
+    <test name="New User: ADD_Enterprise_Role_Request_Escalation_And_Rejection" duration-ms="288605" started-at="2018-10-25T06:25:20Z" finished-at="2018-10-25T06:30:08Z">
       <class name="com.bp.saviynt.ADD_Enterprise_Role_Request_Escalation_And_Rejection">
-        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.ADD_Enterprise_Role_Request_Escalation_And_Rejection@1283bb96]" name="openApplication" is-config="true" duration-ms="48228" started-at="2018-10-16T09:12:48Z" finished-at="2018-10-16T09:13:36Z">
+        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.ADD_Enterprise_Role_Request_Escalation_And_Rejection@74f0ea28]" name="openApplication" is-config="true" duration-ms="25572" started-at="2018-10-25T06:25:20Z" finished-at="2018-10-25T06:25:45Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openApplication -->
-        <test-method status="FAIL" signature="UpdatedTC2()[pri:0, instance:com.bp.saviynt.ADD_Enterprise_Role_Request_Escalation_And_Rejection@1283bb96]" name="UpdatedTC2" duration-ms="416838" started-at="2018-10-16T09:13:36Z" finished-at="2018-10-16T09:20:33Z">
-          <exception class="org.openqa.selenium.NoSuchElementException">
+        <test-method status="FAIL" signature="TC2()[pri:0, instance:com.bp.saviynt.ADD_Enterprise_Role_Request_Escalation_And_Rejection@74f0ea28]" name="TC2" duration-ms="260756" started-at="2018-10-25T06:25:45Z" finished-at="2018-10-25T06:30:06Z">
+          <exception class="java.lang.AssertionError">
             <message>
-              <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"//a[contains(@href,'/ECM/jbpmworkflowmanagement/tasklistforrequest?reqid=')]"}
-  (Session info: chrome=69.0.3497.100)
-  (Driver info: chromedriver=2.41.578737 (49da6702b16031c40d63e5618de03a32ff6c197e),platform=Windows NT 10.0.17134 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 0 milliseconds
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
-System info: host: 'DESKTOP-A4JAS9F', ip: '9.195.219.73', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_171'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.41.578737 (49da6702b16031..., userDataDir: C:\Users\AnithaB\AppData\Lo...}, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:62442}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, rotatable: false, setWindowRect: true, takesHeapSnapshot: true, takesScreenshot: true, unexpectedAlertBehaviour: , unhandledPromptBehavior: , version: 69.0.3497.100, webStorageEnabled: true}
-Session ID: 7bf5aa4c718ad04821ee645d43f74edc
-*** Element info: {Using=xpath, value=//a[contains(@href,'/ECM/jbpmworkflowmanagement/tasklistforrequest?reqid=')]}]]>
+              <![CDATA[All end points were not present expected [true] but found [false]]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//a[contains(@href,'/ECM/jbpmworkflowmanagement/tasklistforrequest?reqid=')]"}
+              <![CDATA[java.lang.AssertionError: All end points were not present expected [true] but found [false]
+at org.testng.Assert.fail(Assert.java:96)
+at org.testng.Assert.failNotEquals(Assert.java:776)
+at org.testng.Assert.assertTrue(Assert.java:44)
+at com.bp.saviynt.ADD_Enterprise_Role_Request_Escalation_And_Rejection.TC2(ADD_Enterprise_Role_Request_Escalation_And_Rejection.java:129)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.lang.reflect.Method.invoke(Method.java:498)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
+at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+at org.testng.TestRunner.privateRun(TestRunner.java:648)
+at org.testng.TestRunner.run(TestRunner.java:505)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+at org.testng.TestNG.runSuites(TestNG.java:1049)
+at org.testng.TestNG.run(TestNG.java:1017)
+at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:283)
+at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:75)
+at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:120)
+at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:383)
+at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:344)
+at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:125)
+at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:417)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC2 -->
+        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.ADD_Enterprise_Role_Request_Escalation_And_Rejection@74f0ea28]" name="CloseApplication" is-config="true" duration-ms="2193" started-at="2018-10-25T06:30:06Z" finished-at="2018-10-25T06:30:08Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC2 status=FAILURE method=ADD_Enterprise_Role_Request_Escalation_And_Rejection.TC2()[pri:0, instance:com.bp.saviynt.ADD_Enterprise_Role_Request_Escalation_And_Rejection@74f0ea28] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CloseApplication -->
+      </class> <!-- com.bp.saviynt.ADD_Enterprise_Role_Request_Escalation_And_Rejection -->
+    </test> <!-- New User: ADD_Enterprise_Role_Request_Escalation_And_Rejection -->
+    <test name="New User: ADD Enterprise Role Request-Basic" duration-ms="320088" started-at="2018-10-25T06:30:11Z" finished-at="2018-10-25T06:35:31Z">
+      <class name="com.bp.saviynt.ADD_Enterprise_Role_Request_Basic_Test">
+        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.ADD_Enterprise_Role_Request_Basic_Test@41d477ed]" name="openApplication" is-config="true" duration-ms="34448" started-at="2018-10-25T06:30:11Z" finished-at="2018-10-25T06:30:45Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openApplication -->
+        <test-method status="PASS" signature="TC1()[pri:0, instance:com.bp.saviynt.ADD_Enterprise_Role_Request_Basic_Test@41d477ed]" name="TC1" duration-ms="225029" started-at="2018-10-25T06:30:45Z" finished-at="2018-10-25T06:34:30Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TC1 -->
+        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.ADD_Enterprise_Role_Request_Basic_Test@41d477ed]" name="CloseApplication" is-config="true" duration-ms="1266" started-at="2018-10-25T06:34:30Z" finished-at="2018-10-25T06:34:32Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=TC1 status=SUCCESS method=ADD_Enterprise_Role_Request_Basic_Test.TC1()[pri:0, instance:com.bp.saviynt.ADD_Enterprise_Role_Request_Basic_Test@41d477ed] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CloseApplication -->
+        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.ADD_Enterprise_Role_Request_Basic_Test@41d477ed]" name="openApplication" is-config="true" duration-ms="24659" started-at="2018-10-25T06:34:32Z" finished-at="2018-10-25T06:34:56Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openApplication -->
+        <test-method status="PASS" signature="JobTrigger()[pri:2, instance:com.bp.saviynt.ADD_Enterprise_Role_Request_Basic_Test@41d477ed]" name="JobTrigger" duration-ms="33377" started-at="2018-10-25T06:34:56Z" finished-at="2018-10-25T06:35:30Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- JobTrigger -->
+        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.ADD_Enterprise_Role_Request_Basic_Test@41d477ed]" name="CloseApplication" is-config="true" duration-ms="1298" started-at="2018-10-25T06:35:30Z" finished-at="2018-10-25T06:35:31Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=JobTrigger status=SUCCESS method=ADD_Enterprise_Role_Request_Basic_Test.JobTrigger()[pri:2, instance:com.bp.saviynt.ADD_Enterprise_Role_Request_Basic_Test@41d477ed] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CloseApplication -->
+      </class> <!-- com.bp.saviynt.ADD_Enterprise_Role_Request_Basic_Test -->
+    </test> <!-- New User: ADD Enterprise Role Request-Basic -->
+    <test name="Existing User: ADD_Enterprise_Role_Request_SOD" duration-ms="162135" started-at="2018-10-25T06:35:33Z" finished-at="2018-10-25T06:38:15Z">
+      <class name="com.bp.saviynt.ADD_Enterprise_Role_Request_SOD">
+        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.ADD_Enterprise_Role_Request_SOD@3754a4bf]" name="openApplication" is-config="true" duration-ms="44406" started-at="2018-10-25T06:35:33Z" finished-at="2018-10-25T06:36:17Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openApplication -->
+        <test-method status="FAIL" signature="TC4()[pri:0, instance:com.bp.saviynt.ADD_Enterprise_Role_Request_SOD@3754a4bf]" name="TC4" duration-ms="115633" started-at="2018-10-25T06:36:17Z" finished-at="2018-10-25T06:38:13Z">
+          <exception class="org.openqa.selenium.StaleElementReferenceException">
+            <message>
+              <![CDATA[stale element reference: element is not attached to the page document
   (Session info: chrome=69.0.3497.100)
   (Driver info: chromedriver=2.41.578737 (49da6702b16031c40d63e5618de03a32ff6c197e),platform=Windows NT 10.0.17134 x86_64) (WARNING: The server did not provide any stacktrace information)
 Command duration or timeout: 0 milliseconds
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
 Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
 System info: host: 'DESKTOP-A4JAS9F', ip: '9.195.219.73', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_171'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.41.578737 (49da6702b16031..., userDataDir: C:\Users\AnithaB\AppData\Lo...}, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:62442}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, rotatable: false, setWindowRect: true, takesHeapSnapshot: true, takesScreenshot: true, unexpectedAlertBehaviour: , unhandledPromptBehavior: , version: 69.0.3497.100, webStorageEnabled: true}
-Session ID: 7bf5aa4c718ad04821ee645d43f74edc
-*** Element info: {Using=xpath, value=//a[contains(@href,'/ECM/jbpmworkflowmanagement/tasklistforrequest?reqid=')]}
+Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.41.578737 (49da6702b16031..., userDataDir: C:\Users\AnithaB\AppData\Lo...}, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:60772}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, rotatable: false, setWindowRect: true, takesHeapSnapshot: true, takesScreenshot: true, unexpectedAlertBehaviour: , unhandledPromptBehavior: , version: 69.0.3497.100, webStorageEnabled: true}
+Session ID: fbce9e823d7888e07a4c36b94f335c0e]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.StaleElementReferenceException: stale element reference: element is not attached to the page document
+  (Session info: chrome=69.0.3497.100)
+  (Driver info: chromedriver=2.41.578737 (49da6702b16031c40d63e5618de03a32ff6c197e),platform=Windows NT 10.0.17134 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
+System info: host: 'DESKTOP-A4JAS9F', ip: '9.195.219.73', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_171'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.41.578737 (49da6702b16031..., userDataDir: C:\Users\AnithaB\AppData\Lo...}, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:60772}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, rotatable: false, setWindowRect: true, takesHeapSnapshot: true, takesScreenshot: true, unexpectedAlertBehaviour: , unhandledPromptBehavior: , version: 69.0.3497.100, webStorageEnabled: true}
+Session ID: fbce9e823d7888e07a4c36b94f335c0e
 at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -50,15 +155,10 @@ at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttp
 at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
 at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
 at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:548)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:322)
-at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:424)
-at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:314)
-at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
-at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
-at com.sun.proxy.$Proxy8.click(Unknown Source)
-at com.bp.saviynt.RequestHistoryPage.clickOnTaskAndFetchEndPoints(RequestHistoryPage.java:71)
-at com.bp.saviynt.ADD_Enterprise_Role_Request_Escalation_And_Rejection.UpdatedTC2(ADD_Enterprise_Role_Request_Escalation_And_Rejection.java:118)
+at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:276)
+at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:83)
+at com.bp.saviynt.ApprovalInboxPage.searchRequestNumber(ApprovalInboxPage.java:101)
+at com.bp.saviynt.ADD_Enterprise_Role_Request_SOD.TC4(ADD_Enterprise_Role_Request_SOD.java:65)
 at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -90,139 +190,15 @@ at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:125)
 at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:417)
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- UpdatedTC2 -->
-        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.ADD_Enterprise_Role_Request_Escalation_And_Rejection@1283bb96]" name="CloseApplication" is-config="true" duration-ms="2367" started-at="2018-10-16T09:20:33Z" finished-at="2018-10-16T09:20:36Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=UpdatedTC2 status=FAILURE method=ADD_Enterprise_Role_Request_Escalation_And_Rejection.UpdatedTC2()[pri:0, instance:com.bp.saviynt.ADD_Enterprise_Role_Request_Escalation_And_Rejection@1283bb96] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- CloseApplication -->
-      </class> <!-- com.bp.saviynt.ADD_Enterprise_Role_Request_Escalation_And_Rejection -->
-    </test> <!-- New User: ADD_Enterprise_Role_Request_Escalation_And_Rejection -->
-    <test name="New User: ADD Enterprise Role Request-Basic" duration-ms="467235" started-at="2018-10-16T09:20:39Z" finished-at="2018-10-16T09:28:26Z">
-      <class name="com.bp.saviynt.ADD_Enterprise_Role_Request_Basic_Test">
-        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.ADD_Enterprise_Role_Request_Basic_Test@78691363]" name="openApplication" is-config="true" duration-ms="164680" started-at="2018-10-16T09:20:39Z" finished-at="2018-10-16T09:23:23Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openApplication -->
-        <test-method status="FAIL" signature="TC1()[pri:0, instance:com.bp.saviynt.ADD_Enterprise_Role_Request_Basic_Test@78691363]" name="TC1" duration-ms="300762" started-at="2018-10-16T09:23:23Z" finished-at="2018-10-16T09:28:24Z">
-          <exception class="org.openqa.selenium.NoSuchElementException">
-            <message>
-              <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"//a[contains(@href,'/ECM/jbpmworkflowmanagement/tasklistforrequest?reqid=')]"}
-  (Session info: chrome=69.0.3497.100)
-  (Driver info: chromedriver=2.41.578737 (49da6702b16031c40d63e5618de03a32ff6c197e),platform=Windows NT 10.0.17134 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 0 milliseconds
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
-System info: host: 'DESKTOP-A4JAS9F', ip: '9.195.219.73', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_171'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.41.578737 (49da6702b16031..., userDataDir: C:\Users\AnithaB\AppData\Lo...}, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:62607}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, rotatable: false, setWindowRect: true, takesHeapSnapshot: true, takesScreenshot: true, unexpectedAlertBehaviour: , unhandledPromptBehavior: , version: 69.0.3497.100, webStorageEnabled: true}
-Session ID: b7b4a726225250db3ac3a14511dd4203
-*** Element info: {Using=xpath, value=//a[contains(@href,'/ECM/jbpmworkflowmanagement/tasklistforrequest?reqid=')]}]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//a[contains(@href,'/ECM/jbpmworkflowmanagement/tasklistforrequest?reqid=')]"}
-  (Session info: chrome=69.0.3497.100)
-  (Driver info: chromedriver=2.41.578737 (49da6702b16031c40d63e5618de03a32ff6c197e),platform=Windows NT 10.0.17134 x86_64) (WARNING: The server did not provide any stacktrace information)
-Command duration or timeout: 0 milliseconds
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
-System info: host: 'DESKTOP-A4JAS9F', ip: '9.195.219.73', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_171'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.41.578737 (49da6702b16031..., userDataDir: C:\Users\AnithaB\AppData\Lo...}, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:62607}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, rotatable: false, setWindowRect: true, takesHeapSnapshot: true, takesScreenshot: true, unexpectedAlertBehaviour: , unhandledPromptBehavior: , version: 69.0.3497.100, webStorageEnabled: true}
-Session ID: b7b4a726225250db3ac3a14511dd4203
-*** Element info: {Using=xpath, value=//a[contains(@href,'/ECM/jbpmworkflowmanagement/tasklistforrequest?reqid=')]}
-at sun.reflect.GeneratedConstructorAccessor33.newInstance(Unknown Source)
-at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
-at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:214)
-at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:166)
-at org.openqa.selenium.remote.http.JsonHttpResponseCodec.reconstructValue(JsonHttpResponseCodec.java:40)
-at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:80)
-at org.openqa.selenium.remote.http.AbstractHttpResponseCodec.decode(AbstractHttpResponseCodec.java:44)
-at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:548)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:322)
-at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:424)
-at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:314)
-at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:69)
-at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:38)
-at com.sun.proxy.$Proxy8.click(Unknown Source)
-at com.bp.saviynt.RequestHistoryPage.clickOnTaskAndFetchEndPoints(RequestHistoryPage.java:71)
-at com.bp.saviynt.ADD_Enterprise_Role_Request_Basic_Test.TC1(ADD_Enterprise_Role_Request_Basic_Test.java:132)
-at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.lang.reflect.Method.invoke(Method.java:498)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
-at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
-at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
-at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
-at org.testng.TestRunner.privateRun(TestRunner.java:648)
-at org.testng.TestRunner.run(TestRunner.java:505)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
-at org.testng.SuiteRunner.run(SuiteRunner.java:364)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
-at org.testng.TestNG.runSuites(TestNG.java:1049)
-at org.testng.TestNG.run(TestNG.java:1017)
-at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:283)
-at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:75)
-at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:120)
-at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:383)
-at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:344)
-at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:125)
-at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:417)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TC1 -->
-        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.ADD_Enterprise_Role_Request_Basic_Test@78691363]" name="CloseApplication" is-config="true" duration-ms="1790" started-at="2018-10-16T09:28:24Z" finished-at="2018-10-16T09:28:26Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=TC1 status=FAILURE method=ADD_Enterprise_Role_Request_Basic_Test.TC1()[pri:0, instance:com.bp.saviynt.ADD_Enterprise_Role_Request_Basic_Test@78691363] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- CloseApplication -->
-      </class> <!-- com.bp.saviynt.ADD_Enterprise_Role_Request_Basic_Test -->
-    </test> <!-- New User: ADD Enterprise Role Request-Basic -->
-    <test name="Existing User: ADD_Enterprise_Role_Request_SOD" duration-ms="477170" started-at="2018-10-16T09:29:09Z" finished-at="2018-10-16T09:37:07Z">
-      <class name="com.bp.saviynt.ADD_Enterprise_Role_Request_SOD">
-        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.ADD_Enterprise_Role_Request_SOD@13c9d689]" name="openApplication" is-config="true" duration-ms="98515" started-at="2018-10-16T09:29:09Z" finished-at="2018-10-16T09:30:48Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openApplication -->
-        <test-method status="PASS" signature="TC4()[pri:0, instance:com.bp.saviynt.ADD_Enterprise_Role_Request_SOD@13c9d689]" name="TC4" duration-ms="377457" started-at="2018-10-16T09:30:48Z" finished-at="2018-10-16T09:37:05Z">
+          </exception> <!-- org.openqa.selenium.StaleElementReferenceException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TC4 -->
-        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.ADD_Enterprise_Role_Request_SOD@13c9d689]" name="CloseApplication" is-config="true" duration-ms="1195" started-at="2018-10-16T09:37:05Z" finished-at="2018-10-16T09:37:07Z">
+        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.ADD_Enterprise_Role_Request_SOD@3754a4bf]" name="CloseApplication" is-config="true" duration-ms="2094" started-at="2018-10-25T06:38:13Z" finished-at="2018-10-25T06:38:15Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=TC4 status=SUCCESS method=ADD_Enterprise_Role_Request_SOD.TC4()[pri:0, instance:com.bp.saviynt.ADD_Enterprise_Role_Request_SOD@13c9d689] output={null}]]]>
+                <![CDATA[[TestResult name=TC4 status=FAILURE method=ADD_Enterprise_Role_Request_SOD.TC4()[pri:0, instance:com.bp.saviynt.ADD_Enterprise_Role_Request_SOD@3754a4bf] output={null}]]]>
               </value>
             </param>
           </params>
@@ -231,13 +207,13 @@ at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:417)
         </test-method> <!-- CloseApplication -->
       </class> <!-- com.bp.saviynt.ADD_Enterprise_Role_Request_SOD -->
     </test> <!-- Existing User: ADD_Enterprise_Role_Request_SOD -->
-    <test name="Existing User: REMOVE_and_ADD_Enterprise_Role_Request" duration-ms="336420" started-at="2018-10-16T09:37:11Z" finished-at="2018-10-16T09:42:47Z">
+    <test name="Existing User: REMOVE_and_ADD_Enterprise_Role_Request" duration-ms="81002" started-at="2018-10-25T06:38:18Z" finished-at="2018-10-25T06:39:39Z">
       <class name="com.bp.saviynt.REMOVE_and_ADD_Enterprise_Role_Request">
-        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.REMOVE_and_ADD_Enterprise_Role_Request@40a4337a]" name="openApplication" is-config="true" duration-ms="214799" started-at="2018-10-16T09:37:11Z" finished-at="2018-10-16T09:40:46Z">
+        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.REMOVE_and_ADD_Enterprise_Role_Request@6025e1b6]" name="openApplication" is-config="true" duration-ms="25061" started-at="2018-10-25T06:38:18Z" finished-at="2018-10-25T06:38:43Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openApplication -->
-        <test-method status="FAIL" signature="TC3()[pri:0, instance:com.bp.saviynt.REMOVE_and_ADD_Enterprise_Role_Request@40a4337a]" name="TC3" duration-ms="119531" started-at="2018-10-16T09:40:46Z" finished-at="2018-10-16T09:42:45Z">
+        <test-method status="FAIL" signature="TC3()[pri:0, instance:com.bp.saviynt.REMOVE_and_ADD_Enterprise_Role_Request@6025e1b6]" name="TC3" duration-ms="53638" started-at="2018-10-25T06:38:43Z" finished-at="2018-10-25T06:39:37Z">
           <exception class="org.openqa.selenium.TimeoutException">
             <message>
               <![CDATA[Expected condition failed: waiting for visibility of Proxy element for: DefaultElementLocator 'By.xpath: (//a[@class='btn red btn-xs pull-right'])[1]' (tried for 30 second(s) with 500 milliseconds interval)]]>
@@ -285,8 +261,8 @@ For documentation on this error, please visit: http://seleniumhq.org/exceptions/
 Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
 System info: host: 'DESKTOP-A4JAS9F', ip: '9.195.219.73', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_171'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.41.578737 (49da6702b16031..., userDataDir: C:\Users\AnithaB\AppData\Lo...}, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:63045}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, rotatable: false, setWindowRect: true, takesHeapSnapshot: true, takesScreenshot: true, unexpectedAlertBehaviour: , unhandledPromptBehavior: , version: 69.0.3497.100, webStorageEnabled: true}
-Session ID: 5df9320329f977bc84e76af3935572e9
+Capabilities {acceptInsecureCerts: false, acceptSslCerts: false, applicationCacheEnabled: false, browserConnectionEnabled: false, browserName: chrome, chrome: {chromedriverVersion: 2.41.578737 (49da6702b16031..., userDataDir: C:\Users\AnithaB\AppData\Lo...}, cssSelectorsEnabled: true, databaseEnabled: false, goog:chromeOptions: {debuggerAddress: localhost:60837}, handlesAlerts: true, hasTouchScreen: false, javascriptEnabled: true, locationContextEnabled: true, mobileEmulationEnabled: false, nativeEvents: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, rotatable: false, setWindowRect: true, takesHeapSnapshot: true, takesScreenshot: true, unexpectedAlertBehaviour: , unhandledPromptBehavior: , version: 69.0.3497.100, webStorageEnabled: true}
+Session ID: ece05088300971f7db04043ef24bd030
 *** Element info: {Using=xpath, value=(//a[@class='btn red btn-xs pull-right'])[1]}
 at sun.reflect.GeneratedConstructorAccessor33.newInstance(Unknown Source)
 at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -318,58 +294,18 @@ at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:260)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TC3 -->
-        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.REMOVE_and_ADD_Enterprise_Role_Request@40a4337a]" name="CloseApplication" is-config="true" duration-ms="2090" started-at="2018-10-16T09:42:45Z" finished-at="2018-10-16T09:42:47Z">
+        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.REMOVE_and_ADD_Enterprise_Role_Request@6025e1b6]" name="CloseApplication" is-config="true" duration-ms="2302" started-at="2018-10-25T06:39:37Z" finished-at="2018-10-25T06:39:39Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=TC3 status=FAILURE method=REMOVE_and_ADD_Enterprise_Role_Request.TC3()[pri:0, instance:com.bp.saviynt.REMOVE_and_ADD_Enterprise_Role_Request@40a4337a] output={null}]]]>
+                <![CDATA[[TestResult name=TC3 status=FAILURE method=REMOVE_and_ADD_Enterprise_Role_Request.TC3()[pri:0, instance:com.bp.saviynt.REMOVE_and_ADD_Enterprise_Role_Request@6025e1b6] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- CloseApplication -->
-        <test-method status="FAIL" signature="sendReport()[pri:0, instance:com.bp.saviynt.REMOVE_and_ADD_Enterprise_Role_Request@40a4337a]" name="sendReport" is-config="true" duration-ms="266" started-at="2018-10-16T09:44:15Z" finished-at="2018-10-16T09:44:15Z">
-          <exception class="java.lang.NoClassDefFoundError">
-            <message>
-              <![CDATA[javax/mail/Authenticator]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.NoClassDefFoundError: javax/mail/Authenticator
-at com.bp.testbase.TestBase.sendReport(TestBase.java:109)
-at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.lang.reflect.Method.invoke(Method.java:498)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
-at org.testng.internal.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:59)
-at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:458)
-at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:222)
-at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:142)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:425)
-at org.testng.SuiteRunner.run(SuiteRunner.java:364)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
-at org.testng.TestNG.runSuites(TestNG.java:1049)
-at org.testng.TestNG.run(TestNG.java:1017)
-at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:283)
-at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:75)
-at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:120)
-at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:383)
-at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:344)
-at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:125)
-at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:417)
-Caused by: java.lang.ClassNotFoundException: javax.mail.Authenticator
-at java.net.URLClassLoader.findClass(URLClassLoader.java:381)
-at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
-at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:349)
-at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
-... 25 more
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.NoClassDefFoundError -->
+        <test-method status="PASS" signature="sendReport()[pri:0, instance:com.bp.saviynt.REMOVE_and_ADD_Enterprise_Role_Request@6025e1b6]" name="sendReport" is-config="true" duration-ms="21199" started-at="2018-10-25T06:39:51Z" finished-at="2018-10-25T06:40:13Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- sendReport -->

@@ -6,25 +6,25 @@
       <class name="com.bp.saviynt.ADD_Enterprise_Role_Request_Escalation_And_Rejection">
         <methods>
           <include name="sendReport"/>
+          <include name="TC2"/>
           <include name="openApplication"/>
           <include name="CloseApplication"/>
-          <include name="UpdatedTC2"/>
         </methods>
       </class> <!-- com.bp.saviynt.ADD_Enterprise_Role_Request_Escalation_And_Rejection -->
     </classes>
   </test> <!-- New User: ADD_Enterprise_Role_Request_Escalation_And_Rejection(failed) -->
-  <test thread-count="5" verbose="0" name="New User: ADD Enterprise Role Request-Basic(failed)">
+  <test thread-count="5" verbose="0" name="Existing User: ADD_Enterprise_Role_Request_SOD(failed)">
     <classes>
-      <class name="com.bp.saviynt.ADD_Enterprise_Role_Request_Basic_Test">
+      <class name="com.bp.saviynt.ADD_Enterprise_Role_Request_SOD">
         <methods>
           <include name="sendReport"/>
           <include name="openApplication"/>
           <include name="CloseApplication"/>
-          <include name="TC1"/>
+          <include name="TC4"/>
         </methods>
-      </class> <!-- com.bp.saviynt.ADD_Enterprise_Role_Request_Basic_Test -->
+      </class> <!-- com.bp.saviynt.ADD_Enterprise_Role_Request_SOD -->
     </classes>
-  </test> <!-- New User: ADD Enterprise Role Request-Basic(failed) -->
+  </test> <!-- Existing User: ADD_Enterprise_Role_Request_SOD(failed) -->
   <test thread-count="5" verbose="0" name="Existing User: REMOVE_and_ADD_Enterprise_Role_Request(failed)">
     <classes>
       <class name="com.bp.saviynt.REMOVE_and_ADD_Enterprise_Role_Request">

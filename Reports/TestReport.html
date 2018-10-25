@@ -46,7 +46,7 @@
 		<ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 			<li>
                 <a href='#!'>
-                    <span class='label suite-start-time blue darken-3'>Oct 22, 2018 03:34:31 PM</span>
+                    <span class='label suite-start-time blue darken-3'>Oct 25, 2018 11:55:18 AM</span>
 				</a>
 			</li>
 			<li>
@@ -122,10 +122,10 @@
 					<canvas id='parent-analysis' width='100' height='80'></canvas>
 				</div>
 				<div class='block text-small'>
-					<span class='tooltipped' data-position='top' data-tooltip='0%'><span class='strong'>0</span> test(s) passed</span>
+					<span class='tooltipped' data-position='top' data-tooltip='40%'><span class='strong'>2</span> test(s) passed</span>
 				</div>
 				<div class='block text-small'>
-					<span class='strong tooltipped' data-position='top' data-tooltip='100%'>1</span> test(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> others
+					<span class='strong tooltipped' data-position='top' data-tooltip='60%'>3</span> test(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> others
 				</div>
 			</div>
 		</div>
@@ -137,10 +137,10 @@
 					<canvas id='child-analysis' width='100' height='80'></canvas>
 				</div>
 				<div class='block text-small'>
-					<span class='tooltipped' data-position='top' data-tooltip='0%'><span class='strong'>0</span> step(s) passed</span>
+					<span class='tooltipped' data-position='top' data-tooltip='80%'><span class='strong'>12</span> step(s) passed</span>
 				</div>
 				<div class='block text-small'>
-					<span class='strong tooltipped' data-position='top' data-tooltip='100%'>1</span> step(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> others
+					<span class='strong tooltipped' data-position='top' data-tooltip='20%'>3</span> step(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> others
 				</div>
 			</div>
 		</div>
@@ -157,15 +157,201 @@
 				
 				<li class='test displayed active  fail' status='fail' bdd='false' test-id='1'>
 					<div class='test-heading'>
-						<span class='test-name'>Trigger Job</span>
-						<span class='test-time'>Oct 22, 2018 03:36:11 PM</span>
+						<span class='test-name'>New User:ADD Enterprise Role Request-Escalation and Rejection</span>
+						<span class='test-time'>Oct 25, 2018 11:55:45 AM</span>
 						<span class='test-status right fail'>fail</span>
 					</div>
 					<div class='test-content hide'>
 <div class='test-time-info'>
-	<span class='label start-time'>Oct 22, 2018 03:36:11 PM</span>
-	<span class='label end-time'>Oct 22, 2018 03:37:42 PM</span>
-	<span class='label time-taken grey lighten-1 white-text'>0h 1m 31s+528ms</span>
+	<span class='label start-time'>Oct 25, 2018 11:55:45 AM</span>
+	<span class='label end-time'>Oct 25, 2018 12:00:07 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 4m 21s+198ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:56:32 AM</td>
+					<td class='step-details'>Request raised with number 2471087<img data-featherlight='.\\1540448792319.png' width='10%' src='.\\1540448792319.png' data-src='.\\1540448792319.png'></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:56:55 AM</td>
+					<td class='step-details'>Line Manager had approved the request</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:59:22 AM</td>
+					<td class='step-details'>Escalation manager accepted role1 and rejected role2</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:59:46 AM</td>
+					<td class='step-details'>Training work order had approved the request</td>
+				</tr>
+				<tr class='log' status='fail'>
+					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
+					<td class='timestamp'>12:00:07 PM</td>
+					<td class='step-details'>Test Failed. Please find the details in the screenshot and report log<img data-featherlight='.\\1540449007042.png' width='10%' src='.\\1540449007042.png' data-src='.\\1540449007042.png'></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='2'>
+					<div class='test-heading'>
+						<span class='test-name'>New User:ADD Enterprise Role Request-Basic</span>
+						<span class='test-time'>Oct 25, 2018 12:00:45 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Oct 25, 2018 12:00:45 PM</span>
+	<span class='label end-time'>Oct 25, 2018 12:04:28 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 3m 42s+432ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>12:01:44 PM</td>
+					<td class='step-details'>Request raised with number 2471251<img data-featherlight='.\\1540449104066.png' width='10%' src='.\\1540449104066.png' data-src='.\\1540449104066.png'></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>12:02:19 PM</td>
+					<td class='step-details'>Line Manager had approved the request</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>12:02:49 PM</td>
+					<td class='step-details'>First Role Manager had approved the request</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>12:03:24 PM</td>
+					<td class='step-details'>Second Role Manager had approved the request</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>12:04:00 PM</td>
+					<td class='step-details'>Training work order had approved the request</td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>12:04:28 PM</td>
+					<td class='step-details'>All endpoints were found<img data-featherlight='.\\1540449268217.png' width='10%' src='.\\1540449268217.png' data-src='.\\1540449268217.png'></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='3'>
+					<div class='test-heading'>
+						<span class='test-name'>Trigger Job</span>
+						<span class='test-time'>Oct 25, 2018 12:04:56 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Oct 25, 2018 12:04:56 PM</span>
+	<span class='label end-time'>Oct 25, 2018 12:05:27 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 30s+588ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>12:05:27 PM</td>
+					<td class='step-details'>Job Trigger Scheduled Successfully</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  fail' status='fail' bdd='false' test-id='4'>
+					<div class='test-heading'>
+						<span class='test-name'>Existing User:ADD Enterprise Role Request-SOD</span>
+						<span class='test-time'>Oct 25, 2018 12:06:17 PM</span>
+						<span class='test-status right fail'>fail</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Oct 25, 2018 12:06:17 PM</span>
+	<span class='label end-time'>Oct 25, 2018 12:08:13 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 1m 56s+94ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>12:07:58 PM</td>
+					<td class='step-details'>Request raised with number 2471322<img data-featherlight='.\\1540449478388.png' width='10%' src='.\\1540449478388.png' data-src='.\\1540449478388.png'></td>
+				</tr>
+				<tr class='log' status='fail'>
+					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
+					<td class='timestamp'>12:08:13 PM</td>
+					<td class='step-details'>Test Failed. Please find the details in the screenshot and report log<img data-featherlight='.\\1540449493980.png' width='10%' src='.\\1540449493980.png' data-src='.\\1540449493980.png'></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  fail' status='fail' bdd='false' test-id='5'>
+					<div class='test-heading'>
+						<span class='test-name'>Existing User:REMOVE and ADD Enterprise Role Request</span>
+						<span class='test-time'>Oct 25, 2018 12:08:43 PM</span>
+						<span class='test-status right fail'>fail</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Oct 25, 2018 12:08:43 PM</span>
+	<span class='label end-time'>Oct 25, 2018 12:09:37 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 54s+223ms</span>
 </div>
 	<div class='test-steps'>
 		<table class='bordered table-results'>
@@ -179,8 +365,8 @@
 			<tbody>
 				<tr class='log' status='fail'>
 					<td class='status fail' title='fail' alt='fail'><i class='material-icons'>cancel</i></td>
-					<td class='timestamp'>3:37:42 PM</td>
-					<td class='step-details'>Test Failed. Please find the details in the screenshot and report log<img data-featherlight='.\\1540202862773.png' width='10%' src='.\\1540202862773.png' data-src='.\\1540202862773.png'></td>
+					<td class='timestamp'>12:09:37 PM</td>
+					<td class='step-details'>Test Failed. Please find the details in the screenshot and report log<img data-featherlight='.\\1540449577834.png' width='10%' src='.\\1540449577834.png' data-src='.\\1540449577834.png'></td>
 				</tr>
 			</tbody>
 		</table>
@@ -222,31 +408,31 @@
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Tests
-					<div class='panel-lead'>1</div>
+					<div class='panel-lead'>5</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Steps
-					<div class='panel-lead'>1</div>
+					<div class='panel-lead'>15</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Start
-					<div class='panel-lead'>Oct 22, 2018 03:34:31 PM</div>
+					<div class='panel-lead'>Oct 25, 2018 11:55:18 AM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 			 		End
-			 		<div class='panel-lead'>Oct 22, 2018 03:37:43 PM</div>
+			 		<div class='panel-lead'>Oct 25, 2018 12:09:38 PM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Time Taken
-					<div class='panel-lead'>0h 3m 12s+431ms</div>
+					<div class='panel-lead'>0h 14m 20s+346ms</div>
 				</div>
 			</div>
 		</div>
@@ -259,22 +445,22 @@
 
 		<script>
 			var statusGroup = {
-				passParent: 0,
-				failParent: 1,
+				passParent: 2,
+				failParent: 3,
 				fatalParent: 0,
 				errorParent: 0,
 				warningParent: 0,
 				skipParent: 0,
-				exceptionsParent: 1,
+				exceptionsParent: 3,
 				
-				passChild: 0,
-				failChild: 1,
+				passChild: 12,
+				failChild: 3,
 				fatalChild: 0,
 				errorChild: 0,
 				warningChild: 0,
 				skipChild: 0,
 				infoChild: 0,
-				exceptionsChild: 1,
+				exceptionsChild: 3,
 				
 				passGrandChild: 0,
 				failGrandChild: 0,

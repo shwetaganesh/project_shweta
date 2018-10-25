@@ -89,7 +89,7 @@ public class HomePage extends TestBase
 		logoff_expand.click();
 		wait.until(ExpectedConditions.visibilityOf(logoff_link));
 		logoff_link.click();
-		System.out.println("Logoff Suceessful");
+		System.out.println("Logoff Successful");
 	}
 	
 }

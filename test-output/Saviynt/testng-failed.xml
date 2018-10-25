@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Saviynt]">
+  <test thread-count="5" name="New User: ADD_Enterprise_Role_Request_Escalation_And_Rejection(failed)">
+    <classes>
+      <class name="com.bp.saviynt.ADD_Enterprise_Role_Request_Escalation_And_Rejection">
+        <methods>
+          <include name="sendReport"/>
+          <include name="openApplication"/>
+          <include name="CloseApplication"/>
+          <include name="JobTrigger"/>
+          <include name="UpdatedTC2"/>
+        </methods>
+      </class> <!-- com.bp.saviynt.ADD_Enterprise_Role_Request_Escalation_And_Rejection -->
+    </classes>
+  </test> <!-- New User: ADD_Enterprise_Role_Request_Escalation_And_Rejection(failed) -->
   <test thread-count="5" name="New User: ADD Enterprise Role Request-Basic(failed)">
     <classes>
       <class name="com.bp.saviynt.ADD_Enterprise_Role_Request_Basic_Test">
         <methods>
+          <include name="JobTrigger"/>
           <include name="sendReport"/>
           <include name="openApplication"/>
           <include name="CloseApplication"/>
@@ -13,4 +27,16 @@
       </class> <!-- com.bp.saviynt.ADD_Enterprise_Role_Request_Basic_Test -->
     </classes>
   </test> <!-- New User: ADD Enterprise Role Request-Basic(failed) -->
+  <test thread-count="5" name="Existing User: REMOVE_and_ADD_Enterprise_Role_Request(failed)">
+    <classes>
+      <class name="com.bp.saviynt.REMOVE_and_ADD_Enterprise_Role_Request">
+        <methods>
+          <include name="TC3"/>
+          <include name="sendReport"/>
+          <include name="openApplication"/>
+          <include name="CloseApplication"/>
+        </methods>
+      </class> <!-- com.bp.saviynt.REMOVE_and_ADD_Enterprise_Role_Request -->
+    </classes>
+  </test> <!-- Existing User: REMOVE_and_ADD_Enterprise_Role_Request(failed) -->
 </suite> <!-- Failed suite [Saviynt] -->

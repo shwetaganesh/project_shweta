@@ -21,7 +21,7 @@ public class ADD_Enterprise_Role_Request_Escalation_And_Rejection extends TestBa
 	String password = "password1";
 	
 	@Test
-	public void UpdatedTC2() throws IOException, InterruptedException 
+	public void TC2() throws IOException, InterruptedException 
 	{
 		logger = extent.createTest("New User:ADD Enterprise Role Request-Escalation and Rejection");
 		requestor = excel.getData(0, 6, 6);
@@ -132,5 +132,24 @@ public class ADD_Enterprise_Role_Request_Escalation_And_Rejection extends TestBa
 		// requester logout
 		home.logoff();
 	}
-
+	//@Test(priority=2)
+	public void JobTrigger()
+	{
+		logger = extent.createTest("Trigger Job");
+		admin_id = excel.getData(3, 36, 1);
+		LaunchPage launch = new LaunchPage(driver);
+		//*** Login as Admin***
+		launch.login(admin_id, password);
+		HomePage home = new HomePage(driver);
+		//open admin tab
+		home.openAdminTab();
+		AdminPage adminpage = new AdminPage(driver);
+		//open job control panel
+		adminpage.openJobControlPanelLink();
+		// open utility link
+		adminpage.openUtility();
+		logger.pass("Job Trigger Scheduled Successfully");
+		//log off
+		home.logoff();
+	}
 }

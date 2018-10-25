@@ -12,7 +12,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.bp.lib.Screenshot;
 import com.bp.testbase.TestBase;
 
 
@@ -92,6 +91,7 @@ public class RequestHistoryPage extends TestBase
 	public boolean validateEndPoints(ArrayList<String>arlist,ArrayList<String>validate)
 	{
 		boolean verify_endpoints=true;
+		boolean all_found=true;
 		for(String validate_check:validate)
 		{
 			for(String temp:arlist)
@@ -106,9 +106,13 @@ public class RequestHistoryPage extends TestBase
 					verify_endpoints=false;
 			}
 			if(!verify_endpoints)
+			{
 				System.out.println(validate_check+" is missing");
+
+				all_found=false;
+			}
 		}
-		return verify_endpoints;
+		return all_found;
 	}
 	
 	// method to verify whether the request number is for removing the role.

@@ -1,5 +1,5 @@
 com\bp\saviynt\REMOVE_and_ADD_Enterprise_Role_Request.class
 com\bp\saviynt\ADD_Enterprise_Role_Request_SOD.class
-com\bp\saviynt\TestCase1.class
 com\bp\saviynt\ADD_Enterprise_Role_Request_Basic_Test.class
 com\bp\saviynt\ADD_Enterprise_Role_Request_Escalation_And_Rejection.class
+com\bp\saviynt\RolesRemovalTest.class

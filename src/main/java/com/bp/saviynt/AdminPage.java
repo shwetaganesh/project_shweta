@@ -31,12 +31,7 @@ public class AdminPage extends TestBase
 	private WebElement provLink;
 	
 	@FindBy(xpath = "(//div[@id='collapse_0_22']//div[@class='col-md-1' ]//*[contains(text(),'Action')])[1]")
-	//@FindBy(xpath ="//div[@class='btn-group pull-right open']//a[@class='btn btn-primary btn-sm']")
-	private WebElement actionButton;
-	
-	//@FindBy(xpath = "//div[@class='btn-group pull-right open']//a[@id='gritter-without-image2']")
-	/*@FindBy(xpath = "(//*[@class='TriggerChainJob' and @id='gritter-without-image2'])[1]")
-	private WebElement startButton;*/
+	private WebElement actionButton;	
 	
 	@FindBy(xpath ="//div[@class='btn-group pull-right open']//*[contains(text(),'Edit Trigger')]")
 	private WebElement editTrigger;

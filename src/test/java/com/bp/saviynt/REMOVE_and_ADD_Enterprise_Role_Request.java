@@ -161,7 +161,7 @@ public class REMOVE_and_ADD_Enterprise_Role_Request  extends TestBase
 		i = 0;
 		for (String s : validate_list_revoke) 
 		{
-			validate_list_revoke.set(i, s.replace(" ", "").replace("Tasksgetcreated-", ""));
+			validate_list_revoke.set(i, s.replace(" ", "").replace("TasksgetcreatedtoREMOVE-", ""));
 			i++;
 		}
 		result = historyPage.validateEndPoints(arlist, validate_list_revoke);
