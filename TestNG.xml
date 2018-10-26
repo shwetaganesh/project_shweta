@@ -2,6 +2,12 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Saviynt" parallel="none">
 
+	<test name="Role removal">
+		<classes>
+			<class
+				name="com.bp.saviynt.RolesRemovalTest" />
+		</classes>
+	</test>
 	<test name="New User: ADD_Enterprise_Role_Request_Escalation_And_Rejection">
 		<classes>
 			<class

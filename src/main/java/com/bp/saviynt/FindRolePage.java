@@ -71,22 +71,32 @@ public class FindRolePage extends TestBase
 	}
 	
 	//method to search for the required role and remove the corresponding role from the cart
-	public void searchAndRemoveFromCart(String role_description)
+	public boolean searchAndRemoveFromCart(String role_description)
 	{	
 		wait.until(ExpectedConditions.visibilityOf(role_searchbox));
-		//wait.until(ExpectedConditions.visibilityOf(first_addtocart_button));
 		wait.until(ExpectedConditions.visibilityOf(firstRow));
 		role_searchbox.sendKeys(role_description);
 		role_searchbox.sendKeys(Keys.ENTER);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tbody[@role='alert']//a[contains(text(),'"+role_description+"')]")));
-		wait.until(ExpectedConditions.visibilityOf(removeRole_button));
-		removeRole_button.click();
-		wait.until(ExpectedConditions.visibilityOf(remove_from_cart_button));
-		role_searchbox.clear();
+		boolean status=true;
+		try
+		{
+			if(removeRole_button.isDisplayed())
+			{
+				status=true;
+				System.out.println(status);
+				removeRole_button.click();
+				wait.until(ExpectedConditions.visibilityOf(remove_from_cart_button));
+				role_searchbox.clear();		
+			}
+		}
+		catch(Exception e)
+		{
+			status=false;
+			role_searchbox.clear();
+		}
+		return status;
 	}
-	
-	
-	
 }
 	
 
