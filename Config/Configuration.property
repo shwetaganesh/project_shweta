@@ -6,4 +6,4 @@ ChromeDriver=.\\Config\\chromedriver.exe
 
 IEDriver=.\\Config\\IEDriverServer.exe
 
-URL=https://ssm-preprod.bp.saviyntcloud.com/ECM
+URL=https://ssm-dev.bp.saviyntcloud.com/ECM

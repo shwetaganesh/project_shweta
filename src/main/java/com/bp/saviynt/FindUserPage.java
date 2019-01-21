@@ -1,6 +1,7 @@
 package com.bp.saviynt;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -39,7 +40,8 @@ public class FindUserPage extends TestBase
 	{
 		wait.until(ExpectedConditions.visibilityOf(searchbox_user));
 		searchbox_user.sendKeys(end_user_id);
-		search_button_user.click();
+		searchbox_user.sendKeys(Keys.ENTER);
+		//search_button_user.click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tbody[@role='alert']//td[contains(text(),'"+end_user_id+"')]")));
 		first_radio_button.click();
 		next_green_button.click();

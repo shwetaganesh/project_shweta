@@ -3,14 +3,14 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.bp.saviynt.ADD_Enterprise_Role_Request_Escalation_And_Rejection">
+      <class name="com.bp.saviynt.Existing_User_Remove_Salesforce_Application_Access">
         <methods>
           <include name="sendReport"/>
           <include name="openApplication"/>
+          <include name="createRequestAndEndpointApprove"/>
           <include name="CloseApplication"/>
-          <include name="UpdatedTC2"/>
         </methods>
-      </class> <!-- com.bp.saviynt.ADD_Enterprise_Role_Request_Escalation_And_Rejection -->
+      </class> <!-- com.bp.saviynt.Existing_User_Remove_Salesforce_Application_Access -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

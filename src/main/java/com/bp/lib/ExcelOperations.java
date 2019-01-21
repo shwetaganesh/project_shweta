@@ -42,7 +42,7 @@ public class ExcelOperations
 		sheet1.getRow(rownum).getCell(colnum).setCellValue(result);
 		try 
 		{
-			   FileOutputStream fos = new FileOutputStream("Test Data\\BP_User_Data.xls"); // saves xls file to                                                                                                             disk
+			   FileOutputStream fos = new FileOutputStream(".\\Test Data\\Salesforce - Test Scenarios_V3.xlsx"); // saves xls file to                                                                                                             disk
 			   wb.write(fos);
 			   fos.close();  
 		}

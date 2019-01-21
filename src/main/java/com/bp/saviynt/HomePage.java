@@ -37,6 +37,10 @@ public class HomePage extends TestBase
 	@FindBy(xpath = "//a[contains(text(),'ADMIN')]")
 	private WebElement adminLink;
 	
+	// 11-01-2019
+	@FindBy(xpath = "//div[@id='arsRequestAccessForOthers'] //a[@class='more']")
+	private WebElement requestApplicationSpecificRoles;
+	
 	WebDriverWait wait;
 	
 	public HomePage(WebDriver ldriver) 
@@ -91,5 +95,13 @@ public class HomePage extends TestBase
 		logoff_link.click();
 		System.out.println("Logoff Successful");
 	}
+	
+	//open request application specific roles link
+	public void openRequestApplicationSpecificRoles()
+	{
+		wait.until(ExpectedConditions.visibilityOf(requestApplicationSpecificRoles));
+		requestApplicationSpecificRoles.click();
+	}
+	
 	
 }

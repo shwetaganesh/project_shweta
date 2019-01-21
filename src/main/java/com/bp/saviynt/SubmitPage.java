@@ -101,4 +101,12 @@ public class SubmitPage extends TestBase
 		wait.until(ExpectedConditions.elementToBeClickable(select_value));
 		select_value.click();
 	}
+	
+	public String returnRequestNumber() {
+		String requestNumber = "";
+		wait.until(ExpectedConditions.visibilityOf(req_number));
+		 requestNumber= req_number.getText();
+		return requestNumber;
+		
+	}
 }

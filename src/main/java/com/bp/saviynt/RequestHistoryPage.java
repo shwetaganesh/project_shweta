@@ -42,6 +42,13 @@ public class RequestHistoryPage extends TestBase
 	@FindBy(xpath ="(//div[contains(@id,'dataBlock_RequestKey')])[1]/child::*")
 	private WebElement request_type;
 	
+	//17/01/19
+	@FindBy(xpath ="//table[@id='#scroller1']")
+	private WebElement tableScroller;
+	
+	@FindBy(xpath = "//th[contains(text(),'Creation Date')]")
+	private WebElement lastColumnInTable;
+	
 	WebDriverWait wait;
 	
 	public RequestHistoryPage(WebDriver ldriver) 
@@ -130,4 +137,29 @@ public class RequestHistoryPage extends TestBase
 			return false;
 	}
 
+	public ArrayList<String> clickOnTaskAndFetchEntitlements(){
+		TestBase.scrollDownToElement(driver, task_history);
+		task_link.click();
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table[@id='#scroller1']/child::tbody")));
+		List<WebElement> end_points=driver.findElements(By.xpath("//div[@id='ui-tabs-1']//div//tbody//tr"));
+		ArrayList<String> arlist = new ArrayList<String>();
+		String temp;
+		for(int i=1;i<=end_points.size();i++)
+		{
+			temp=driver.findElement(By.xpath("//div[@id='ui-tabs-1']//div//tbody//tr["+i+"]//td[9]")).getText();
+			////table[@id='#scroller1']/child::tbody/child::tr["+i+"]/child::td[8]
+			arlist.add(temp);		
+		}
+		
+		TestBase.scrollDownToElement(driver, lastColumnInTable);
+		TestBase.scrollToEndOfPage(driver);
+		System.out.println("Current Entitlements are :");
+		
+		System.out.println(arlist);
+		return arlist;
+
+		
+		
+	}
 }

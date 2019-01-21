@@ -39,6 +39,24 @@ public class FindRolePage extends TestBase
 	@FindBy(xpath ="(//td[@class=' sorting_1'])[1]")
 	private WebElement firstRow;
 	
+	//12/01/2019
+	@FindBy(xpath = "(//*[@onclick='opennextpage()' and @class='btn blue button-next checkout1'])[1]")
+	private WebElement newCheckoutButton;
+	
+	@FindBy(xpath = "//a[@class='btn default btn-xs pull-right green']")
+	private WebElement addtocart_button;
+	
+	@FindBy(xpath = "//a[contains(text(),'MODIFY EXISTING ACCOUNT')]")
+	private WebElement modifyExistingAccountButton;
+	
+	@FindBy(xpath = "//td[@class=' sorting_1' and contains(text(),'TEST_SalesforceTest')]")
+	private WebElement firstRowData;
+	
+	@FindBy(xpath = "(//h4[@class='modal-title'])[3]")
+	private WebElement popUpHeader;
+	
+	@FindBy(xpath = "(//button[@class='btn green'])[2]")
+	private WebElement popUpyesButton;
 	WebDriverWait wait;
 	
 	public FindRolePage(WebDriver ldriver) 
@@ -64,10 +82,38 @@ public class FindRolePage extends TestBase
 		role_searchbox.clear();
 	}
 	
+	public void searchandAddtoCartNew(String role_description)
+	{
+		wait.until(ExpectedConditions.visibilityOf(role_searchbox));
+		//wait.until(ExpectedConditions.visibilityOf(first_addtocart_button));
+		wait.until(ExpectedConditions.visibilityOf(firstRow));
+		role_searchbox.clear();
+		role_searchbox.sendKeys(role_description);
+		role_searchbox.sendKeys(Keys.ENTER);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//td[@class=' sorting_1' and contains(text(),'TEST_SalesforceTest')]")));
+		wait.until(ExpectedConditions.visibilityOf(addtocart_button));
+		addtocart_button.click();
+		wait.until(ExpectedConditions.visibilityOf(remove_cart));
+		role_searchbox.clear();
+	}
+
+	
 	//method to click on the CheckOut button after adding/removing required roles 
 	public void clickOnCheckout(){
 		TestBase.javaScriptClickbyElement(driver, checkout_button);
 		wait.until(ExpectedConditions.visibilityOf(business_justification_first));
+	}
+	
+	public void clickOnCheckout1() {
+		TestBase.javaScriptClickbyElement(driver, newCheckoutButton);
+	}
+	
+	//17-01-19
+	public void clickOnModifyExistingAccount() {
+		wait.until(ExpectedConditions.visibilityOf(firstRowData));
+		modifyExistingAccountButton.click();
+		wait.until(ExpectedConditions.visibilityOf(popUpHeader));
+		popUpyesButton.click();
 	}
 	
 	//method to search for the required role and remove the corresponding role from the cart

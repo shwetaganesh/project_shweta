@@ -81,6 +81,13 @@ public class ApprovalInboxPage extends TestBase
 	@FindBy(xpath = "//*[@id = 'dtsearch_myDataTablemitigatingControls']")
 	private WebElement textBox;
 	
+	//14/1/19
+	@FindBy(xpath = "(//button[contains(@id,'asynx')])[5]")
+	private WebElement acceptButton3;
+	
+	@FindBy(xpath = "(//button[contains(@id,'asynx')])[6]")
+	private WebElement rejectButton3;
+	
 	WebDriverWait wait;
 
 	public ApprovalInboxPage(WebDriver ldriver)
@@ -128,6 +135,12 @@ public class ApprovalInboxPage extends TestBase
 	{
 		rejectButton2.click();
 		System.out.println("Role2 rejected for the user");
+	}
+	
+	public void acceptThirdRole()
+	{
+		acceptButton3.click();
+		System.out.println("role3 accepted");
 	}
 	
 	public void rejectAllRole()

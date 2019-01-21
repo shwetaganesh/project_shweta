@@ -1,72 +1,196 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+<testng-results skipped="0" failed="0" ignored="0" total="9" passed="9">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="158214" started-at="2018-10-24T09:33:23Z" finished-at="2018-10-24T09:36:02Z">
+  <suite name="Saviynt" duration-ms="810015" started-at="2019-01-21T06:19:00Z" finished-at="2019-01-21T06:32:30Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="158214" started-at="2018-10-24T09:33:23Z" finished-at="2018-10-24T09:36:02Z">
-      <class name="com.bp.saviynt.ADD_Enterprise_Role_Request_Basic_Test">
-        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.ADD_Enterprise_Role_Request_Basic_Test@74e52ef6]" name="openApplication" is-config="true" duration-ms="19269" started-at="2018-10-24T09:33:23Z" finished-at="2018-10-24T09:33:43Z">
+    <test name="NewUser_Add_Group_Permission_Profile" duration-ms="259427" started-at="2019-01-21T06:19:00Z" finished-at="2019-01-21T06:23:20Z">
+      <class name="com.bp.saviynt.NewUser_Add_Group_Permission_Profile">
+        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.NewUser_Add_Group_Permission_Profile@4c402120]" name="openApplication" is-config="true" duration-ms="22186" started-at="2019-01-21T06:19:00Z" finished-at="2019-01-21T06:19:22Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openApplication -->
-        <test-method status="PASS" signature="TC1()[pri:0, instance:com.bp.saviynt.ADD_Enterprise_Role_Request_Basic_Test@74e52ef6]" name="TC1" duration-ms="137330" started-at="2018-10-24T09:33:43Z" finished-at="2018-10-24T09:36:00Z">
+        <test-method status="PASS" signature="createRequestAndEndpointApprove()[pri:1, instance:com.bp.saviynt.NewUser_Add_Group_Permission_Profile@4c402120]" name="createRequestAndEndpointApprove" duration-ms="130258" started-at="2019-01-21T06:19:22Z" finished-at="2019-01-21T06:21:33Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TC1 -->
-        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.ADD_Enterprise_Role_Request_Basic_Test@74e52ef6]" name="CloseApplication" is-config="true" duration-ms="1569" started-at="2018-10-24T09:36:00Z" finished-at="2018-10-24T09:36:02Z">
+        </test-method> <!-- createRequestAndEndpointApprove -->
+        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.NewUser_Add_Group_Permission_Profile@4c402120]" name="CloseApplication" is-config="true" duration-ms="1211" started-at="2019-01-21T06:21:33Z" finished-at="2019-01-21T06:21:34Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=TC1 status=SUCCESS method=ADD_Enterprise_Role_Request_Basic_Test.TC1()[pri:0, instance:com.bp.saviynt.ADD_Enterprise_Role_Request_Basic_Test@74e52ef6] output={null}]]]>
+                <![CDATA[[TestResult name=createRequestAndEndpointApprove status=SUCCESS method=NewUser_Add_Group_Permission_Profile.createRequestAndEndpointApprove()[pri:1, instance:com.bp.saviynt.NewUser_Add_Group_Permission_Profile@4c402120] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- CloseApplication -->
-        <test-method status="FAIL" signature="sendReport()[pri:0, instance:com.bp.saviynt.ADD_Enterprise_Role_Request_Basic_Test@74e52ef6]" name="sendReport" is-config="true" duration-ms="627" started-at="2018-10-24T09:36:03Z" finished-at="2018-10-24T09:36:03Z">
-          <exception class="java.lang.NoClassDefFoundError">
-            <message>
-              <![CDATA[javax/mail/Authenticator]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.NoClassDefFoundError: javax/mail/Authenticator
-at com.bp.testbase.TestBase.sendReport(TestBase.java:109)
-at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.lang.reflect.Method.invoke(Method.java:498)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
-at org.testng.internal.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:59)
-at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:458)
-at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:222)
-at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:142)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:425)
-at org.testng.SuiteRunner.run(SuiteRunner.java:364)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
-at org.testng.TestNG.runSuites(TestNG.java:1049)
-at org.testng.TestNG.run(TestNG.java:1017)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-Caused by: java.lang.ClassNotFoundException: javax.mail.Authenticator
-at java.net.URLClassLoader.findClass(URLClassLoader.java:381)
-at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
-at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:349)
-at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
-... 21 more
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.NoClassDefFoundError -->
+        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.NewUser_Add_Group_Permission_Profile@4c402120]" name="openApplication" is-config="true" duration-ms="12596" started-at="2019-01-21T06:21:34Z" finished-at="2019-01-21T06:21:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openApplication -->
+        <test-method status="PASS" signature="scheduleJob()[pri:2, instance:com.bp.saviynt.NewUser_Add_Group_Permission_Profile@4c402120]" name="scheduleJob" duration-ms="55256" started-at="2019-01-21T06:21:47Z" finished-at="2019-01-21T06:22:42Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- scheduleJob -->
+        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.NewUser_Add_Group_Permission_Profile@4c402120]" name="CloseApplication" is-config="true" duration-ms="978" started-at="2019-01-21T06:22:42Z" finished-at="2019-01-21T06:22:43Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=scheduleJob status=SUCCESS method=NewUser_Add_Group_Permission_Profile.scheduleJob()[pri:2, instance:com.bp.saviynt.NewUser_Add_Group_Permission_Profile@4c402120] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CloseApplication -->
+        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.NewUser_Add_Group_Permission_Profile@4c402120]" name="openApplication" is-config="true" duration-ms="12012" started-at="2019-01-21T06:22:43Z" finished-at="2019-01-21T06:22:55Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openApplication -->
+        <test-method status="PASS" signature="validateEntitlements()[pri:3, instance:com.bp.saviynt.NewUser_Add_Group_Permission_Profile@4c402120]" name="validateEntitlements" duration-ms="23918" started-at="2019-01-21T06:22:55Z" finished-at="2019-01-21T06:23:19Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateEntitlements -->
+        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.NewUser_Add_Group_Permission_Profile@4c402120]" name="CloseApplication" is-config="true" duration-ms="960" started-at="2019-01-21T06:23:19Z" finished-at="2019-01-21T06:23:20Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=validateEntitlements status=SUCCESS method=NewUser_Add_Group_Permission_Profile.validateEntitlements()[pri:3, instance:com.bp.saviynt.NewUser_Add_Group_Permission_Profile@4c402120] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CloseApplication -->
+      </class> <!-- com.bp.saviynt.NewUser_Add_Group_Permission_Profile -->
+    </test> <!-- NewUser_Add_Group_Permission_Profile -->
+    <test name="Existing_User_Modify_Account" duration-ms="247376" started-at="2019-01-21T06:23:21Z" finished-at="2019-01-21T06:27:28Z">
+      <class name="com.bp.saviynt.Existing_User_Modify_Account">
+        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.Existing_User_Modify_Account@3d285d7e]" name="openApplication" is-config="true" duration-ms="16872" started-at="2019-01-21T06:23:21Z" finished-at="2019-01-21T06:23:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openApplication -->
+        <test-method status="PASS" signature="createRequestAndEndpointApprove()[pri:1, instance:com.bp.saviynt.Existing_User_Modify_Account@3d285d7e]" name="createRequestAndEndpointApprove" duration-ms="128682" started-at="2019-01-21T06:23:38Z" finished-at="2019-01-21T06:25:46Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createRequestAndEndpointApprove -->
+        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.Existing_User_Modify_Account@3d285d7e]" name="CloseApplication" is-config="true" duration-ms="1059" started-at="2019-01-21T06:25:46Z" finished-at="2019-01-21T06:25:47Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=createRequestAndEndpointApprove status=SUCCESS method=Existing_User_Modify_Account.createRequestAndEndpointApprove()[pri:1, instance:com.bp.saviynt.Existing_User_Modify_Account@3d285d7e] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CloseApplication -->
+        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.Existing_User_Modify_Account@3d285d7e]" name="openApplication" is-config="true" duration-ms="10985" started-at="2019-01-21T06:25:47Z" finished-at="2019-01-21T06:25:58Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openApplication -->
+        <test-method status="PASS" signature="scheduleJob()[pri:2, instance:com.bp.saviynt.Existing_User_Modify_Account@3d285d7e]" name="scheduleJob" duration-ms="50303" started-at="2019-01-21T06:25:58Z" finished-at="2019-01-21T06:26:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- scheduleJob -->
+        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.Existing_User_Modify_Account@3d285d7e]" name="CloseApplication" is-config="true" duration-ms="1084" started-at="2019-01-21T06:26:49Z" finished-at="2019-01-21T06:26:50Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=scheduleJob status=SUCCESS method=Existing_User_Modify_Account.scheduleJob()[pri:2, instance:com.bp.saviynt.Existing_User_Modify_Account@3d285d7e] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CloseApplication -->
+        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.Existing_User_Modify_Account@3d285d7e]" name="openApplication" is-config="true" duration-ms="13573" started-at="2019-01-21T06:26:50Z" finished-at="2019-01-21T06:27:03Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openApplication -->
+        <test-method status="PASS" signature="validateEntitlements()[pri:3, instance:com.bp.saviynt.Existing_User_Modify_Account@3d285d7e]" name="validateEntitlements" duration-ms="23666" started-at="2019-01-21T06:27:03Z" finished-at="2019-01-21T06:27:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateEntitlements -->
+        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.Existing_User_Modify_Account@3d285d7e]" name="CloseApplication" is-config="true" duration-ms="1129" started-at="2019-01-21T06:27:27Z" finished-at="2019-01-21T06:27:28Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=validateEntitlements status=SUCCESS method=Existing_User_Modify_Account.validateEntitlements()[pri:3, instance:com.bp.saviynt.Existing_User_Modify_Account@3d285d7e] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CloseApplication -->
+      </class> <!-- com.bp.saviynt.Existing_User_Modify_Account -->
+    </test> <!-- Existing_User_Modify_Account -->
+    <test name="Existing_User_Remove_Salesforce_Application_Access" duration-ms="260027" started-at="2019-01-21T06:28:10Z" finished-at="2019-01-21T06:32:30Z">
+      <class name="com.bp.saviynt.Existing_User_Remove_Salesforce_Application_Access">
+        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.Existing_User_Remove_Salesforce_Application_Access@65e98b1c]" name="openApplication" is-config="true" duration-ms="33406" started-at="2019-01-21T06:28:10Z" finished-at="2019-01-21T06:28:44Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openApplication -->
+        <test-method status="PASS" signature="createRequestAndEndpointApprove()[pri:1, instance:com.bp.saviynt.Existing_User_Remove_Salesforce_Application_Access@65e98b1c]" name="createRequestAndEndpointApprove" duration-ms="62422" started-at="2019-01-21T06:28:44Z" finished-at="2019-01-21T06:29:46Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createRequestAndEndpointApprove -->
+        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.Existing_User_Remove_Salesforce_Application_Access@65e98b1c]" name="CloseApplication" is-config="true" duration-ms="1065" started-at="2019-01-21T06:29:46Z" finished-at="2019-01-21T06:29:47Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=createRequestAndEndpointApprove status=SUCCESS method=Existing_User_Remove_Salesforce_Application_Access.createRequestAndEndpointApprove()[pri:1, instance:com.bp.saviynt.Existing_User_Remove_Salesforce_Application_Access@65e98b1c] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CloseApplication -->
+        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.Existing_User_Remove_Salesforce_Application_Access@65e98b1c]" name="openApplication" is-config="true" duration-ms="44361" started-at="2019-01-21T06:29:47Z" finished-at="2019-01-21T06:30:32Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openApplication -->
+        <test-method status="PASS" signature="scheduleJob()[pri:2, instance:com.bp.saviynt.Existing_User_Remove_Salesforce_Application_Access@65e98b1c]" name="scheduleJob" duration-ms="76750" started-at="2019-01-21T06:30:32Z" finished-at="2019-01-21T06:31:48Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- scheduleJob -->
+        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.Existing_User_Remove_Salesforce_Application_Access@65e98b1c]" name="CloseApplication" is-config="true" duration-ms="1108" started-at="2019-01-21T06:31:48Z" finished-at="2019-01-21T06:31:49Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=scheduleJob status=SUCCESS method=Existing_User_Remove_Salesforce_Application_Access.scheduleJob()[pri:2, instance:com.bp.saviynt.Existing_User_Remove_Salesforce_Application_Access@65e98b1c] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CloseApplication -->
+        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.Existing_User_Remove_Salesforce_Application_Access@65e98b1c]" name="openApplication" is-config="true" duration-ms="12294" started-at="2019-01-21T06:31:49Z" finished-at="2019-01-21T06:32:02Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openApplication -->
+        <test-method status="PASS" signature="validateEntitlements()[pri:3, instance:com.bp.saviynt.Existing_User_Remove_Salesforce_Application_Access@65e98b1c]" name="validateEntitlements" duration-ms="27498" started-at="2019-01-21T06:32:02Z" finished-at="2019-01-21T06:32:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validateEntitlements -->
+        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.Existing_User_Remove_Salesforce_Application_Access@65e98b1c]" name="CloseApplication" is-config="true" duration-ms="1094" started-at="2019-01-21T06:32:29Z" finished-at="2019-01-21T06:32:30Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=validateEntitlements status=SUCCESS method=Existing_User_Remove_Salesforce_Application_Access.validateEntitlements()[pri:3, instance:com.bp.saviynt.Existing_User_Remove_Salesforce_Application_Access@65e98b1c] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CloseApplication -->
+        <test-method status="PASS" signature="sendReport()[pri:0, instance:com.bp.saviynt.Existing_User_Remove_Salesforce_Application_Access@65e98b1c]" name="sendReport" is-config="true" duration-ms="14473" started-at="2019-01-21T06:32:31Z" finished-at="2019-01-21T06:32:46Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- sendReport -->
-      </class> <!-- com.bp.saviynt.ADD_Enterprise_Role_Request_Basic_Test -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+      </class> <!-- com.bp.saviynt.Existing_User_Remove_Salesforce_Application_Access -->
+    </test> <!-- Existing_User_Remove_Salesforce_Application_Access -->
+  </suite> <!-- Saviynt -->
 </testng-results>
