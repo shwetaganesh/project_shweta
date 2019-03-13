@@ -1,7 +1,9 @@
 package com.bp.saviynt;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -33,6 +35,9 @@ public class HomePage extends TestBase
 	
 	@FindBy(xpath = "//a[contains(text(),'HOME')]")
 	private WebElement home_link;
+	
+	/*@FindBy(xpath = "//a[contains(text(),'ARS')]")
+	private WebElement ars_link;  */         // instead of home
 	
 	@FindBy(xpath = "//a[contains(text(),'ADMIN')]")
 	private WebElement adminLink;
@@ -73,11 +78,14 @@ public class HomePage extends TestBase
 	
 	public void clickOnRequestHome()
 	{
-		wait.until(ExpectedConditions.elementToBeClickable(request_home_link));
-		request_home_link.click();
+		wait.until(ExpectedConditions.elementToBeClickable(home_link));
+		home_link.click();
+		
 	}
 	public void clickOnHome()
 	{
+		/*wait.until(ExpectedConditions.elementToBeClickable(home_link));
+		home_link.click();*/
 		wait.until(ExpectedConditions.elementToBeClickable(home_link));
 		home_link.click();
 	}
@@ -90,7 +98,9 @@ public class HomePage extends TestBase
 	public void logoff()
 	{
 		wait.until(ExpectedConditions.visibilityOf(logoff_expand));
-		logoff_expand.click();
+		
+		TestBase.javaScriptClickbyElement(driver, logoff_expand);
+		//logoff_expand.click();
 		wait.until(ExpectedConditions.visibilityOf(logoff_link));
 		logoff_link.click();
 		System.out.println("Logoff Successful");

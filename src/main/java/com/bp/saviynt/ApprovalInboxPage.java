@@ -49,6 +49,9 @@ public class ApprovalInboxPage extends TestBase
 	 @FindBy(xpath = "//*[contains(text(),'Approval Inbox')]")
 	 private WebElement approval_inbox_side;
 	 
+	 @FindBy(xpath = "(//*[contains(text(),'Request Approval')])[2]")
+	 private WebElement requestApprovalHeaderSidePanel;
+	 
 	 @FindBy(xpath = "(//*[contains(text(),'Add Mitigating Control')])[1]")
 	 private WebElement addMitigatingControlButton;
 	 
@@ -88,6 +91,9 @@ public class ApprovalInboxPage extends TestBase
 	@FindBy(xpath = "(//button[contains(@id,'asynx')])[6]")
 	private WebElement rejectButton3;
 	
+	@FindBy(xpath = "//a[contains(text(),'ARS')]")
+	private WebElement ars_link;           // instead of home
+	
 	WebDriverWait wait;
 
 	public ApprovalInboxPage(WebDriver ldriver)
@@ -106,7 +112,8 @@ public class ApprovalInboxPage extends TestBase
 		searchBox.sendKeys(Keys.ENTER);
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'"+requestID+"')]")));
 		element.click();
-		wait.until(ExpectedConditions.visibilityOf(approval_inbox_side));	
+		wait.until(ExpectedConditions.visibilityOf(approval_inbox_side));
+		//wait.until(ExpectedConditions.visibilityOf(requestApprovalHeaderSidePanel));
 	}
 	
 	//method to accept the first role for the end user
@@ -158,7 +165,10 @@ public class ApprovalInboxPage extends TestBase
 		//confirmButton.click();
 		System.out.println("confirm button clicked");
 		wait.until(ExpectedConditions.elementToBeClickable(req_home_link));
+		//wait.until(ExpectedConditions.visibilityOf(requestApprovalHeaderSidePanel));
+		//boolean result = requestApprovalHeaderSidePanel.getText().equalsIgnoreCase("Request Approval");
 		boolean result = approvalInboxText.getText().equalsIgnoreCase("Approval Inbox");
+		//ars_link.click();
 		req_home_link.click();
 		return result;
 	}

@@ -14,11 +14,11 @@ import com.bp.testbase.TestBase;
 
 public class ADD_Enterprise_Role_Request_Escalation_And_Rejection extends TestBase{
 	
-	ExcelOperations excel = new ExcelOperations(".\\Test Data\\NEWSAVIYNT - Test Scenarios 300818.xlsx");
-	String role1 = excel.getData(0, 15, 1);
-	String role2 = excel.getData(0, 16, 1);
-	String requestor, end_user, line_manager, role_approver_1, role_approver_2, training_work_order_id,sod_id, admin_id;
-	String password = "password1";
+	ExcelOperations excel = new ExcelOperations(".\\Test Data\\Salesforce - Test Scenarios_V3.xlsx");
+	String role1 = excel.getData(0, 21, 1);
+	String role2 = excel.getData(0, 22, 1);
+	String requestNumber,requestor, end_user, line_manager, role_approver_2, training_work_order_id,sod_id, admin_id;
+	String password = "password";
 	
 	@Test
 	public void TC2() throws IOException, InterruptedException 
@@ -27,7 +27,6 @@ public class ADD_Enterprise_Role_Request_Escalation_And_Rejection extends TestBa
 		requestor = excel.getData(0, 6, 6);
 		end_user = excel.getData(0, 6, 7);
 		line_manager = excel.getData(0, 6, 8);
-		role_approver_1 = excel.getData(0, 6, 9);
 		role_approver_2 = excel.getData(0, 7, 9);
 		training_work_order_id = excel.getData(0, 6, 11);
 
@@ -48,13 +47,13 @@ public class ADD_Enterprise_Role_Request_Escalation_And_Rejection extends TestBa
 		rolePage.clickOnCheckout();
 		SubmitPage submitObj = new SubmitPage(driver);
 		// submit the request
-		String request_number = submitObj.submitAccessRequest();
-		if (request_number.equals(""))
+		requestNumber = submitObj.submitAccessRequest();
+		if (requestNumber.equals(""))
 			Assert.assertTrue(false, "Request was not raised properly");
 		else
-			logger.pass("Request raised with number " + request_number, MediaEntityBuilder
+			logger.pass("Request raised with number " + requestNumber, MediaEntityBuilder
 					.createScreenCaptureFromPath(Screenshot.captureScreenShot(driver).replace("Reports", "")).build());
-		System.out.println("Request Number for TC2 is " + request_number);
+		System.out.println("Request Number for TC2 is " + requestNumber);
 		// requester log out
 		home.logoff();
 
@@ -64,7 +63,7 @@ public class ADD_Enterprise_Role_Request_Escalation_And_Rejection extends TestBa
 		home.openApprovalInbox();
 		ApprovalInboxPage approve = new ApprovalInboxPage(driver);
 		// search with the requestID
-		approve.searchRequestNumber(request_number);
+		approve.searchRequestNumber(requestNumber);
 		// accept role1
 		approve.acceptFirstRole();
 		// accept role2
@@ -82,9 +81,9 @@ public class ADD_Enterprise_Role_Request_Escalation_And_Rejection extends TestBa
 		// open approval inbox
 		home.openApprovalInbox();
 		// search with the requestID
-		approve.searchRequestNumber(request_number);
+		approve.searchRequestNumber(requestNumber);
 		approve.acceptFirstRole();
-		//reject second rle
+		//reject second role
 		approve.rejectSecondRole();
 		result = approve.clickOnConfirm();
 		Assert.assertTrue(result,"Escalation manager operation failed");		
@@ -98,7 +97,7 @@ public class ADD_Enterprise_Role_Request_Escalation_And_Rejection extends TestBa
 		// open approval inbox
 		home.openApprovalInbox();
 		// search with the requestID
-		approve.searchRequestNumber(request_number);
+		approve.searchRequestNumber(requestNumber);
 		// accept first role
 		approve.acceptFirstRole();
 		result = approve.clickOnConfirm();
@@ -107,30 +106,7 @@ public class ADD_Enterprise_Role_Request_Escalation_And_Rejection extends TestBa
 		// training work order log out
 		home.logoff();
 
-		//***Login as requester***
-		launch.login(requestor, password);
-		// open request history
-		home.openRequestHistory();
-		RequestHistoryPage historyPage = new RequestHistoryPage(driver);
-		// search and open the request number
-		historyPage.searchRequestAndOpen(request_number);
-		// create an array list containing all the end points in the TASK Tab.
-		ArrayList<String> arlist = historyPage.clickOnTaskAndFetchEndPoints();
-		// **** Verify Access Granted or not ****
-		String endpoint=excel.getData(0,6,14);
-		ArrayList<String> validate_list=new ArrayList<String>(Arrays.asList(endpoint.split(",")));
-		int i=0;
-		for(String s:validate_list)
-		{
-			validate_list.set(i,s.replace(" ","").replace("Tasksgetcreated-", ""));
-			i++;
-		} 
-		result = historyPage.validateEndPoints(arlist, validate_list);
-		Assert.assertTrue(result, "All end points were not present");
-		logger.pass("All endpoints were found", MediaEntityBuilder
-				.createScreenCaptureFromPath(Screenshot.captureScreenShot(driver).replace("Reports", "")).build());
-		// requester logout
-		home.logoff();
+		
 	}
 	//@Test(priority=2)
 	public void JobTrigger()
@@ -147,9 +123,54 @@ public class ADD_Enterprise_Role_Request_Escalation_And_Rejection extends TestBa
 		//open job control panel
 		adminpage.openJobControlPanelLink();
 		// open utility link
-		adminpage.openUtility();
+		adminpage.openUtilityandTriggerChain();
 		logger.pass("Job Trigger Scheduled Successfully");
 		//log off
 		home.logoff();
 	}
+	@Test(priority=2)
+	public void scheduleJob() {
+		logger = extent.createTest("Schedule job");
+		//**login as admin
+		LaunchPage launch = new LaunchPage(driver);
+		admin_id = "TSTTEN10";
+		launch.login(admin_id, password);
+		HomePage home = new HomePage(driver);
+		home.openAdminTab();
+		AdminPage adminPage = new AdminPage(driver);
+		adminPage.openJobControlPanelLink();
+		adminPage.openUtilityandProvisioningJob();
+		// endpoint approver log out
+		home.logoff();
+	}
+	@Test(priority=3)
+	public void validateEndPoints() throws IOException {
+		
+			//***Login as requester***
+		LaunchPage launch = new LaunchPage(driver);
+		launch.login(requestor, password);
+		HomePage home = new HomePage(driver);
+		// open request history
+		home.openRequestHistory();
+		RequestHistoryPage historyPage = new RequestHistoryPage(driver);
+		// search and open the request number
+		historyPage.searchRequestAndOpen(requestNumber);
+		// create an array list containing all the end points in the TASK Tab.
+		ArrayList<String> arlist = historyPage.clickOnTaskAndFetchEndPoints();
+		// **** Verify Access Granted or not ****
+		String endpoint = excel.getData(0, 6, 14);
+		ArrayList<String> validate_list = new ArrayList<String>(Arrays.asList(endpoint.split(",")));
+		int i = 0;
+		for (String s : validate_list) {
+			validate_list.set(i, s.replace(" ", "").replace("Tasksgetcreated-", ""));
+			i++;
+		}
+		boolean result = historyPage.validateEndPoints(arlist, validate_list);
+		Assert.assertTrue(result, "All end points were not present");
+		logger.pass("All endpoints were found", MediaEntityBuilder
+				.createScreenCaptureFromPath(Screenshot.captureScreenShot(driver).replace("Reports", "")).build());
+		// requester logout
+		home.logoff();
+	}
+	
 }

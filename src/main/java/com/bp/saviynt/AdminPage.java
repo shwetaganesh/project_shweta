@@ -32,8 +32,14 @@ public class AdminPage extends TestBase
 	@FindBy(xpath = "//a[contains(text(),'PROV')]")
 	private WebElement provLink;
 	
-	@FindBy(xpath = "(//div[@id='collapse_0_22']//div[@class='col-md-1' ]//*[contains(text(),'Action')])[1]")
-	private WebElement actionButton;	
+	/*@FindBy(xpath = "(//div[@id='collapse_0_22']//div[@class='col-md-1' ]//*[contains(text(),'Action')])[1]")
+	private WebElement actionButton;*/
+	
+	@FindBy(xpath = "(//div[@id='collapse_0_22']//*[contains(text(),'Action')])[1]")
+	private WebElement actionButtonInProvisioningJob;
+	
+	@FindBy(xpath = "(//div[@id='collapse_0_21']//*[contains(text(),'Action')])[1]")
+	private WebElement actionButtonInTriggerChain;
 	
 	@FindBy(xpath ="//div[@class='btn-group pull-right open']//*[contains(text(),'Edit Trigger')]")
 	private WebElement editTrigger;
@@ -57,7 +63,127 @@ public class AdminPage extends TestBase
 	@FindBy(xpath ="(//button[@class='btn green' and contains(text(),'Submit')])[2]")
 	private WebElement submitButton;
 	
+	//06-03-2019
+	@FindBy(xpath = "//li[@id='users']//a")
+	private WebElement usersLinkLeftPanel;
+	
+	@FindBy(xpath = "//input[@id='dtsearch_usersList']")
+	private WebElement searchUserTextBox;
+	
+	@FindBy(xpath = "//a[@class='btn btn-primary']")
+	private WebElement actionsbutton;
+	
+	@FindBy(xpath = "//li//a[@data-target='#upLoadUser']")
+	private WebElement uploadUsers;
+	
+	@FindBy(xpath = "//a[@href='/ECM/users/create']")
+	private WebElement createUsers;
+	
+	@FindBy(xpath = "//h4[contains(text(),'Select File To Upload User')]")
+	private WebElement popUpheader;
+	
+	/*@FindBy(xpath = "//span[@id='uploadFileName']//span[@id='uneditableInputfilename']")
+	private WebElement filenameTextBox;*/	
+	
+	@FindBy(xpath = "(//input[@type='text'])[4]") 
+	private WebElement userName;
+	
+	@FindBy(xpath = "(//input[@type='text'])[5]") 
+	private WebElement firstName;
+	
+	@FindBy(xpath = "(//input[@type='text'])[6]") 
+	private WebElement lastName;
+	
+	@FindBy(xpath = "(//input[@type='text'])[8]") 
+	private WebElement country;
+	
+	@FindBy(xpath = "(//input[@type='text'])[10]")
+	private WebElement email;
+	
+	@FindBy(xpath = "//button[@type='button' and contains(text(),'Select Manager')]")
+	private WebElement selectManagerButton;
+	
+	@FindBy(xpath = "//input[@id='dtsearch_allusers']")
+	private WebElement searchManagerTextBox;
+	
+	@FindBy(xpath = "(//input[@type='radio'])[1]")
+	private WebElement firstRadioButton;
+	
+	@FindBy(xpath = "(//a[@type='button'])[2]")
+	private WebElement submitManagerButton;
+	
+	@FindBy(xpath = "//a[@onclick='checkAndCreateForm()']")
+	private WebElement createButton;
+	
+	
+	@FindBy(xpath = "(//a[@role='presentation'])[1]")
+	private WebElement userDetailsTab;
+	
+	@FindBy(xpath ="(//a[@role='presentation'])[2]")
+	private WebElement otherAttributesTab;
+	
+	@FindBy(xpath = "(//a[@role='presentation'])[6]")
+	private WebElement savRoleTab;
+	
+	@FindBy(xpath = "//input[@id='customproperty16']")
+	private WebElement uanTextBox;
+	
+	@FindBy(xpath = "//input[@id='customproperty24']")
+	private WebElement accountDefaultValuesTextBox;
+	
+	@FindBy(xpath = "//a[@onclick='document.forms.updateusers.submit()']")
+	private WebElement updateButton;
+	
+	@FindBy(xpath = "//a[@onclick='validateAndSubmit()']")
+	private WebElement update;						// update button that appears once department name is entered. 
+	
+	@FindBy(xpath = "//input[@id='departmentname']")
+	private WebElement departmentName;
+	
+	@FindBy(xpath = "//a[@href='#addSavRole']")
+	private WebElement addSavRole;
+	
+	@FindBy(xpath = "//h4[contains(text(),'Add SAV Role')]")
+	private WebElement addSavRoleHeader;
+	
+	@FindBy(xpath ="//input[@id='dtsearch_myDataTableusersavroles']")
+	private WebElement savRoleSearchBox;
+	
+	@FindBy(xpath ="(//td//a[contains(text(),'ROLE_END_USER')])[1]")
+	private WebElement firstRow;
+	
+	@FindBy(xpath ="(//td//input[@type='checkbox'])[1]")
+	private WebElement firstCheckBox;
+			
+	@FindBy(xpath ="//button[@onclick='checkIfRoleSelected(this)']")
+	private WebElement submitRoleButton;
+	
+	@FindBy(xpath = "(//span[contains(text(),'Admin Function')])[2]")
+	private WebElement adminFunctionLeftHandPanel;
+	
+	@FindBy(xpath = "//input[@id='dtsearch_myDataTableadminFunction']")
+	private WebElement userNameSearchBox;
+									
+	@FindBy(xpath = "//a[@class='btn default btn-xs green']")
+	private WebElement manageButton;
+																	
+	@FindBy(xpath = "//div[@id='uniform-resetpass']//span")	
+	private WebElement resetPasswordCheckBox;
+	
+	@FindBy(xpath = "(//input[@type='password'])[1]")
+	private WebElement newPasswordTextBox;
+	
+	@FindBy(xpath = "(//input[@type='password'])[2]")
+	private WebElement confirmPasswordTextBox;
+	
+	@FindBy(xpath = "(//a[@type='button'])[2]")
+	private WebElement savePasswordButton;	
+																												
+	@FindBy(xpath = "(//button[contains(text(),'Close')])[3]")
+	private WebElement closeButton;
+	
 	WebDriverWait wait;
+	
 	
 	public AdminPage(WebDriver ldriver)
 	{
@@ -72,27 +198,28 @@ public class AdminPage extends TestBase
 		TestBase.javaScriptClickbyElement(driver, jobControlPanelLink);
 	}
 	
-	public void openUtility()
+	public void openUtilityandTriggerChain()
 	{
 		wait.until(ExpectedConditions.visibilityOf(utilityLink));
 		utilityLink.click();
 		TestBase.scrollDownToElement(driver, triggerJobLink);
 		triggerJobLink.click();
 		wait.until(ExpectedConditions.visibilityOf(provLink));
-		actionButton.click();
+		wait.until(ExpectedConditions.visibilityOf(actionButtonInTriggerChain));
+		actionButtonInTriggerChain.click();
 		editTrigger.click();
 		wait.until(ExpectedConditions.visibilityOf(runButton));
 		runButton.click();
 	}
 	
-	public void openUtilityNew()
+	public void openUtilityandProvisioningJob()
 	{
 		wait.until(ExpectedConditions.visibilityOf(utilityLink));
 		utilityLink.click();
 		TestBase.scrollDownToElement(driver, provisioningJobLink);
 		provisioningJobLink.click();
 		wait.until(ExpectedConditions.visibilityOf(provisioningText));
-		actionButton.click();
+		actionButtonInProvisioningJob.click();
 		wait.until(ExpectedConditions.visibilityOf(startButton));
 		startButton.click();
 		wait.until(ExpectedConditions.visibilityOf(selectSystemTextBox));
@@ -102,4 +229,86 @@ public class AdminPage extends TestBase
 		submitButton.click();		
 		
 	}
+	public void clickOnUsersAndCreateUsers(String uname,String fname,String lname,String managerId) {
+		wait.until(ExpectedConditions.visibilityOf(usersLinkLeftPanel));
+		usersLinkLeftPanel.click();
+		wait.until(ExpectedConditions.visibilityOf(searchUserTextBox));
+		actionsbutton.click();
+		wait.until(ExpectedConditions.visibilityOf(createUsers));
+		createUsers.click();
+		wait.until(ExpectedConditions.visibilityOf(usersLinkLeftPanel));
+		userName.sendKeys(uname);
+		firstName.sendKeys(fname);
+		lastName.sendKeys(lname);
+		country.sendKeys("germany");
+		email.sendKeys("meegeaten.sellamuthu@bp.com");
+		TestBase.scrollDownToElement(driver, selectManagerButton);
+		selectManagerButton.click();
+		wait.until(ExpectedConditions.visibilityOf(searchManagerTextBox));
+		searchManagerTextBox.sendKeys(managerId);
+		System.out.println("manager id :"+managerId);
+		searchManagerTextBox.sendKeys(Keys.ENTER);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//td[contains(text(),'"+managerId+"')]")));
+		driver.findElement(By.xpath("//input[@type='radio' and @label='"+managerId+"']")).click();
+		TestBase.scrollDownToElement(driver, submitManagerButton);
+		submitManagerButton.click();
+		wait.until(ExpectedConditions.visibilityOf(createButton));
+		createButton.click();
+	}
+	
+	public void addAttributes(String property16, String property24,String uname,String password) throws InterruptedException
+	{
+		wait.until(ExpectedConditions.visibilityOf(otherAttributesTab));
+		otherAttributesTab.click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='siteid']")));
+		//TestBase.scrollDownToElement(driver, uanTextBox);
+		uanTextBox.sendKeys(property16);
+		//TestBase.scrollDownToElement(driver, accountDefaultValuesTextBox);
+		accountDefaultValuesTextBox.sendKeys("X|1|GMTUK|GB");
+		TestBase.scrollToEndOfPage(driver);
+		updateButton.click();
+		wait.until(ExpectedConditions.visibilityOf(userDetailsTab));
+		userDetailsTab.click();
+		departmentName.sendKeys("IT&S BAS");
+		TestBase.scrollToEndOfPage(driver);
+		update.click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='username']")));
+		savRoleTab.click();
+		wait.until(ExpectedConditions.visibilityOf(actionsbutton));
+		actionsbutton.click();
+		addSavRole.click();
+		wait.until(ExpectedConditions.visibilityOf(addSavRoleHeader));
+		savRoleSearchBox.sendKeys("ROLE_END_USER");
+		savRoleSearchBox.sendKeys(Keys.ENTER);
+		wait.until(ExpectedConditions.visibilityOf(firstRow));
+		Thread.sleep(3000);
+		TestBase.javaScriptClickbyElement(driver, firstCheckBox);
+		//firstCheckBox.click();
+		submitRoleButton.click();
+		wait.until(ExpectedConditions.visibilityOf(usersLinkLeftPanel));
+		TestBase.scrollDownToElement(driver, adminFunctionLeftHandPanel);
+		adminFunctionLeftHandPanel.click();
+		wait.until(ExpectedConditions.visibilityOf(userNameSearchBox));
+		userNameSearchBox.sendKeys(uname);
+		userNameSearchBox.sendKeys(Keys.ENTER);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//th[contains(text(),'User NTID')])[2]")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//td[@class=' sorting_1']//a[contains(text(),'"+uname+"')]")));
+		manageButton.click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[contains(text(),'Manage User')]")));
+		TestBase.scrollDownToElement(driver, resetPasswordCheckBox);
+		resetPasswordCheckBox.click();
+		newPasswordTextBox.sendKeys(password);
+		confirmPasswordTextBox.sendKeys(password);
+		savePasswordButton.click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[contains(text(),'Saviynt Security Manager')]")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Password reset successfully!')]")));
+		closeButton.click();
+		Thread.sleep(2000);
+		
+		
+		
+		
+	}
+	
+
 }

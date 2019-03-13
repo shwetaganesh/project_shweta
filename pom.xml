@@ -64,5 +64,18 @@
 		<artifactId>commons-email</artifactId>
 		<version>1.5</version>
 	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-csv -->
+<dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-csv</artifactId>
+    <version>1.5</version>
+</dependency>
+	<!-- https://mvnrepository.com/artifact/com.opencsv/opencsv -->
+<dependency>
+    <groupId>com.opencsv</groupId>
+    <artifactId>opencsv</artifactId>
+    <version>4.5</version>
+</dependency>
+	
 	</dependencies>
 </project>

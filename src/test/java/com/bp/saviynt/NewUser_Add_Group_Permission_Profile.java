@@ -17,7 +17,7 @@ public class NewUser_Add_Group_Permission_Profile extends TestBase {
 	ExcelOperations excel = new ExcelOperations(".\\Test Data\\Salesforce - Test Scenarios_V3.xlsx");
 	String password = "password";
 	String searchItem = "TEST_SalesforceTest";
-	String requestor, endPointApprover, endUser, admin;
+	String requestor, endPointApprover, endUser, admin,permission,groupName;
 	public String requestNumber;
 	
 	
@@ -30,6 +30,8 @@ public class NewUser_Add_Group_Permission_Profile extends TestBase {
 		requestor = excel.getData(0, 16, 6);
 		endPointApprover = excel.getData(3, 28,1);
 		endUser = excel.getData(0, 16,7);
+		permission = excel.getData(0, 32, 1);
+		groupName = excel.getData(0, 33, 1);
 		
 		LaunchPage launch = new LaunchPage(driver);
 		//Login to application with Requester 
@@ -47,8 +49,8 @@ public class NewUser_Add_Group_Permission_Profile extends TestBase {
 		// add profile,permission and group for user.
 		RequestAccessPage requestAcessPage = new RequestAccessPage(driver);
 		requestAcessPage.selectProfile();
-		requestAcessPage.addPermissionSet();
-		requestAcessPage.addGroup();
+		requestAcessPage.addPermissionSet(permission);
+		requestAcessPage.addGroup(groupName);
 		requestAcessPage.clickOnNext();
 		// provide business justification and submit
 		JustificationPage justifyPage = new JustificationPage(driver);
@@ -92,7 +94,7 @@ public class NewUser_Add_Group_Permission_Profile extends TestBase {
 		home.openAdminTab();
 		AdminPage adminPage = new AdminPage(driver);
 		adminPage.openJobControlPanelLink();
-		adminPage.openUtilityNew();
+		adminPage.openUtilityandProvisioningJob();
 		// endpoint approver log out
 		home.logoff();
 	}

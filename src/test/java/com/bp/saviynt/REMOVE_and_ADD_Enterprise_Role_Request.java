@@ -14,11 +14,11 @@ import com.bp.testbase.TestBase;
 
 public class REMOVE_and_ADD_Enterprise_Role_Request  extends TestBase
 {
-	ExcelOperations excel = new ExcelOperations(".\\Test Data\\NEWSAVIYNT - Test Scenarios 300818.xlsx");
-	String role1 = excel.getData(0, 15, 1);
-	String role3 = excel.getData(0, 17, 1);
-	String requestor, end_user, line_manager, role_approver_1, role_approver_2, training_work_order_id,sod_id, admin_id;
-	String password = "password1";
+	ExcelOperations excel = new ExcelOperations(".\\Test Data\\Salesforce - Test Scenarios_V3.xlsx");
+	String role1 = excel.getData(0, 21, 1);
+	String role3 = excel.getData(0, 23, 1);
+	String request_number_all,request_number,request_number_revoke_role,requestor, end_user, line_manager, role_approver_1, role_approver_2, training_work_order_id,sod_id, admin_id;
+	String password = "password";
 	
 	
 	@Test
@@ -51,7 +51,7 @@ public class REMOVE_and_ADD_Enterprise_Role_Request  extends TestBase
 		rolePage.clickOnCheckout();
 		SubmitPage submitObj = new SubmitPage(driver);
 		// submit the request
-		String request_number_all = submitObj.submitAccessAndRevokeRequest();		
+		request_number_all = submitObj.submitAccessAndRevokeRequest();		
 		if (request_number_all.equals(""))
 			
 			Assert.assertTrue(false, "Request was not raised properly");
@@ -63,8 +63,8 @@ public class REMOVE_and_ADD_Enterprise_Role_Request  extends TestBase
 		home.openRequestHistory();
 		RequestHistoryPage history = new RequestHistoryPage(driver);
 		// Temporary store
-		String request_number = request_number_all.substring(0, mid);
-		String request_number_revoke_role = request_number_all.substring(mid);
+		request_number = request_number_all.substring(0, mid);
+		request_number_revoke_role = request_number_all.substring(mid);
 		if (history.isRoleRevokeRequest(request_number)) 
 		{
 			String temp = request_number_revoke_role;
@@ -78,7 +78,7 @@ public class REMOVE_and_ADD_Enterprise_Role_Request  extends TestBase
 		home.logoff();
 		
 		// ***Login with Line Manager ***
-		launch.login(line_manager, password);
+		launch.login(line_manager, "password1");
 		// goto approval inbox
 		home.openApprovalInbox();
 		ApprovalInboxPage approve = new ApprovalInboxPage(driver);
@@ -121,8 +121,15 @@ public class REMOVE_and_ADD_Enterprise_Role_Request  extends TestBase
 		// training work order log out
 		home.logoff();
 
+		
+
+	}
+	@Test
+	public void validateEntitlements() throws IOException {
+		LaunchPage launch = new LaunchPage(driver);
 		// ***Login as requester***
 		launch.login(requestor, password);
+		HomePage home = new HomePage(driver);
 		// open request history
 		home.openRequestHistory();
 		RequestHistoryPage historyPage = new RequestHistoryPage(driver);
@@ -131,22 +138,21 @@ public class REMOVE_and_ADD_Enterprise_Role_Request  extends TestBase
 		// create an array list containing all the end points in the TASK Tab.
 		ArrayList<String> arlist = historyPage.clickOnTaskAndFetchEndPoints();
 		// **** Verify Access Granted or not ****
-		String endpoint=excel.getData(0,9,14);
-		ArrayList<String> validate_list=new ArrayList<String>(Arrays.asList(endpoint.split(",")));
-		int i=0;
-		for(String s:validate_list)
-		{
-			validate_list.set(i,s.replace(" ","").replace("Tasksgetcreated-", ""));
+		String endpoint = excel.getData(0, 9, 14);
+		ArrayList<String> validate_list = new ArrayList<String>(Arrays.asList(endpoint.split(",")));
+		int i = 0;
+		for (String s : validate_list) {
+			validate_list.set(i, s.replace(" ", "").replace("Tasksgetcreated-", ""));
 			i++;
 		}
-		result = historyPage.validateEndPoints(arlist, validate_list);
-		if(result)
+		boolean result = historyPage.validateEndPoints(arlist, validate_list);
+		if (result)
 			logger.pass("All endpoints were found for role 3", MediaEntityBuilder
-				.createScreenCaptureFromPath(Screenshot.captureScreenShot(driver).replace("Reports", "")).build());
+					.createScreenCaptureFromPath(Screenshot.captureScreenShot(driver).replace("Reports", "")).build());
 		else
 			logger.fail("All endpoints were not found for role 3", MediaEntityBuilder
 					.createScreenCaptureFromPath(Screenshot.captureScreenShot(driver).replace("Reports", "")).build());
-			
+
 		// goto home page
 		home.clickOnHome();
 		// open request history
@@ -159,8 +165,7 @@ public class REMOVE_and_ADD_Enterprise_Role_Request  extends TestBase
 		endpoint = excel.getData(0, 8, 14);
 		ArrayList<String> validate_list_revoke = new ArrayList<String>(Arrays.asList(endpoint.split(",")));
 		i = 0;
-		for (String s : validate_list_revoke) 
-		{
+		for (String s : validate_list_revoke) {
 			validate_list_revoke.set(i, s.replace(" ", "").replace("TasksgetcreatedtoREMOVE-", ""));
 			i++;
 		}
@@ -168,9 +173,8 @@ public class REMOVE_and_ADD_Enterprise_Role_Request  extends TestBase
 		Assert.assertTrue(result, "All end points were not present for remove role R1");
 		logger.pass("All endpoints were found", MediaEntityBuilder
 				.createScreenCaptureFromPath(Screenshot.captureScreenShot(driver).replace("Reports", "")).build());
-		// requester logout	
-		home.logoff();
-
+		// requester logout
+				home.logoff();
 	}
 	
 }

@@ -16,16 +16,19 @@ public class Existing_User_Remove_Salesforce_Application_Access extends TestBase
 	
 	ExcelOperations excel = new ExcelOperations(".\\Test Data\\Salesforce - Test Scenarios_V3.xlsx");
 	String password = "password";
-	String requestor, endPointApprover, endUser, admin;
+	String searchItem = "TEST_SalesforceTest";
+	String requestor, endPointApprover, endUser, admin,permission,groupName;
 	public String requestNumber;
 
 	@Test(priority=1)
 	public void createRequestAndEndpointApprove() throws IOException, InterruptedException
 		{
-			logger = extent.createTest("Existing User: modify account");
+			logger = extent.createTest("Existing User: remove account");
 			requestor = excel.getData(0, 16, 6);
 			endPointApprover = excel.getData(3, 28,1);
 			endUser = excel.getData(0, 16,7);
+			permission = excel.getData(0, 32, 1);
+			groupName = excel.getData(0,33, 1);
 			
 			LaunchPage launch = new LaunchPage(driver);
 			//Login to application with Requester 
@@ -37,12 +40,13 @@ public class Existing_User_Remove_Salesforce_Application_Access extends TestBase
 			//search for end user
 			userPage.searchEndUser(endUser);
 			FindRolePage rolePage = new FindRolePage(driver);
+			rolePage.searchandAddtoCartNew(searchItem);
 			rolePage.clickOnModifyExistingAccount();
 			rolePage.clickOnCheckout1();
 			// remove group and permission
 			RequestAccessPage requestAcessPage = new RequestAccessPage(driver);
-			requestAcessPage.removePermissionSet();
-			requestAcessPage.removeGroup();
+			requestAcessPage.removePermissionSet(permission);
+			requestAcessPage.removeGroup(groupName);
 			requestAcessPage.clickOnNext();
 			// provide business justification and submit
 			JustificationPage justifyPage = new JustificationPage(driver);
@@ -72,7 +76,7 @@ public class Existing_User_Remove_Salesforce_Application_Access extends TestBase
 			home.openAdminTab();
 			AdminPage adminPage = new AdminPage(driver);
 			adminPage.openJobControlPanelLink();
-			adminPage.openUtilityNew();
+			adminPage.openUtilityandProvisioningJob();
 			// endpoint approver log out
 			home.logoff();
 		}

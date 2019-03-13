@@ -1,6 +1,9 @@
 package com.bp.saviynt;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -11,11 +14,12 @@ import com.bp.testbase.TestBase;
 
 public class ADD_Enterprise_Role_Request_SOD extends TestBase
 {
-	ExcelOperations excel = new ExcelOperations(".\\Test Data\\NEWSAVIYNT - Test Scenarios 300818.xlsx");
-	String role4 = excel.getData(0, 18, 1);
-	String role5 = excel.getData(0, 19, 1);
-	String requestor, end_user, line_manager, role_approver_1, role_approver_2, training_work_order_id,sod_id, admin_id;
-	String password = "password1";
+	ExcelOperations excel = new ExcelOperations(".\\Test Data\\Salesforce - Test Scenarios_V3.xlsx");
+	String role4 = excel.getData(0, 24, 1);
+	String role5 = excel.getData(0, 25, 1);
+	String requestor, end_user, role_approver_1, training_work_order_id,sod_id, admin_id;
+	String password = "password";
+	String requestNumber;
 	
 	@Test
 	public void TC4() throws IOException, InterruptedException
@@ -42,17 +46,17 @@ public class ADD_Enterprise_Role_Request_SOD extends TestBase
 		// search for required role....add to cart.
 		rolePage.searchandAddtoCart(role5);
 		// click on check out button
-		rolePage.clickOnCheckout();
+		rolePage.clickOnCheckout1();
 		SubmitPage submitObj = new SubmitPage(driver);		
 		submitObj.nonRegressionRoleRequest();
 		// submit the request
-		String request_number = submitObj.submitAccessRequest();
-		if (request_number.equals(""))
+		requestNumber = submitObj.submitAccessRequest();
+		if (requestNumber.equals(""))
 			Assert.assertTrue(false, "Request was not raised properly");
 		else
-			logger.pass("Request raised with number " + request_number, MediaEntityBuilder
+			logger.pass("Request raised with number " + requestNumber, MediaEntityBuilder
 					.createScreenCaptureFromPath(Screenshot.captureScreenShot(driver).replace("Reports", "")).build());
-		System.out.println("Request Number for TC4 is " + request_number);
+		System.out.println("Request Number for TC4 is " + requestNumber);
 		// requester log out
 		home.logoff();
 		
@@ -62,7 +66,7 @@ public class ADD_Enterprise_Role_Request_SOD extends TestBase
 		home.openApprovalInbox();
 		ApprovalInboxPage approve = new ApprovalInboxPage(driver);
 		// search with the requestID
-		approve.searchRequestNumber(request_number);
+		approve.searchRequestNumber(requestNumber);
 		// role manager1 approves first role
 		approve.acceptFirstRole();
 		// role manager1 approves second role
@@ -78,7 +82,7 @@ public class ADD_Enterprise_Role_Request_SOD extends TestBase
 		// open approval inbox
 		home.openApprovalInbox();
 		// search with the requestID
-		approve.searchRequestNumber(request_number);
+		approve.searchRequestNumber(requestNumber);
 		// approve first role
 		approve.acceptFirstRole();
 		// approve second role
@@ -98,4 +102,47 @@ public class ADD_Enterprise_Role_Request_SOD extends TestBase
 		home.logoff();
 		
 	}
+	@Test(priority=2)
+	public void scheduleJob() {
+		logger = extent.createTest("Schedule job");
+		//**login as admin
+		LaunchPage launch = new LaunchPage(driver);
+		admin_id = "TSTTEN10";
+		launch.login(admin_id, password);
+		HomePage home = new HomePage(driver);
+		home.openAdminTab();
+		AdminPage adminPage = new AdminPage(driver);
+		adminPage.openJobControlPanelLink();
+		adminPage.openUtilityandProvisioningJob();
+		// endpoint approver log out
+		home.logoff();
+	}
+	@Test(priority=3)
+	public void validateEntitlements() throws IOException {
+		LaunchPage launch = new LaunchPage(driver);
+	// ***Login as requester***
+			launch.login(requestor, password);
+			HomePage home = new HomePage(driver);
+			// open request history
+			home.openRequestHistory();
+			RequestHistoryPage historyPage = new RequestHistoryPage(driver);
+			// search and open the request number
+			historyPage.searchRequestAndOpen(requestNumber);
+			// create an array list containing all the entitlement in the TASK Tab.
+			ArrayList<String> arlist = historyPage.clickOnTaskAndFetchEntitlements();
+			// **** Verify Presence of all required entitlements ****
+			String endpoint = excel.getData(0, 10, 14);
+			ArrayList<String> validate_list = new ArrayList<String>(Arrays.asList(endpoint.split(",")));
+			int i = 0;
+			for (String s : validate_list) {
+				validate_list.set(i,s.replace(" ","").replace("Tasksgetcreated-", ""));
+				i++;
+			}
+			boolean result = historyPage.validateEndPoints(arlist, validate_list);
+			Assert.assertTrue(result, "All Entitlement values were not present");
+			logger.pass("All Entitlement values were found", MediaEntityBuilder
+					.createScreenCaptureFromPath(Screenshot.captureScreenShot(driver).replace("Reports", "")).build());
+			// requester logout
+			home.logoff();
+}
 }

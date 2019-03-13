@@ -37,6 +37,8 @@ public class TestBase
 	
 	String Sav_URL=System.getProperty("URL");
 	
+	
+	
 	@BeforeMethod
 	public void openApplication()
 	{
@@ -143,5 +145,6 @@ public class TestBase
 		
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 	}
+	
 }
 

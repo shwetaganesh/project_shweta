@@ -46,6 +46,9 @@ public class FindRolePage extends TestBase
 	@FindBy(xpath = "//a[@class='btn default btn-xs pull-right green']")
 	private WebElement addtocart_button;
 	
+	@FindBy(xpath ="//a[contains(@onclick,'confirmdelete')]")
+	private WebElement removeAccountButton;
+	
 	@FindBy(xpath = "//a[contains(text(),'MODIFY EXISTING ACCOUNT')]")
 	private WebElement modifyExistingAccountButton;
 	
@@ -57,6 +60,7 @@ public class FindRolePage extends TestBase
 	
 	@FindBy(xpath = "(//button[@class='btn green'])[2]")
 	private WebElement popUpyesButton;
+	
 	WebDriverWait wait;
 	
 	public FindRolePage(WebDriver ldriver) 
@@ -82,19 +86,46 @@ public class FindRolePage extends TestBase
 		role_searchbox.clear();
 	}
 	
-	public void searchandAddtoCartNew(String role_description)
+	public void searchandAddtoCartNew(String role_description) throws InterruptedException
 	{
 		wait.until(ExpectedConditions.visibilityOf(role_searchbox));
-		//wait.until(ExpectedConditions.visibilityOf(first_addtocart_button));
-		wait.until(ExpectedConditions.visibilityOf(firstRow));
+		//wait.until(ExpectedConditions.visibilityOf(firstRow));
 		role_searchbox.clear();
 		role_searchbox.sendKeys(role_description);
 		role_searchbox.sendKeys(Keys.ENTER);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//td[@class=' sorting_1' and contains(text(),'TEST_SalesforceTest')]")));
-		wait.until(ExpectedConditions.visibilityOf(addtocart_button));
-		addtocart_button.click();
-		wait.until(ExpectedConditions.visibilityOf(remove_cart));
-		role_searchbox.clear();
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//td[contains(text(),'Saviynt')]")));
+		//wait.until(ExpectedConditions.visibilityOf(addtocart_button));
+		Thread.sleep(3000);
+		/*try
+		{
+			 if(addtocart_button.isDisplayed()) {
+				 addtocart_button.click();
+				 wait.until(ExpectedConditions.visibilityOf(remove_cart));
+				 role_searchbox.clear();
+		}
+		}
+		catch(Exception e){
+			wait.until(ExpectedConditions.visibilityOf(modifyExistingAccountButton));
+			modifyExistingAccountButton.click();
+			wait.until(ExpectedConditions.visibilityOf(popUpHeader));
+			popUpyesButton.click();
+		}*/
+		try
+		{
+			if(removeAccountButton.isDisplayed()) {
+				modifyExistingAccountButton.click();
+				wait.until(ExpectedConditions.visibilityOf(popUpHeader));
+				popUpyesButton.click();
+			}
+		}
+		catch(Exception e) {
+			addtocart_button.click();
+			 wait.until(ExpectedConditions.visibilityOf(remove_cart));
+			 role_searchbox.clear();
+			
+		}
+		
+		
 	}
 
 	
