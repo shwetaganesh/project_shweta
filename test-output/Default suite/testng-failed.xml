@@ -5,7 +5,6 @@
     <classes>
       <class name="com.bp.saviynt.Existing_User_Modify_Account">
         <methods>
-          <include name="createRequestAndEndpointApprove"/>
           <include name="sendReport"/>
           <include name="openApplication"/>
           <include name="CloseApplication"/>

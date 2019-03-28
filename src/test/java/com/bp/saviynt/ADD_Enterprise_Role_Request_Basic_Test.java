@@ -29,7 +29,7 @@ public class ADD_Enterprise_Role_Request_Basic_Test extends TestBase
 	String lastName = excel1.getData(0,1,2);
 	String managerId = excel1.getData(0,1,3);
 	
-	@Test
+	//@Test
 	public void createEndUser() throws Exception {
 		
 		username1=uobject.generateUserName();
@@ -51,14 +51,14 @@ public class ADD_Enterprise_Role_Request_Basic_Test extends TestBase
 		
 	}
 	
-	@Test(priority=2)
+	@Test(priority=1)
 	public void TC1() throws Exception 
 	{
 		logger = extent.createTest("New User:ADD Enterprise Role Request-Basic");
 		
 		requestor = excel.getData(0, 5, 6);
 		//end_user = uname;
-		//System.out.println(end_user);
+		System.out.println(end_user);
 		line_manager = excel.getData(0, 5, 8);
 		role_approver_1 = excel.getData(0, 9, 9);
 		role_approver_2 = excel.getData(0, 7, 9);
@@ -72,7 +72,7 @@ public class ADD_Enterprise_Role_Request_Basic_Test extends TestBase
 		home.openRequestEnterpriseRole();
 		FindUserPage userPage = new FindUserPage(driver);
 		// search for end user 
-		userPage.searchEndUser(uname);
+		userPage.searchEndUser("RGTSU43");
 		FindRolePage rolePage = new FindRolePage(driver);
 		// search for required role....add to cart.
 		rolePage.searchandAddtoCart(role1);
@@ -80,6 +80,7 @@ public class ADD_Enterprise_Role_Request_Basic_Test extends TestBase
 		// click on check out button
 		rolePage.clickOnCheckout();
 		SubmitPage submitObj = new SubmitPage(driver);
+		submitObj.selectParametersFromOrganisationNode();
 		// submit the request
 		request_number = submitObj.submitAccessRequest();
 		if (request_number.equals(""))
@@ -157,11 +158,11 @@ public class ADD_Enterprise_Role_Request_Basic_Test extends TestBase
 		
 	}
 	
-	//@Test(priority=2)
+	@Test(priority=2)
 	public void JobTrigger()
 	{
 		logger = extent.createTest("Trigger Job");
-		admin_id = excel.getData(3, 41, 1);
+		admin_id = "TSTTEN10";
 		LaunchPage launch = new LaunchPage(driver);
 		//*** Login as Admin***
 		launch.login(admin_id, "password");
@@ -177,7 +178,7 @@ public class ADD_Enterprise_Role_Request_Basic_Test extends TestBase
 		//log off
 		home.logoff();
 	}
-	@Test(priority=3)
+	//@Test(priority=3)
 	public void scheduleJob() {
 		logger = extent.createTest("Schedule job");
 		//**login as admin
@@ -192,7 +193,7 @@ public class ADD_Enterprise_Role_Request_Basic_Test extends TestBase
 		// admin log out
 		home.logoff();
 	}
-	@Test(priority=4)
+	@Test(priority=3)
 	public void validateEndpoints() throws IOException {
 		LaunchPage launch = new LaunchPage(driver);
 		// *** Login as requester ***

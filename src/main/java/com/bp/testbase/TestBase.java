@@ -94,7 +94,7 @@ public class TestBase
 			logger.fail("Test Failed. Please find the details in the screenshot and report log", MediaEntityBuilder.createScreenCaptureFromPath(path.replace("Reports","")).build());
 		}
 		
-		driver.quit();
+		//driver.quit();
 		
 		extent.flush();
 		

@@ -38,7 +38,7 @@ public class ADD_Enterprise_Role_Request_Escalation_And_Rejection extends TestBa
 		home.openRequestEnterpriseRole();
 		FindUserPage userPage = new FindUserPage(driver);
 		// search for end user
-		userPage.searchEndUser(end_user);
+		userPage.searchEndUser("RGTSU44");
 		FindRolePage rolePage = new FindRolePage(driver);
 		// search for required role....add to cart.
 		rolePage.searchandAddtoCart(role1);
@@ -46,6 +46,7 @@ public class ADD_Enterprise_Role_Request_Escalation_And_Rejection extends TestBa
 		// click on check out button
 		rolePage.clickOnCheckout();
 		SubmitPage submitObj = new SubmitPage(driver);
+		submitObj.selectParametersFromOrganisationNode();
 		// submit the request
 		requestNumber = submitObj.submitAccessRequest();
 		if (requestNumber.equals(""))
@@ -108,11 +109,11 @@ public class ADD_Enterprise_Role_Request_Escalation_And_Rejection extends TestBa
 
 		
 	}
-	//@Test(priority=2)
+	@Test(priority=2)
 	public void JobTrigger()
 	{
 		logger = extent.createTest("Trigger Job");
-		admin_id = excel.getData(3, 36, 1);
+		admin_id = "TSTTEN10";
 		LaunchPage launch = new LaunchPage(driver);
 		//*** Login as Admin***
 		launch.login(admin_id, password);
@@ -128,7 +129,7 @@ public class ADD_Enterprise_Role_Request_Escalation_And_Rejection extends TestBa
 		//log off
 		home.logoff();
 	}
-	@Test(priority=2)
+	//@Test(priority=2)
 	public void scheduleJob() {
 		logger = extent.createTest("Schedule job");
 		//**login as admin

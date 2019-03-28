@@ -2,11 +2,14 @@ package com.bp.saviynt;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.bp.testbase.TestBase;
@@ -61,7 +64,13 @@ public class FindRolePage extends TestBase
 	@FindBy(xpath = "(//button[@class='btn green'])[2]")
 	private WebElement popUpyesButton;
 	
+	//21-03-19
+	@FindBy(xpath = "//th[contains(text(),'Role Name')]")
+	private WebElement firstColumnHeader;
+	
 	WebDriverWait wait;
+	
+	
 	
 	public FindRolePage(WebDriver ldriver) 
 	{
@@ -86,6 +95,7 @@ public class FindRolePage extends TestBase
 		role_searchbox.clear();
 	}
 	
+	//for tc 8,9,10
 	public void searchandAddtoCartNew(String role_description) throws InterruptedException
 	{
 		wait.until(ExpectedConditions.visibilityOf(role_searchbox));
@@ -174,6 +184,28 @@ public class FindRolePage extends TestBase
 		}
 		return status;
 	}
+	
+	//for test case4. 2 rows of results are appearing for search role.
+	public void addRolesToCartAfterReordering(String role_description) throws InterruptedException
+	{
+		wait.until(ExpectedConditions.visibilityOf(role_searchbox));
+		//wait.until(ExpectedConditions.visibilityOf(first_addtocart_button));
+		wait.until(ExpectedConditions.visibilityOf(firstRow));
+		role_searchbox.clear();
+		role_searchbox.sendKeys(role_description);
+		role_searchbox.sendKeys(Keys.ENTER);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tbody[@role='alert']//a[contains(text(),'"+role_description+"')]")));
+		firstColumnHeader.click();
+		Thread.sleep(2000);
+		
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//a[contains(text(),'"+role_description+"')])[1]")));
+		//wait.until(ExpectedConditions.visibilityOf(firstRow));
+		//wait.until(ExpectedConditions.visibilityOf(first_addtocart_button));
+		first_addtocart_button.click();
+		wait.until(ExpectedConditions.visibilityOf(remove_cart));
+		role_searchbox.clear();
+	}
+	
 }
 	
 

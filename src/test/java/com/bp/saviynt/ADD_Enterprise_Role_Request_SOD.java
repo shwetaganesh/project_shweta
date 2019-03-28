@@ -26,7 +26,7 @@ public class ADD_Enterprise_Role_Request_SOD extends TestBase
 	{	
 		logger = extent.createTest("Existing User:ADD Enterprise Role Request-SOD");
 		requestor = excel.getData(0, 10, 6);
-		end_user = excel.getData(0, 10, 7);
+		//end_user = excel.getData(0, 10, 7);
 		role_approver_1 = excel.getData(0,10, 9);
 		training_work_order_id = excel.getData(0, 10, 11);
 		sod_id= excel.getData(0, 10, 12);
@@ -39,16 +39,18 @@ public class ADD_Enterprise_Role_Request_SOD extends TestBase
 		home.openRequestEnterpriseRole();
 		FindUserPage userPage = new FindUserPage(driver);
 		// search for end user
-		userPage.searchEndUser(end_user);
+		userPage.searchEndUser("RGTSU43");
 		FindRolePage rolePage = new FindRolePage(driver);
 		// search for required role....add to cart.
-		rolePage.searchandAddtoCart(role4);
+		//rolePage.searchandAddtoCart(role4);
+		rolePage.addRolesToCartAfterReordering(role4);
 		// search for required role....add to cart.
-		rolePage.searchandAddtoCart(role5);
+		//rolePage.searchandAddtoCart(role5);
+		rolePage.addRolesToCartAfterReordering(role5);
 		// click on check out button
 		rolePage.clickOnCheckout1();
 		SubmitPage submitObj = new SubmitPage(driver);		
-		submitObj.nonRegressionRoleRequest();
+		submitObj.selectParametersFromOrganisationNode();
 		// submit the request
 		requestNumber = submitObj.submitAccessRequest();
 		if (requestNumber.equals(""))
@@ -88,11 +90,11 @@ public class ADD_Enterprise_Role_Request_SOD extends TestBase
 		// approve second role
 		approve.acceptSecondRole();
 		// add mitigating control for first role
-		approve.addMitigatingControl();
+		approve.addMitigatingControl("EPOMC001");
 		// click on purchase order entry header
 		approve.clickPurchaseOrderEntryHeader();
 		// add mitigating control for second role
-		approve.addMitigatingControl2();
+		approve.addMitigatingControl("EPOMC002");
 		Thread.sleep(2000);
 		approve.rejectAllRole();
 		// click on confirm

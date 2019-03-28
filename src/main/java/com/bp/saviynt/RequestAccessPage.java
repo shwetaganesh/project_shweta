@@ -117,7 +117,7 @@ public class RequestAccessPage  extends TestBase{
 		wait.until(ExpectedConditions.visibilityOf(addPermissionTextBox));
 		addPermissionTextBox.sendKeys(permission);
 		addPermissionTextBox.sendKeys(Keys.ENTER);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table[@id='myDataTable546_ALL']//td[contains(@class,'sorting_1')]//span[contains(text(),'"+permission+"')]")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div//div[@id='myDataTable546_ALL_wrapper']//tbody[@role='alert']//tr[1]//td[1]//span[contains(text(),'"+permission+"')]")));
 		wait.until(ExpectedConditions.visibilityOf(firstAddPermissionButton));
 		firstAddPermissionButton.click();
 		wait.until(ExpectedConditions.visibilityOf(removePermissionButton));

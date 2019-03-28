@@ -4,18 +4,26 @@
 <th>Method name</th>
 <th>Groups</th>
 </tr><tr>
-<td>com.bp.saviynt.REMOVE_and_ADD_Enterprise_Role_Request</td>
+<td>com.bp.saviynt.Add_Enterprise_Role_R6</td>
 <td>&nbsp;</td><td>&nbsp;</td></tr>
 <tr>
 <td align='center' colspan='3'>@Test</td>
 </tr>
 <tr>
 <td>&nbsp;</td>
+<td>createEndUser</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>createRequestAndRoleApproval</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
 <td>validateEntitlements</td>
 <td>&nbsp;</td></tr>
 <tr>
 <td>&nbsp;</td>
-<td>TC3</td>
+<td>scheduleJob</td>
 <td>&nbsp;</td></tr>
 <tr>
 <td align='center' colspan='3'>@BeforeClass</td>
@@ -38,14 +46,52 @@
 <td align='center' colspan='3'>@AfterClass</td>
 </tr>
 <tr>
-<td>com.bp.saviynt.ADD_Enterprise_Role_Request_Escalation_And_Rejection</td>
+<td>com.bp.saviynt.Add_Enterprise_Role_R7</td>
 <td>&nbsp;</td><td>&nbsp;</td></tr>
 <tr>
 <td align='center' colspan='3'>@Test</td>
 </tr>
 <tr>
 <td>&nbsp;</td>
-<td>TC2</td>
+<td>createRequestAndRoleApproval</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>validateEntitlements</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>scheduleJob</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td align='center' colspan='3'>@BeforeClass</td>
+</tr>
+<tr>
+<td align='center' colspan='3'>@BeforeMethod</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>openApplication</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td align='center' colspan='3'>@AfterMethod</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>CloseApplication</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td align='center' colspan='3'>@AfterClass</td>
+</tr>
+<tr>
+<td>com.bp.saviynt.Remove_Enterprise_Role_R6andR7</td>
+<td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+<td align='center' colspan='3'>@Test</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>validateEntitlements</td>
 <td>&nbsp;</td></tr>
 <tr>
 <td>&nbsp;</td>
@@ -53,7 +99,7 @@
 <td>&nbsp;</td></tr>
 <tr>
 <td>&nbsp;</td>
-<td>validateEndPoints</td>
+<td>RemoveRoleR6andR7</td>
 <td>&nbsp;</td></tr>
 <tr>
 <td align='center' colspan='3'>@BeforeClass</td>

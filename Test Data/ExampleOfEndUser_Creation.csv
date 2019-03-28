@@ -1,6 +1,0 @@
-Username,firstname,lastname,Statuskey,manager,Email,Country,City,Departmentname,Enabled,PasswordExpired,CustomProperty16,Role,CustomProperty24,Password
-RGTSU31,SFReg,End User 11,1,RGTSM91,meegeaten.sellamuthu@bp.com,Angola,Angola,IT&S BAS,0,0,RGTSU31@saviynt.com,ROLE_END_USER,X|1|GMTUK|GB,abc1234
-RGTSU32,SFReg,End User 12,1,RGTSM91,meegeaten.sellamuthu@bp.com,Germany,Germany,IT&S BAS,0,0,RGTSU32@saviynt.com,ROLE_END_USER,X|1|GMTUK|GB,abc1234
-RGTSU33,SFReg,End User 13,1,RGTSM91,meegeaten.sellamuthu@bp.com,Germany,Germany,IT&S BAS,0,0,RGTSU33@saviynt.com,ROLE_END_USER,X|1|GMTUK|GB,abc1234
-RGTSU34,SFReg,End User 14,1,RGTSM91,meegeaten.sellamuthu@bp.com,Germany,Germany,IT&S BAS,0,0,RGTSU34@saviynt.com,ROLE_END_USER,X|1|GMTUK|GB,abc1234
-RGTSU35,SFReg,End User 15,1,RGTSM91,meegeaten.sellamuthu@bp.com,Germany,Germany,IT&S BAS,0,0,RGTSU35@saviynt.com,ROLE_END_USER,X|1|GMTUK|GB,abc1234

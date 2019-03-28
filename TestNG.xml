@@ -46,7 +46,7 @@
 			<class name="com.bp.saviynt.Existing_User_Remove_Salesforce_Application_Access" />
 		</classes>
 	</test>-->
-	  <test name="Add enterprise role - r6">
+	   <test name="Add enterprise role - r6">
 		<classes>
 			<class name="com.bp.saviynt.Add_Enterprise_Role_R6" />
 		</classes>

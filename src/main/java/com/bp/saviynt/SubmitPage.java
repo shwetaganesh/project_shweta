@@ -1,11 +1,13 @@
 package com.bp.saviynt;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.bp.testbase.TestBase;
@@ -32,14 +34,25 @@ public class SubmitPage extends TestBase
 	@FindBy(xpath = "(//*[contains(text(),'Please select the role parameters for')])[1]")
 	private WebElement expand_url_first;
 	
-	@FindBy(xpath = "(//a[@class='select2-choice'])[1]")
+	/*@FindBy(xpath = "(//a[@class='select2-choice'])[1]")
+	private WebElement select_org_node_first;*/
+	
+	@FindBy(xpath = "(//a[@class='select2-choice'])[3]")
 	private WebElement select_org_node_first;
 	
-	@FindBy(xpath = "(//*[text()='Select'])[1]")
+	/*@FindBy(xpath = "(//*[text()='Select'])[1]")
+	private WebElement select_down_arrow;*/
+	
+	@FindBy(xpath = "(//*[text()='Select'])[3]")
 	private WebElement select_down_arrow;
 	
-	@FindBy(xpath = "//*[@class='select2-result-label' and contains(text(),'50000005')]")
-	private WebElement select_value;
+	
+	
+	
+	@FindBy(xpath = "//*[@class='select2-result-label' and contains(text(),'50000002')]")
+	private WebElement select_value; //modified on 19/03/19 ... used for testcase1 n 2
+	
+	
 	
 	@FindBy(xpath = "//*[contains(text(),'Request Home')]")
 	private WebElement request_home_link;
@@ -83,23 +96,25 @@ public class SubmitPage extends TestBase
 		return request_number;
 	}
 	
-	public void nonRegressionRoleRequest() throws InterruptedException
+	public void selectParametersFromOrganisationNode() throws InterruptedException
 	{
 		wait.until(ExpectedConditions.visibilityOf(business_justification_first));
 
 		Thread.sleep(20000);
 		wait.until(ExpectedConditions.elementToBeClickable(expand_url_first));
 		expand_url_first.click();
-		try {
+		/*try {
 			select_org_node_first.click();
 		} catch (Exception e2) {
 			System.out.println("Normal click did not worked");
-		}
-		TestBase.javaScriptClickbyElement(driver, select_org_node_first);
-		wait.until(ExpectedConditions.elementToBeClickable(select_down_arrow));
-		select_down_arrow.click();
-		wait.until(ExpectedConditions.elementToBeClickable(select_value));
-		select_value.click();
+		}*/
+		//TestBase.javaScriptClickbyElement(driver, select_org_node_first);
+		//wait.until(ExpectedConditions.elementToBeClickable(select_down_arrow));
+		//select_down_arrow.click();
+		Select orgNode = new Select(driver.findElement(By.xpath("//select[@title='OrganizationNode']")));
+		orgNode.selectByVisibleText("50000002:BP Exploration & Production");
+		//wait.until(ExpectedConditions.elementToBeClickable(select_value));
+		//select_value.click();
 	}
 	
 	public String returnRequestNumber() {

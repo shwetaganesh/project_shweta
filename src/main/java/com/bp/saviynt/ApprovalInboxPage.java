@@ -94,6 +94,11 @@ public class ApprovalInboxPage extends TestBase
 	@FindBy(xpath = "//a[contains(text(),'ARS')]")
 	private WebElement ars_link;           // instead of home
 	
+	@FindBy(xpath = "//input[@id='dtsearch_myDataTablemitigatingControls']")
+	private WebElement searchBoxForMC; // search box for mitigating control
+	
+	@FindBy(xpath ="//button[contains(text(),'Submit')]")
+	private WebElement submitMC; // submit mitigating control
 	WebDriverWait wait;
 
 	public ApprovalInboxPage(WebDriver ldriver)
@@ -173,17 +178,24 @@ public class ApprovalInboxPage extends TestBase
 		return result;
 	}
 	
-	public void addMitigatingControl()
+	public void addMitigatingControl(String controlName)
 	{
 		wait.until(ExpectedConditions.elementToBeClickable(addMitigatingControlButton));
 		addMitigatingControlButton.click();
-		wait.until(ExpectedConditions.visibilityOf(mitigatingControl_Row1));
+		wait.until(ExpectedConditions.visibilityOf(searchBoxForMC));
+		searchBoxForMC.sendKeys(controlName);
+		searchBoxForMC.sendKeys(Keys.ENTER);
+		//wait.until(ExpectedConditions.visibilityOf(mitigatingControl_Row1));
+		wait.until(ExpectedConditions.visibilityOf(firstRadioButton));
 		firstRadioButton.click();
-		TestBase.javaScriptClickbyElement(driver, nextButton);
+		/*TestBase.javaScriptClickbyElement(driver, nextButton);
 		wait.until(ExpectedConditions.elementToBeClickable(submitDateButton));
-		submitDateButton.click();	
+		submitDateButton.click();*/
+		TestBase.javaScriptClickbyElement(driver, submitMC);
+		
 	}
-	
+	//button[contains(text(),'Submit')]
+	//input[@id='dtsearch_myDataTablemitigatingControls']
 	public void clickPurchaseOrderEntryHeader()
 	{
 		TestBase.javaScriptClickbyElement(driver, purchaseOrderHeader);
@@ -199,4 +211,6 @@ public class ApprovalInboxPage extends TestBase
 		wait.until(ExpectedConditions.elementToBeClickable(submitDateButton));
 		submitDateButton.click();
 	}
+
+	
 }

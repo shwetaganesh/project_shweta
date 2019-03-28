@@ -10,14 +10,16 @@ import org.testng.annotations.Test;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.bp.lib.ExcelOperations;
 import com.bp.lib.Screenshot;
+import com.bp.lib.UsernameGeneration;
 import com.bp.testbase.TestBase;
 
 public class Existing_User_Remove_Salesforce_Application_Access extends TestBase {
 	
 	ExcelOperations excel = new ExcelOperations(".\\Test Data\\Salesforce - Test Scenarios_V3.xlsx");
+	UsernameGeneration userObject = new UsernameGeneration();
 	String password = "password";
 	String searchItem = "TEST_SalesforceTest";
-	String requestor, endPointApprover, endUser, admin,permission,groupName;
+	String requestor, endPointApprover, end_user, admin,permission,groupName;
 	public String requestNumber;
 
 	@Test(priority=1)
@@ -26,7 +28,9 @@ public class Existing_User_Remove_Salesforce_Application_Access extends TestBase
 			logger = extent.createTest("Existing User: remove account");
 			requestor = excel.getData(0, 16, 6);
 			endPointApprover = excel.getData(3, 28,1);
-			endUser = excel.getData(0, 16,7);
+			//endUser = excel.getData(0, 16,7);
+			end_user = userObject.readUserName();
+			System.out.println("end user for tc8 :"+end_user);
 			permission = excel.getData(0, 32, 1);
 			groupName = excel.getData(0,33, 1);
 			
@@ -38,7 +42,7 @@ public class Existing_User_Remove_Salesforce_Application_Access extends TestBase
 			home.openRequestApplicationSpecificRoles();
 			FindUserPage userPage = new FindUserPage(driver);
 			//search for end user
-			userPage.searchEndUser(endUser);
+			userPage.searchEndUser(end_user);
 			FindRolePage rolePage = new FindRolePage(driver);
 			rolePage.searchandAddtoCartNew(searchItem);
 			rolePage.clickOnModifyExistingAccount();
