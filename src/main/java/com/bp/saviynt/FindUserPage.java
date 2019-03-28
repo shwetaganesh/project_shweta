@@ -36,14 +36,14 @@ public class FindUserPage extends TestBase
 		wait = new WebDriverWait(driver,30);	
 	}
 	//method to search for End user using END USER ID
-	public void searchEndUser(String end_user_id )
+	public void searchEndUser(String end_user_id ) throws InterruptedException
 	{
 		wait.until(ExpectedConditions.visibilityOf(searchbox_user));
 		searchbox_user.sendKeys(end_user_id);
 		searchbox_user.sendKeys(Keys.ENTER);
-		//search_button_user.click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tbody[@role='alert']//td[contains(text(),'"+end_user_id+"')]")));
-		wait.until(ExpectedConditions.visibilityOf(first_radio_button));
+		//wait.until(ExpectedConditions.visibilityOf(first_radio_button));
+		Thread.sleep(2000); //  explicit wait  did not help
 		first_radio_button.click();
 		next_green_button.click();
 	}
