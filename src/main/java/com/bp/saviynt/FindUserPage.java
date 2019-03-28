@@ -43,6 +43,7 @@ public class FindUserPage extends TestBase
 		searchbox_user.sendKeys(Keys.ENTER);
 		//search_button_user.click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tbody[@role='alert']//td[contains(text(),'"+end_user_id+"')]")));
+		wait.until(ExpectedConditions.visibilityOf(first_radio_button));
 		first_radio_button.click();
 		next_green_button.click();
 	}
