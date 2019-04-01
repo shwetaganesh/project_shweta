@@ -23,7 +23,7 @@ public class Add_Enterprise_Role_R7 extends TestBase {
 	String password = "password";
 	public String requestNumber;
 	
-		@Test
+		@Test(priority=1)
 		public void createRequestAndRoleApproval() throws Exception 
 		{
 			logger = extent.createTest("Existing User:ADD Salesforce Enterprise Role - R7");

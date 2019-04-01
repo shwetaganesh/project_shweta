@@ -29,7 +29,7 @@ public class NewUser_Add_Group_Permission_Profile extends TestBase {
 	String managerId = excel1.getData(0,1,3);
 	String oldpassword = excel1.getData(0,1,4); // password set using admin function during end user creation
 	
-	@Test
+	@Test(priority=1)
 	public void createEndUser() throws Exception {
 		
 		username1=userObject.generateUserName();
@@ -51,7 +51,7 @@ public class NewUser_Add_Group_Permission_Profile extends TestBase {
 		
 	}
 	
-	@Test(priority=1)
+	@Test(priority=2)
 	public void createRequestAndEndpointApprove() throws IOException, InterruptedException
 	{
 		logger = extent.createTest("New User:Request for new account");
@@ -111,7 +111,7 @@ public class NewUser_Add_Group_Permission_Profile extends TestBase {
 		// endpoint approver log out
 		home.logoff();
 	}
-	@Test(priority=2)
+	@Test(priority=3)
 	public void scheduleJob() {
 		logger = extent.createTest("Schedule job");
 		//**login as admin
@@ -127,7 +127,7 @@ public class NewUser_Add_Group_Permission_Profile extends TestBase {
 		home.logoff();
 	}
 	
-	@Test(priority=3)
+	@Test(priority=4)
 	public void validateEntitlements() throws IOException {
 		logger = extent.createTest("Validate Entitlements");
 		//*** Login as requester ***

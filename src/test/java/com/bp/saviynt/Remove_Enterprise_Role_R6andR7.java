@@ -21,7 +21,7 @@ public class Remove_Enterprise_Role_R6andR7 extends TestBase {
 	String password = "password";
 	public String requestNumber;
 	
-	@Test
+	@Test(priority=1)
 	public void RemoveRoleR6andR7() throws InterruptedException, IOException {
 		
 		logger = extent.createTest("Existing User:Remove Salesforce Enterprise Role - R6 and R7");
