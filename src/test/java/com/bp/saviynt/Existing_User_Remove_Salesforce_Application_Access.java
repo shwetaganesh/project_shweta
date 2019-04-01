@@ -30,7 +30,7 @@ public class Existing_User_Remove_Salesforce_Application_Access extends TestBase
 			endPointApprover = excel.getData(3, 28,1);
 			//endUser = excel.getData(0, 16,7);
 			end_user = userObject.readUserName();
-			System.out.println("end user for tc8 :"+end_user);
+			System.out.println("end user for tc10 :"+end_user);
 			permission = excel.getData(0, 32, 1);
 			groupName = excel.getData(0,33, 1);
 			
@@ -45,7 +45,7 @@ public class Existing_User_Remove_Salesforce_Application_Access extends TestBase
 			userPage.searchEndUser(end_user);
 			FindRolePage rolePage = new FindRolePage(driver);
 			rolePage.searchandAddtoCartNew(searchItem);
-			rolePage.clickOnModifyExistingAccount();
+			//rolePage.clickOnModifyExistingAccount();
 			rolePage.clickOnCheckout1();
 			// remove group and permission
 			RequestAccessPage requestAcessPage = new RequestAccessPage(driver);

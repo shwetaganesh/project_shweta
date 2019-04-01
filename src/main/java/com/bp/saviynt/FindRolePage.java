@@ -55,9 +55,11 @@ public class FindRolePage extends TestBase
 	@FindBy(xpath = "//a[contains(text(),'MODIFY EXISTING ACCOUNT')]")
 	private WebElement modifyExistingAccountButton;
 	
-	@FindBy(xpath = "//td[@class=' sorting_1' and contains(text(),'TEST_SalesforceTest')]")
+	/*@FindBy(xpath = "//td[@class=' sorting_1' and contains(text(),'TEST_SalesforceTest')]")
+	private WebElement firstRowData;*/
+	@FindBy(xpath = "//td[contains(text(),'TEST_SalesforceTest')]")
 	private WebElement firstRowData;
-	
+	//td[contains(text(),'TEST_SalesforceTest')]
 	@FindBy(xpath = "(//h4[@class='modal-title'])[3]")
 	private WebElement popUpHeader;
 	
@@ -99,13 +101,10 @@ public class FindRolePage extends TestBase
 	public void searchandAddtoCartNew(String role_description) throws InterruptedException
 	{
 		wait.until(ExpectedConditions.visibilityOf(role_searchbox));
-		//wait.until(ExpectedConditions.visibilityOf(firstRow));
 		role_searchbox.clear();
 		role_searchbox.sendKeys(role_description);
 		role_searchbox.sendKeys(Keys.ENTER);
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//td[contains(text(),'Saviynt')]")));
-		//wait.until(ExpectedConditions.visibilityOf(addtocart_button));
-		Thread.sleep(3000);
+		wait.until(ExpectedConditions.visibilityOf(firstRowData));
 		/*try
 		{
 			 if(addtocart_button.isDisplayed()) {

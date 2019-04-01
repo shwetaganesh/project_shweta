@@ -18,8 +18,8 @@ public class SendReport
 		// Create the email message
 		MultiPartEmail email = new MultiPartEmail();
 		email.setHostName("smtp.gmail.com");
-		//email.setSmtpPort(587);
-		email.setSmtpPort(465);
+		email.setSmtpPort(587);
+		//email.setSmtpPort(465);
 		email.setAuthenticator(new DefaultAuthenticator("extentreport@gmail.com", "Zxcv@1234"));
 		email.setSSLOnConnect(true);
 		
