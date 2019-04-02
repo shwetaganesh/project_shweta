@@ -6,6 +6,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -66,7 +67,10 @@ public class TestBase
 		{
 			System.setProperty("webdriver.chrome.driver",config.getValue("ChromeDriver"));
 			//WebDriverManager.chromedriver().setup();
-			driver=new ChromeDriver();
+			ChromeOptions options = new ChromeOptions();
+			options.addArguments("--no-sandbox");
+			//browser = new ChromeDriver(options);
+			driver=new ChromeDriver(options);
 		}
 		else if(browser_name.equalsIgnoreCase("IE"))
 		{
