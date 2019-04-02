@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Saviynt]">
-  <test thread-count="5" name="Existing User: REMOVE_and_ADD_Enterprise_Role_Request(failed)">
+  <test thread-count="5" name="Existing_User_Modify_Account(failed)">
     <classes>
-      <class name="com.bp.saviynt.REMOVE_and_ADD_Enterprise_Role_Request">
+      <class name="com.bp.saviynt.Existing_User_Modify_Account">
         <methods>
-          <include name="TC3"/>
           <include name="sendReport"/>
           <include name="openApplication"/>
-          <include name="validateEntitlements"/>
+          <include name="scheduleJob"/>
           <include name="CloseApplication"/>
         </methods>
-      </class> <!-- com.bp.saviynt.REMOVE_and_ADD_Enterprise_Role_Request -->
+      </class> <!-- com.bp.saviynt.Existing_User_Modify_Account -->
     </classes>
-  </test> <!-- Existing User: REMOVE_and_ADD_Enterprise_Role_Request(failed) -->
+  </test> <!-- Existing_User_Modify_Account(failed) -->
 </suite> <!-- Failed suite [Saviynt] -->

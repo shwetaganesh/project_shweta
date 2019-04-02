@@ -64,8 +64,8 @@ public class TestBase
 		}
 		else if(browser_name.equalsIgnoreCase("Chrome"))
 		{
-			//System.setProperty("webdriver.chrome.driver",config.getValue("ChromeDriver"));
-			WebDriverManager.chromedriver().setup();
+			System.setProperty("webdriver.chrome.driver",config.getValue("ChromeDriver"));
+			//WebDriverManager.chromedriver().setup();
 			driver=new ChromeDriver();
 		}
 		else if(browser_name.equalsIgnoreCase("IE"))
