@@ -13,7 +13,7 @@ public class UsernameGeneration  {
 	
 	public String generateUserName() {
 		
-		String name = "Auto_Test_";
+		String name = "Auto_Test1_";
 		int aNumber = 0; 
 		aNumber = (int)((Math.random() * 900)+100); 
 		String userName = name+aNumber;
