@@ -21,9 +21,13 @@ import com.bp.lib.Screenshot;
 import com.bp.lib.SendReport;
 import com.bp.lib.ZipFolder;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 public class TestBase 
 {
 	public WebDriver driver;
+	
+	
 	
 	public ConfigReader config=new ConfigReader();
 	
@@ -60,8 +64,8 @@ public class TestBase
 		}
 		else if(browser_name.equalsIgnoreCase("Chrome"))
 		{
-			System.setProperty("webdriver.chrome.driver",config.getValue("ChromeDriver"));
-			
+			//System.setProperty("webdriver.chrome.driver",config.getValue("ChromeDriver"));
+			WebDriverManager.chromedriver().setup();
 			driver=new ChromeDriver();
 		}
 		else if(browser_name.equalsIgnoreCase("IE"))
