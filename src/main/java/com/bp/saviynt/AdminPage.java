@@ -254,6 +254,20 @@ public class AdminPage extends TestBase
 		submitManagerButton.click();
 		wait.until(ExpectedConditions.visibilityOf(createButton));
 		createButton.click();
+		/*try {
+			if(//div[contains(text(),'Username Already Exists')])
+					
+					//button[@class='btn default closebutton' and contains(text(),'Close')]
+					scroll up
+					username +0
+					createButton.click();
+					return uname;
+		}
+		catch(Exception e){
+			System.out.println("user created");
+			return uname;
+			
+		}*/
 	}
 	
 	public void addAttributes(String property16, String property24,String uname,String password) throws InterruptedException

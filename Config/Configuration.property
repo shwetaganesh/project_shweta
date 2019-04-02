@@ -2,7 +2,7 @@ Browser=Chrome
 
 FirefoxDriver=.\\Config\\geckodriver_Firefox.exe
 
-ChromeDriver=.\\Config\\chromedriver.exe
+ChromeDriver=.\\Config\\chromedriver\\chromedriver.exe
 
 IEDriver=.\\Config\\IEDriverServer.exe
 
