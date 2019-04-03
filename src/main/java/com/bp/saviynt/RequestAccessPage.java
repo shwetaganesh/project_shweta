@@ -98,7 +98,7 @@ public class RequestAccessPage  extends TestBase{
 		}
 	
 	
-	public void addPermissionSet(String permission) {
+	public void addPermissionSet(String permission)throws InterruptedException {
 		//TestBase.scrollDownToElement(driver, firstAddPermissionButton);
 		/*wait.until(ExpectedConditions.visibilityOf(firstAddPermissionButton));
 		firstAddPermissionButton.click();
@@ -117,6 +117,7 @@ public class RequestAccessPage  extends TestBase{
 		wait.until(ExpectedConditions.visibilityOf(addPermissionTextBox));
 		addPermissionTextBox.sendKeys(permission);
 		addPermissionTextBox.sendKeys(Keys.ENTER);
+		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div//div[@id='myDataTable546_ALL_wrapper']//tbody[@role='alert']//tr[1]//td[1]//span[contains(text(),'"+permission+"')]")));
 		wait.until(ExpectedConditions.visibilityOf(firstAddPermissionButton));
 		firstAddPermissionButton.click();
