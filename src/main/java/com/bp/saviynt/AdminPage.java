@@ -51,8 +51,12 @@ public class AdminPage extends TestBase
 	@FindBy(xpath ="//*[contains(text(),'Provisioning Job')]")
 	private WebElement provisioningJobLink;
 	
-	@FindBy(xpath ="(//a[contains(text(),'PROVISIONING')])[1]")
+	/*@FindBy(xpath ="(//a[contains(text(),'PROVISIONING')])[1]")
+	private WebElement provisioningText;*/
+	
+	@FindBy(xpath ="//a[contains(text(),'PROV1')]")  // old xpath did not work
 	private WebElement provisioningText;
+	
 	
 	@FindBy(xpath ="(//*[@id='gritter-without-image2' and @class='WSRetryJob'])[1]")
 	private WebElement startButton;
