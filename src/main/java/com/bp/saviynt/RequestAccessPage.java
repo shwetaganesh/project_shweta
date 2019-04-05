@@ -148,13 +148,14 @@ public class RequestAccessPage  extends TestBase{
 		removeGroupTextBox.clear();
 	}
 	
-	public void addGroup(String groupName) {
+	public void addGroup(String groupName) throws InterruptedException {
 		/*TestBase.scrollDownToElement(driver, firstAddGroupButton);
 		firstAddGroupButton.click();
 		wait.until(ExpectedConditions.visibilityOf(removeGroupButton));	*/
 		TestBase.scrollDownToElement(driver, addGroupTextBox);
 		addGroupTextBox.sendKeys(groupName);
 		addGroupTextBox.sendKeys(Keys.ENTER);
+		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table[@id='myDataTable557_ALL']//td[contains(@class,'sorting_1')]//span[contains(text(),'"+groupName+"')]")));
 		firstAddGroupButton.click();
 		wait.until(ExpectedConditions.visibilityOf(removeGroupButton));
