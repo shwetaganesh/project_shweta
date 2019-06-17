@@ -67,6 +67,7 @@ public class TestBase
 		{
 			System.setProperty("webdriver.chrome.driver",config.getValue("ChromeDriver"));
 			//WebDriverManager.chromedriver().setup();
+			WebDriverManager.chromedriver().version("74.0").setup();
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("--no-sandbox");
 			//browser = new ChromeDriver(options);
