@@ -154,7 +154,13 @@ public class RequestAccessPage  extends TestBase{
 	}
 	
 	public void addGroup(String groupName) throws InterruptedException {
+<<<<<<< HEAD
 		
+=======
+		/*TestBase.scrollDownToElement(driver, firstAddGroupButton);
+		firstAddGroupButton.click();
+		wait.until(ExpectedConditions.visibilityOf(removeGroupButton));	*/
+>>>>>>> refs/remotes/origin/master
 		TestBase.scrollDownToElement(driver, addGroupTextBox);
 		addGroupTextBox.sendKeys(groupName);
 		addGroupTextBox.sendKeys(Keys.ENTER);
