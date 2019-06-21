@@ -51,12 +51,11 @@ public class AdminPage extends TestBase
 	@FindBy(xpath ="//*[contains(text(),'Provisioning Job')]")
 	private WebElement provisioningJobLink;
 	
-	/*@FindBy(xpath ="(//a[contains(text(),'PROVISIONING')])[1]")
+	
+	/*@FindBy(xpath ="(//*[contains(text(),'Provisioning Job')]/following::a[contains(text(),'PROV')])[1]")  // job name changing everytime.
 	private WebElement provisioningText;*/
-	
-	@FindBy(xpath ="//a[contains(text(),'PROV1')]")  // old xpath did not work
+	@FindBy(xpath ="(//*[contains(text(),'Provisioning Job')]/following::a[1])[1]")
 	private WebElement provisioningText;
-	
 	
 	@FindBy(xpath ="(//*[@id='gritter-without-image2' and @class='WSRetryJob'])[1]")
 	private WebElement startButton;
@@ -130,7 +129,7 @@ public class AdminPage extends TestBase
 	private WebElement savRoleTab;
 	
 	@FindBy(xpath = "//input[@id='customproperty16']")
-	private WebElement uanTextBox;
+	private WebElement upnTextBox;
 	
 	@FindBy(xpath = "//input[@id='customproperty24']")
 	private WebElement accountDefaultValuesTextBox;
@@ -186,6 +185,12 @@ public class AdminPage extends TestBase
 	@FindBy(xpath = "(//button[contains(text(),'Close')])[3]")
 	private WebElement closeButton;
 	
+	@FindBy(xpath = "//input[@id='employeeclass']")
+	private WebElement employeeClass;
+	//4/4/19
+	@FindBy(xpath ="//button[@class='btn default closebutton' and contains(text(),'Close')]")
+	private WebElement close; // close button that appears when "user already exists message" is displayed
+	
 	WebDriverWait wait;
 	
 	
@@ -223,6 +228,7 @@ public class AdminPage extends TestBase
 		TestBase.scrollDownToElement(driver, provisioningJobLink);
 		provisioningJobLink.click();
 		wait.until(ExpectedConditions.visibilityOf(provisioningText));
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(),'Provisioning Job')]/following::a[1]")));
 		actionButtonInProvisioningJob.click();
 		wait.until(ExpectedConditions.visibilityOf(startButton));
 		startButton.click();
@@ -233,7 +239,8 @@ public class AdminPage extends TestBase
 		submitButton.click();		
 		
 	}
-	public void clickOnUsersAndCreateUsers(String uname,String fname,String lname,String managerId) {
+	public String clickOnUsersAndCreateUsers(String fname,String lname,String managerId) throws InterruptedException {
+		String user = null;
 		wait.until(ExpectedConditions.visibilityOf(usersLinkLeftPanel));
 		usersLinkLeftPanel.click();
 		wait.until(ExpectedConditions.visibilityOf(searchUserTextBox));
@@ -241,7 +248,7 @@ public class AdminPage extends TestBase
 		wait.until(ExpectedConditions.visibilityOf(createUsers));
 		createUsers.click();
 		wait.until(ExpectedConditions.visibilityOf(usersLinkLeftPanel));
-		userName.sendKeys(uname);
+		//userName.sendKeys(uname);
 		firstName.sendKeys(fname);
 		lastName.sendKeys(lname);
 		country.sendKeys("germany");
@@ -250,28 +257,47 @@ public class AdminPage extends TestBase
 		selectManagerButton.click();
 		wait.until(ExpectedConditions.visibilityOf(searchManagerTextBox));
 		searchManagerTextBox.sendKeys(managerId);
-		System.out.println("manager id :"+managerId);
 		searchManagerTextBox.sendKeys(Keys.ENTER);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//td[contains(text(),'"+managerId+"')]")));
 		driver.findElement(By.xpath("//input[@type='radio' and @label='"+managerId+"']")).click();
 		TestBase.scrollDownToElement(driver, submitManagerButton);
 		submitManagerButton.click();
-		wait.until(ExpectedConditions.visibilityOf(createButton));
-		createButton.click();
-		/*try {
-			if(//div[contains(text(),'Username Already Exists')])
+		for(int i=0;i<5;i++)
+		{
+			try {
+				String name = "Sample_Test_User_";
+				int aNumber = 0; 
+				aNumber = (int)((Math.random() * 1000)+1000); 
+				user = name+aNumber;
+				System.out.println(user);
+				TestBase.scrollUp(driver);
+				wait.until(ExpectedConditions.visibilityOf(userName));
+				userName.clear();
+				userName.sendKeys(user);
+				TestBase.scrollDownToElement(driver, createButton);
+				createButton.click();
+				Thread.sleep(2000);
+				if(driver.findElements(By.xpath("//div[contains(text(),'Username Already Exists')]")).size() > 0)
+				{
 					
-					//button[@class='btn default closebutton' and contains(text(),'Close')]
-					scroll up
-					username +0
-					createButton.click();
-					return uname;
+					close.click();
+				}
+				else
+				{
+					
+					break;
+					
+					
+				}
+				
+			}
+			catch(Exception e) {
+				System.out.println("user not created successfully");
+			}
 		}
-		catch(Exception e){
-			System.out.println("user created");
-			return uname;
-			
-		}*/
+		return user;
+		
+	
 	}
 	
 	public void addAttributes(String property16, String property24,String uname,String password) throws InterruptedException
@@ -280,19 +306,25 @@ public class AdminPage extends TestBase
 		otherAttributesTab.click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='siteid']")));
 		//TestBase.scrollDownToElement(driver, uanTextBox);
-		uanTextBox.sendKeys(property16);
+		upnTextBox.sendKeys(property16);
 		//TestBase.scrollDownToElement(driver, accountDefaultValuesTextBox);
 		accountDefaultValuesTextBox.sendKeys("X|1|GMTUK|GB");
 		TestBase.scrollToEndOfPage(driver);
 		updateButton.click();
 		wait.until(ExpectedConditions.visibilityOf(userDetailsTab));
 		userDetailsTab.click();
+		// newly added function
+		employeeClass.sendKeys("Employee");
 		departmentName.sendKeys("IT&S BAS");
 		TestBase.scrollToEndOfPage(driver);
 		update.click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='username']")));
 		savRoleTab.click();
-		wait.until(ExpectedConditions.visibilityOf(actionsbutton));
+		/*
+		 * new update - adding sav role not required as, it is automatically assigned
+		 * when user is created
+		 */
+		/*wait.until(ExpectedConditions.visibilityOf(actionsbutton));
 		actionsbutton.click();
 		addSavRole.click();
 		wait.until(ExpectedConditions.visibilityOf(addSavRoleHeader));
@@ -302,14 +334,14 @@ public class AdminPage extends TestBase
 		Thread.sleep(3000);
 		TestBase.javaScriptClickbyElement(driver, firstCheckBox);
 		//firstCheckBox.click();
-		submitRoleButton.click();
+		submitRoleButton.click();*/
 		wait.until(ExpectedConditions.visibilityOf(usersLinkLeftPanel));
 		TestBase.scrollDownToElement(driver, adminFunctionLeftHandPanel);
 		adminFunctionLeftHandPanel.click();
 		wait.until(ExpectedConditions.visibilityOf(userNameSearchBox));
 		userNameSearchBox.sendKeys(uname);
 		userNameSearchBox.sendKeys(Keys.ENTER);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//th[contains(text(),'User NTID')])[2]")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//th[contains(text(),'User NTID')]")));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//td[@class=' sorting_1']//a[contains(text(),'"+uname+"')]")));
 		manageButton.click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[contains(text(),'Manage User')]")));
@@ -321,11 +353,8 @@ public class AdminPage extends TestBase
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[contains(text(),'Saviynt Security Manager')]")));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Password reset successfully!')]")));
 		closeButton.click();
-		Thread.sleep(2000);
-		
-		
-		
-		
+		Thread.sleep(3000);
+
 	}
 	
 

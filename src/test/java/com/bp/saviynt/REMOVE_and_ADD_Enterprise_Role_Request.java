@@ -10,11 +10,13 @@ import org.testng.annotations.Test;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.bp.lib.ExcelOperations;
 import com.bp.lib.Screenshot;
+import com.bp.lib.UsernameGeneration;
 import com.bp.testbase.TestBase;
 
 public class REMOVE_and_ADD_Enterprise_Role_Request  extends TestBase
 {
 	ExcelOperations excel = new ExcelOperations(".\\Test Data\\Salesforce - Test Scenarios_V3.xlsx");
+	UsernameGeneration userObject = new UsernameGeneration();
 	String role1 = excel.getData(0, 21, 1);
 	String role3 = excel.getData(0, 23, 1);
 	String request_number_all,request_number,request_number_revoke_role,requestor, end_user, line_manager, role_approver_1, role_approver_2, training_work_order_id,sod_id, admin_id;
@@ -26,7 +28,7 @@ public class REMOVE_and_ADD_Enterprise_Role_Request  extends TestBase
 	{
 		logger = extent.createTest("Existing User:REMOVE and ADD Enterprise Role Request");
 		requestor = excel.getData(0, 8, 6);
-		end_user = excel.getData(0, 8, 7);
+		end_user = userObject.readUserName();
 		line_manager = excel.getData(0, 9, 8);
 		role_approver_1 = excel.getData(0, 9, 9);
 		training_work_order_id = excel.getData(0, 9, 11);
@@ -78,7 +80,7 @@ public class REMOVE_and_ADD_Enterprise_Role_Request  extends TestBase
 		home.logoff();
 		
 		// ***Login with Line Manager ***
-		launch.login(line_manager, "password1");
+		launch.login(line_manager, password);
 		// goto approval inbox
 		home.openApprovalInbox();
 		ApprovalInboxPage approve = new ApprovalInboxPage(driver);
@@ -120,11 +122,29 @@ public class REMOVE_and_ADD_Enterprise_Role_Request  extends TestBase
 		logger.pass("Training work order had approved the request");
 		// training work order log out
 		home.logoff();
-
-		
-
 	}
-	@Test
+	
+	@Test(priority=2)
+	public void completePendingTaskTest() throws InterruptedException {
+		logger = extent.createTest("complete pending task");
+		admin_id = "TSTTEN10";
+		LaunchPage launch = new LaunchPage(driver);
+		//*** Login as Admin***
+		launch.login(admin_id, password);
+		HomePage home = new HomePage(driver);
+		home.openPendingTasks();
+		PendingTasksPage taskpage = new PendingTasksPage(driver);
+		for(int i=1;i<=7;i++) 
+		{
+			taskpage.completeTheTask(end_user);
+			Thread.sleep(2000);
+			taskpage.clearSearchBox();			
+		}
+		home.clickOnHome();
+		home.logoff();
+	}
+	
+	@Test(priority=3)
 	public void validateEntitlements() throws IOException {
 		LaunchPage launch = new LaunchPage(driver);
 		// ***Login as requester***

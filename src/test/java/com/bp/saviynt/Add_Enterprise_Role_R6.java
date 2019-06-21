@@ -23,7 +23,7 @@ public class Add_Enterprise_Role_R6 extends TestBase {
 	public String requestNumber;
 	
 	ExcelOperations excel1 = new ExcelOperations(".\\Test Data\\EndUserData.xlsx");
-	String username1,uname;
+	String userName,uname,user;
 	String firstName = excel1.getData(0,1,1);
 	String lastName = excel1.getData(0,1,2);
 	String managerId = excel1.getData(0,1,3);
@@ -31,25 +31,30 @@ public class Add_Enterprise_Role_R6 extends TestBase {
 	
 	@Test(priority=1)
 	public void createEndUser() throws Exception {
-		
-		username1=userObject.generateUserName();
-		System.out.println("random user generated :"+username1);
-		System.out.println(managerId);
-		String property16 = username1+"@saviynt.com";
+		logger = extent.createTest("New user creation");
+		//user=userObject.generateUserName();
+		//System.out.println("random user generated :"+user);
 		LaunchPage launch = new LaunchPage(driver);
 		String admin = "TSTTEN10";
 		launch.login(admin, password);
 		HomePage home = new HomePage(driver);
 		home.openAdminTab();
 		AdminPage adminPage = new AdminPage(driver);
-		adminPage.clickOnUsersAndCreateUsers(username1,firstName,lastName,managerId);
-		adminPage.addAttributes(property16, "X|1|GMTUK|GB",username1,oldpassword);
+		userName = adminPage.clickOnUsersAndCreateUsers(firstName,lastName,managerId);
+		String property16 = userName+"@saviynt.com";
+		System.out.println(property16);
+		adminPage.addAttributes(property16, "X|1|GMTUK|GB",userName,oldpassword);
 		home.logoff();
-		userObject.writeUserName(username1);
+		userObject.writeUserName(userName);
 		uname=userObject.readUserName();
 		System.out.println("end user is :"+uname);
+		if(userName.equals(""))
+			Assert.assertTrue(false, "user not created");
+		else
+			logger.pass("User created successfully with ID : "+userName);
 		
 	}
+	
 	@Test(priority=2)
 	public void createRequestAndRoleApproval() throws Exception 
 	{
@@ -57,6 +62,7 @@ public class Add_Enterprise_Role_R6 extends TestBase {
 		
 		end_user = userObject.readUserName();
 		System.out.println("end user in tc5 is: "+end_user);
+		System.out.println(oldpassword);
 		role_approver = excel.getData(0, 13, 9);
 		
 		
@@ -107,6 +113,7 @@ public class Add_Enterprise_Role_R6 extends TestBase {
 		home.logoff();
 		
 	}
+	
 	@Test(priority=3)
 	public void scheduleJob() {
 		logger = extent.createTest("Schedule job");

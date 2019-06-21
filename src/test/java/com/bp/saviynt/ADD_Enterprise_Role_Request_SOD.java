@@ -10,14 +10,16 @@ import org.testng.annotations.Test;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.bp.lib.ExcelOperations;
 import com.bp.lib.Screenshot;
+import com.bp.lib.UsernameGeneration;
 import com.bp.testbase.TestBase;
 
 public class ADD_Enterprise_Role_Request_SOD extends TestBase
 {
 	ExcelOperations excel = new ExcelOperations(".\\Test Data\\Salesforce - Test Scenarios_V3.xlsx");
+	UsernameGeneration userObject = new UsernameGeneration();
 	String role4 = excel.getData(0, 24, 1);
 	String role5 = excel.getData(0, 25, 1);
-	String requestor, end_user, role_approver_1, training_work_order_id,sod_id, admin_id;
+	String userName,requestor, end_user, role_approver_1, training_work_order_id,sod_id, admin_id;
 	String password = "password";
 	String requestNumber;
 	
@@ -27,6 +29,7 @@ public class ADD_Enterprise_Role_Request_SOD extends TestBase
 		logger = extent.createTest("Existing User:ADD Enterprise Role Request-SOD");
 		requestor = excel.getData(0, 10, 6);
 		//end_user = excel.getData(0, 10, 7);
+		userName = userObject.readUserName();
 		role_approver_1 = excel.getData(0,10, 9);
 		training_work_order_id = excel.getData(0, 10, 11);
 		sod_id= excel.getData(0, 10, 12);
@@ -39,7 +42,7 @@ public class ADD_Enterprise_Role_Request_SOD extends TestBase
 		home.openRequestEnterpriseRole();
 		FindUserPage userPage = new FindUserPage(driver);
 		// search for end user
-		userPage.searchEndUser("RGTSU43");
+		userPage.searchEndUser(userName);
 		FindRolePage rolePage = new FindRolePage(driver);
 		// search for required role....add to cart.
 		//rolePage.searchandAddtoCart(role4);
@@ -89,14 +92,25 @@ public class ADD_Enterprise_Role_Request_SOD extends TestBase
 		approve.acceptFirstRole();
 		// approve second role
 		approve.acceptSecondRole();
+		//TestBase.scrollDownToElement(driver, element);
+		//click on confirm without adding mitigating control to check whether pop-up message comes stating "Please add mitigating controls to violations"
+		approve.clickOnConfirmWithoutAddingMC();
+		Thread.sleep(2000);
+		//check for pop-up message display
+		String message = approve.checkForPopUpMessage();
+		if(message.equals("")) 
+			Assert.assertTrue(false, "message not displayed");
+		else
+			logger.pass("" + message);
+		
 		// add mitigating control for first role
 		approve.addMitigatingControl("EPOMC001");
 		// click on purchase order entry header
-		approve.clickPurchaseOrderEntryHeader();
+		approve.clickOnHeaderToAddSecondMC();
 		// add mitigating control for second role
-		approve.addMitigatingControl("EPOMC002");
+		approve.addMitigatingControl2("EPOMC002");
 		Thread.sleep(2000);
-		approve.rejectAllRole();
+		
 		// click on confirm
 		 result = approve.clickOnConfirm();
 		Assert.assertTrue(result, "SOD approval failed");
@@ -104,47 +118,20 @@ public class ADD_Enterprise_Role_Request_SOD extends TestBase
 		home.logoff();
 		
 	}
+	
 	@Test(priority=2)
-	public void scheduleJob() {
-		logger = extent.createTest("Schedule job");
+	public void completePendingTasks() throws InterruptedException
+	{
+		logger = extent.createTest("Discontinue All Tasks");
 		//**login as admin
 		LaunchPage launch = new LaunchPage(driver);
 		admin_id = "TSTTEN10";
 		launch.login(admin_id, password);
 		HomePage home = new HomePage(driver);
-		home.openAdminTab();
-		AdminPage adminPage = new AdminPage(driver);
-		adminPage.openJobControlPanelLink();
-		adminPage.openUtilityandProvisioningJob();
-		// endpoint approver log out
+		home.openPendingTasks();
+		PendingTasksPage taskpage = new PendingTasksPage(driver);
+		taskpage.discontinueAllTasks(userName);
+		Thread.sleep(2000);
 		home.logoff();
 	}
-	@Test(priority=3)
-	public void validateEntitlements() throws IOException {
-		LaunchPage launch = new LaunchPage(driver);
-	// ***Login as requester***
-			launch.login(requestor, password);
-			HomePage home = new HomePage(driver);
-			// open request history
-			home.openRequestHistory();
-			RequestHistoryPage historyPage = new RequestHistoryPage(driver);
-			// search and open the request number
-			historyPage.searchRequestAndOpen(requestNumber);
-			// create an array list containing all the entitlement in the TASK Tab.
-			ArrayList<String> arlist = historyPage.clickOnTaskAndFetchEntitlements();
-			// **** Verify Presence of all required entitlements ****
-			String endpoint = excel.getData(0, 10, 14);
-			ArrayList<String> validate_list = new ArrayList<String>(Arrays.asList(endpoint.split(",")));
-			int i = 0;
-			for (String s : validate_list) {
-				validate_list.set(i,s.replace(" ","").replace("Tasksgetcreated-", ""));
-				i++;
-			}
-			boolean result = historyPage.validateEndPoints(arlist, validate_list);
-			Assert.assertTrue(result, "All Entitlement values were not present");
-			logger.pass("All Entitlement values were found", MediaEntityBuilder
-					.createScreenCaptureFromPath(Screenshot.captureScreenShot(driver).replace("Reports", "")).build());
-			// requester logout
-			home.logoff();
-}
 }

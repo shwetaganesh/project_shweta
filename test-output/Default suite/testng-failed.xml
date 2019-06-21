@@ -3,14 +3,14 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.bp.saviynt.Existing_User_Modify_Account">
+      <class name="com.bp.saviynt.SetUpDelegatesTest">
         <methods>
           <include name="sendReport"/>
           <include name="openApplication"/>
           <include name="CloseApplication"/>
-          <include name="validateEntitlements"/>
+          <include name="setUpDelegates"/>
         </methods>
-      </class> <!-- com.bp.saviynt.Existing_User_Modify_Account -->
+      </class> <!-- com.bp.saviynt.SetUpDelegatesTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

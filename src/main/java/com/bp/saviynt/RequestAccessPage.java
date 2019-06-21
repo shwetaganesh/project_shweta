@@ -62,6 +62,11 @@ public class RequestAccessPage  extends TestBase{
 	@FindBy(xpath ="//input[@id='dtsearch_myDataTable557_SEL']")
 	private WebElement removeGroupTextBox;
 	
+	@FindBy(xpath="(//table[@id='myDataTable41_ALL']//td[@class='center']//a[@id='addEntitlement'])[1]")
+	private WebElement firstVisbleAddLnk;
+	
+	@FindBy(xpath="//table[@id='myDataTable41_SEL']//a[@class='btn btn-xs default red-stripe']")
+	private WebElement removeVisibleLnk;
 	
 	WebDriverWait wait;
 	
@@ -148,13 +153,12 @@ public class RequestAccessPage  extends TestBase{
 		removeGroupTextBox.clear();
 	}
 	
-	public void addGroup(String groupName) {
-		/*TestBase.scrollDownToElement(driver, firstAddGroupButton);
-		firstAddGroupButton.click();
-		wait.until(ExpectedConditions.visibilityOf(removeGroupButton));	*/
+	public void addGroup(String groupName) throws InterruptedException {
+		
 		TestBase.scrollDownToElement(driver, addGroupTextBox);
 		addGroupTextBox.sendKeys(groupName);
 		addGroupTextBox.sendKeys(Keys.ENTER);
+		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table[@id='myDataTable557_ALL']//td[contains(@class,'sorting_1')]//span[contains(text(),'"+groupName+"')]")));
 		firstAddGroupButton.click();
 		wait.until(ExpectedConditions.visibilityOf(removeGroupButton));
@@ -165,5 +169,13 @@ public class RequestAccessPage  extends TestBase{
 	public void clickOnNext() {
 		wait.until(ExpectedConditions.visibilityOf(nextButton));
 		nextButton.click();
+	}
+	
+	public void addUserGroup()
+	{
+		wait.until(ExpectedConditions.visibilityOf(firstVisbleAddLnk));
+		firstVisbleAddLnk.click();
+		wait.until(ExpectedConditions.visibilityOf(removeVisibleLnk));
+		
 	}
 }

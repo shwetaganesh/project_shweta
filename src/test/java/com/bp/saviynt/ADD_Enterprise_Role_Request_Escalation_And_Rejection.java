@@ -10,11 +10,13 @@ import org.testng.annotations.Test;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.bp.lib.ExcelOperations;
 import com.bp.lib.Screenshot;
+import com.bp.lib.UsernameGeneration;
 import com.bp.testbase.TestBase;
 
 public class ADD_Enterprise_Role_Request_Escalation_And_Rejection extends TestBase{
 	
 	ExcelOperations excel = new ExcelOperations(".\\Test Data\\Salesforce - Test Scenarios_V3.xlsx");
+	UsernameGeneration userObject = new UsernameGeneration();
 	String role1 = excel.getData(0, 21, 1);
 	String role2 = excel.getData(0, 22, 1);
 	String requestNumber,requestor, end_user, line_manager, role_approver_2, training_work_order_id,sod_id, admin_id;
@@ -25,7 +27,7 @@ public class ADD_Enterprise_Role_Request_Escalation_And_Rejection extends TestBa
 	{
 		logger = extent.createTest("New User:ADD Enterprise Role Request-Escalation and Rejection");
 		requestor = excel.getData(0, 6, 6);
-		end_user = excel.getData(0, 6, 7);
+		end_user = userObject.readUserName();
 		line_manager = excel.getData(0, 6, 8);
 		role_approver_2 = excel.getData(0, 7, 9);
 		training_work_order_id = excel.getData(0, 6, 11);
@@ -38,7 +40,7 @@ public class ADD_Enterprise_Role_Request_Escalation_And_Rejection extends TestBa
 		home.openRequestEnterpriseRole();
 		FindUserPage userPage = new FindUserPage(driver);
 		// search for end user
-		userPage.searchEndUser("RGTSU44");
+		userPage.searchEndUser(end_user);
 		FindRolePage rolePage = new FindRolePage(driver);
 		// search for required role....add to cart.
 		rolePage.searchandAddtoCart(role1);
@@ -109,7 +111,28 @@ public class ADD_Enterprise_Role_Request_Escalation_And_Rejection extends TestBa
 
 		
 	}
+	
 	@Test(priority=2)
+	public void completePendingTaskTest() throws InterruptedException {
+		logger = extent.createTest("complete pending task");
+		admin_id = "TSTTEN10";
+		LaunchPage launch = new LaunchPage(driver);
+		//*** Login as Admin***
+		launch.login(admin_id, password);
+		HomePage home = new HomePage(driver);
+		home.openPendingTasks();
+		PendingTasksPage taskpage = new PendingTasksPage(driver);
+		for(int i=1;i<=7;i++) 
+		{
+			taskpage.completeTheTask(end_user);
+			Thread.sleep(2000);
+			taskpage.clearSearchBox();			
+		}
+		home.clickOnHome();
+		home.logoff();
+	}
+
+	//@Test(priority=2)
 	public void JobTrigger()
 	{
 		logger = extent.createTest("Trigger Job");

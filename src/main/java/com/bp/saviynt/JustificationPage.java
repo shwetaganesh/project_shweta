@@ -59,7 +59,8 @@ public class JustificationPage extends TestBase {
 		}
 	
 	public void clickOnSubmit() {
-		TestBase.scrollDownToElement(driver, submitButton);
-		submitButton.click();
+		wait.until(ExpectedConditions.visibilityOf(submitButton));
+		TestBase.javaScriptClickbyElement(driver, submitButton);
+		//submitButton.click();
 	}
 }

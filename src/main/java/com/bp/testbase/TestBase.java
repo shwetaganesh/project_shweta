@@ -1,5 +1,9 @@
 package com.bp.testbase;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.concurrent.TimeUnit;
+
 import org.apache.commons.mail.EmailException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -10,6 +14,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
@@ -39,13 +45,13 @@ public class TestBase
 	public static  ExtentTest logger;
 	
 	public String browser_name=System.getProperty("BROWSER");
+			
 	
 	String Sav_URL=System.getProperty("URL");
 	
-	
-	
+		
 	@BeforeMethod
-	public void openApplication()
+	public void openApplication() throws MalformedURLException
 	{
 		if(browser_name==null)
 			
@@ -53,7 +59,7 @@ public class TestBase
 		
 		if(Sav_URL==null)
 			
-			Sav_URL=config.getValue("URL");;
+			Sav_URL=config.getValue("URL");
 		
 		extent.attachReporter(reporter);
 		
@@ -66,7 +72,7 @@ public class TestBase
 		else if(browser_name.equalsIgnoreCase("Chrome"))
 		{
 			System.setProperty("webdriver.chrome.driver",config.getValue("ChromeDriver"));
-			//WebDriverManager.chromedriver().setup();
+			WebDriverManager.chromedriver().setup();
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("--no-sandbox");
 			//browser = new ChromeDriver(options);

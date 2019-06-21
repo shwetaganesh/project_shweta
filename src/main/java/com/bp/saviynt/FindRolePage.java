@@ -144,6 +144,7 @@ public class FindRolePage extends TestBase
 		wait.until(ExpectedConditions.visibilityOf(business_justification_first));
 	}
 	
+	//used for requesting application specific roles
 	public void clickOnCheckout1() {
 		TestBase.javaScriptClickbyElement(driver, newCheckoutButton);
 	}
@@ -184,7 +185,7 @@ public class FindRolePage extends TestBase
 		return status;
 	}
 	
-	//for test case4. 2 rows of results are appearing for search role.
+	//for SOD role4,5. 2 rows of results are appearing for search role.
 	public void addRolesToCartAfterReordering(String role_description) throws InterruptedException
 	{
 		wait.until(ExpectedConditions.visibilityOf(role_searchbox));
@@ -204,7 +205,21 @@ public class FindRolePage extends TestBase
 		wait.until(ExpectedConditions.visibilityOf(remove_cart));
 		role_searchbox.clear();
 	}
-	
+
+	public void searchandAddtoCartForUser(String role_description)
+	{
+		wait.until(ExpectedConditions.visibilityOf(role_searchbox));
+		//wait.until(ExpectedConditions.visibilityOf(first_addtocart_button));
+		wait.until(ExpectedConditions.visibilityOf(firstRow));
+		role_searchbox.clear();
+		role_searchbox.sendKeys(role_description);
+		role_searchbox.sendKeys(Keys.ENTER);
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tbody[@role='alert']//a[contains(text(),'"+role_description+"')]")));
+		wait.until(ExpectedConditions.visibilityOf(addtocart_button));
+		addtocart_button.click();
+		wait.until(ExpectedConditions.visibilityOf(remove_cart));
+		role_searchbox.clear();
+	}
 }
 	
 

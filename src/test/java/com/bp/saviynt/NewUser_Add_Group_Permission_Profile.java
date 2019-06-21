@@ -23,7 +23,7 @@ public class NewUser_Add_Group_Permission_Profile extends TestBase {
 	
 	UsernameGeneration userObject = new UsernameGeneration();
 	ExcelOperations excel1 = new ExcelOperations(".\\Test Data\\EndUserData.xlsx");
-	String username1,uname;
+	String userName,uname;
 	String firstName = excel1.getData(0,1,1);
 	String lastName = excel1.getData(0,1,2);
 	String managerId = excel1.getData(0,1,3);
@@ -32,23 +32,29 @@ public class NewUser_Add_Group_Permission_Profile extends TestBase {
 	@Test(priority=1)
 	public void createEndUser() throws Exception {
 		
-		username1=userObject.generateUserName();
+		logger = extent.createTest("Create new user");
+		/*username1=userObject.generateUserName();
 		System.out.println("random user generated :"+username1);
 		System.out.println(managerId);
-		String property16 = username1+"@saviynt.com";
+		String property16 = username1+"@saviynt.com";*/
 		LaunchPage launch = new LaunchPage(driver);
 		String admin = "TSTTEN10";
 		launch.login(admin, password);
 		HomePage home = new HomePage(driver);
 		home.openAdminTab();
 		AdminPage adminPage = new AdminPage(driver);
-		adminPage.clickOnUsersAndCreateUsers(username1,firstName,lastName,managerId);
-		adminPage.addAttributes(property16, "X|1|GMTUK|GB",username1,oldpassword);
+		userName = adminPage.clickOnUsersAndCreateUsers(firstName,lastName,managerId);
+		String property16 = userName+"@saviynt.com";
+		System.out.println(property16);
+		adminPage.addAttributes(property16, "X|1|GMTUK|GB",userName,oldpassword);
 		home.logoff();
-		userObject.writeUserName(username1);
+		userObject.writeUserName(userName);
 		uname=userObject.readUserName();
 		System.out.println("end user is :"+uname);
-		
+		if(userName.equals(""))
+			Assert.assertTrue(false, "user not created");
+		else
+			logger.pass("User created successfully with ID : "+userName);
 	}
 	
 	@Test(priority=2)
@@ -57,7 +63,7 @@ public class NewUser_Add_Group_Permission_Profile extends TestBase {
 		logger = extent.createTest("New User:Request for new account");
 		requestor = excel.getData(0, 16, 6);
 		endPointApprover = excel.getData(3, 28,1);
-		//endUser = excel.getData(0, 16,7);
+		endUser = userObject.readUserName();
 		permission = excel.getData(0, 32, 1);
 		groupName = excel.getData(0, 33, 1);
 		 
@@ -69,7 +75,7 @@ public class NewUser_Add_Group_Permission_Profile extends TestBase {
 		home.openRequestApplicationSpecificRoles();
 		FindUserPage userPage = new FindUserPage(driver);
 		//search for end user
-		userPage.searchEndUser(uname);
+		userPage.searchEndUser(endUser);
 		FindRolePage rolePage = new FindRolePage(driver);
 		// search for required role....add to cart.
 		rolePage.searchandAddtoCartNew(searchItem);

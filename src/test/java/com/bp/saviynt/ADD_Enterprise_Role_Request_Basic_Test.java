@@ -21,44 +21,18 @@ public class ADD_Enterprise_Role_Request_Basic_Test extends TestBase
 	String role2 = excel.getData(0, 22, 1);
 	String request_number,requestor, end_user, line_manager, role_approver_1, role_approver_2, training_work_order_id,sod_id, admin_id;
 	String password = "password";
-	//boolean check_TC1 = false;
 	
-	ExcelOperations excel1 = new ExcelOperations(".\\Test Data\\EndUserData.xlsx");
-	String username1,uname;
-	String firstName = excel1.getData(0,1,1);
-	String lastName = excel1.getData(0,1,2);
-	String managerId = excel1.getData(0,1,3);
-	
-	//@Test
-	public void createEndUser() throws Exception {
-		
-		username1=uobject.generateUserName();
-		System.out.println("random user generated :"+username1);
-		System.out.println(managerId);
-		String property16 = username1+"@saviynt.com";
-		LaunchPage launch = new LaunchPage(driver);
-		String admin = "TSTTEN10";
-		launch.login(admin, "password");
-		HomePage home = new HomePage(driver);
-		home.openAdminTab();
-		AdminPage adminPage = new AdminPage(driver);
-		adminPage.clickOnUsersAndCreateUsers(username1,firstName,lastName,managerId);
-		//adminPage.addAttributes(property16, "X|1|GMTUK|GB",username1,old);
-		home.logoff();
-		uobject.writeUserName(username1);
-		 uname=uobject.readUserName();
-		System.out.println("end user is :"+uname);
-		
-	}
 	
 	@Test(priority=1)
-	public void TC1() throws Exception 
+	public void createRequestAndRoleApproval() throws Exception 
 	{
 		logger = extent.createTest("New User:ADD Enterprise Role Request-Basic");
 		
 		requestor = excel.getData(0, 5, 6);
-		//end_user = uname;
+		end_user = uobject.readUserName();
 		System.out.println(end_user);
+		
+		
 		line_manager = excel.getData(0, 5, 8);
 		role_approver_1 = excel.getData(0, 9, 9);
 		role_approver_2 = excel.getData(0, 7, 9);
@@ -72,7 +46,7 @@ public class ADD_Enterprise_Role_Request_Basic_Test extends TestBase
 		home.openRequestEnterpriseRole();
 		FindUserPage userPage = new FindUserPage(driver);
 		// search for end user 
-		userPage.searchEndUser("RGTSU43");
+		userPage.searchEndUser(end_user);
 		FindRolePage rolePage = new FindRolePage(driver);
 		// search for required role....add to cart.
 		rolePage.searchandAddtoCart(role1);
@@ -125,7 +99,7 @@ public class ADD_Enterprise_Role_Request_Basic_Test extends TestBase
 		home.logoff();
 
 		// ***Login as Role manager2 ***
-		launch.login(role_approver_2, "password");
+		launch.login(role_approver_2, password);
 		// open approval inbox
 		home.openApprovalInbox();
 		// search with the requestID
@@ -158,7 +132,7 @@ public class ADD_Enterprise_Role_Request_Basic_Test extends TestBase
 		
 	}
 	
-	@Test(priority=2)
+	//@Test(priority=2)
 	public void JobTrigger()
 	{
 		logger = extent.createTest("Trigger Job");
@@ -178,21 +152,27 @@ public class ADD_Enterprise_Role_Request_Basic_Test extends TestBase
 		//log off
 		home.logoff();
 	}
-	//@Test(priority=3)
-	public void scheduleJob() {
-		logger = extent.createTest("Schedule job");
-		//**login as admin
-		LaunchPage launch = new LaunchPage(driver);
+	
+	@Test(priority=2)
+	public void completePendingTaskTest() throws InterruptedException {
+		logger = extent.createTest("complete pending task");
 		admin_id = "TSTTEN10";
+		LaunchPage launch = new LaunchPage(driver);
+		//*** Login as Admin***
 		launch.login(admin_id, password);
 		HomePage home = new HomePage(driver);
-		home.openAdminTab();
-		AdminPage adminPage = new AdminPage(driver);
-		adminPage.openJobControlPanelLink();
-		adminPage.openUtilityandProvisioningJob();
-		// admin log out
+		home.openPendingTasks();
+		PendingTasksPage taskpage = new PendingTasksPage(driver);
+		for(int i=1;i<=7;i++) 
+		{
+			taskpage.completeTheTask(end_user);
+			Thread.sleep(2000);
+			taskpage.clearSearchBox();			
+		}
+		home.clickOnHome();
 		home.logoff();
 	}
+	
 	@Test(priority=3)
 	public void validateEndpoints() throws IOException {
 		LaunchPage launch = new LaunchPage(driver);

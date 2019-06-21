@@ -19,6 +19,8 @@ import com.bp.testbase.TestBase;
 
 public class ApprovalInboxPage extends TestBase
 {
+	WebDriverWait wait;
+	
 	@FindBy(xpath = "(//button[contains(@id,'asynx')])[1]")
 	private WebElement acceptButton1;
 
@@ -64,8 +66,11 @@ public class ApprovalInboxPage extends TestBase
 	 @FindBy(xpath ="//td[contains(text(),'EPOMC002')]")
 	 private WebElement mitigatingControl_Row;
 	 
-	 @FindBy(xpath = "(//*[@type='radio' and contains(@title,'EPOMC001')])[1]")
+	 @FindBy(xpath = "(//*[@type='radio' and contains(@title,'MCP106')])[1]")
 	 private WebElement firstRadioButton;
+	 
+	 @FindBy(xpath = "(//*[@type='radio' and contains(@title,'EPOMC002')])[1]")
+	 private WebElement radioButton; // 1st radio button displayed fr 2nd MC
 	 
 	 /*@FindBy(xpath = "(//*[@type='radio' and @class='uniform' and @name='mitigatingcontrol' and @title='EPOMC002'])[1]")
 	 private WebElement secondRadioButton;*/
@@ -99,8 +104,69 @@ public class ApprovalInboxPage extends TestBase
 	
 	@FindBy(xpath ="//button[contains(text(),'Submit')]")
 	private WebElement submitMC; // submit mitigating control
-	WebDriverWait wait;
+	
+	//10/4/19
+	@FindBy(xpath = "//button[@class='btn default closebutton']")
+	private WebElement closeButton; //close button in popUp
+	
+	@FindBy(xpath ="//div[contains(text(),'Please add mitigating controls to violations')]")
+	private WebElement popUpMessage;
+	
+	@FindBy(xpath = "(//h4)[7]//span[contains(text(),'PROCLNT100')]")
+	private WebElement headerPROCLNT100_2;
+	
+	@FindBy(xpath ="(//h4)[6]//span[contains(text(),'PROCLNT100')]")
+	private WebElement headerPROCLNT100_1;
 
+	@FindBy(xpath ="//div[contains(text(),'Total 3 Segregation of Duty Violation Found')]")
+	private WebElement sodHeader;
+	
+	@FindBy(xpath ="//div[@id='collapse1_1']//label[@class='clearfix'][contains(text(),'Business Justification')]")
+	private WebElement businessJustificationHeader;
+	
+	@FindBy(xpath ="//div[@id='collapse1_1']//label[@class='clearfix'][contains(text(),'Additional Justification')]")
+	private WebElement additionalJustificationHeader;
+	
+	@FindBy(xpath = "//*[contains(text(),'SOD-Approval Task')]")
+	private WebElement sodApprovalTaskTab;
+	
+	@FindBy(xpath = "//div[contains(text(),'Task History')]")
+	private WebElement taskHistoryHeader;
+	
+	@FindBy(xpath = "//h4[contains(text(),'Enter Comment')]")
+	private WebElement commentsHeader;
+	
+	@FindBy(xpath = "//textarea[@id='approverejectcomments']")
+	private WebElement commentsTextBox;
+	
+	@FindBy(xpath ="//button[contains(text(),'Submit')]")
+	private WebElement submitComments;
+	
+	@FindBy(xpath = "//h4[contains(text(),'Do You Wish To Continue?')]")
+	private WebElement continueAlertBoxHeader;
+	
+	@FindBy(xpath = "//div[@class='modal-footer']//button[@class='btn green yesandstayincurrentrequestbtn']")
+	private WebElement yesAndStayInCurrentRequestButton;
+	
+	@FindBy(xpath = "(//div[@id='accordion3']//span[1]//i[1][contains(text(),'Mitigating Control')])[2]")
+	private WebElement mitigatingControlStatusforP206;
+	
+	@FindBy(xpath ="(//div[@id='accordion3']//span[1]//i[1][contains(text(),'Mitigating Control')])[1]")
+	private WebElement mitigatingControlStatusforP106;
+	
+	//18-6-19
+	@FindBy(xpath = "//a[@onclick=\"reassignapprover('all')\"]")
+	private WebElement modifyApproverButton;
+	
+	@FindBy(xpath = "//input[@id='dtsearch_allusersofloggedmanager']")
+	private WebElement sodApproverSearchBox;
+	
+	@FindBy(xpath = "(//input[@type='radio'])[6]")
+	private WebElement radioButtonToselectApprover; // first radio button that appears after searching for new sod approver.
+	
+	@FindBy(xpath ="//button[@onclick=\"settextvalueinuser()\"]")
+	private WebElement submitNewApprover;  // submit button to be clicked after selecting new SOD approver
+	
 	public ApprovalInboxPage(WebDriver ldriver)
 	{
 		driver = ldriver;
@@ -118,7 +184,6 @@ public class ApprovalInboxPage extends TestBase
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'"+requestID+"')]")));
 		element.click();
 		wait.until(ExpectedConditions.visibilityOf(approval_inbox_side));
-		//wait.until(ExpectedConditions.visibilityOf(requestApprovalHeaderSidePanel));
 	}
 	
 	//method to accept the first role for the end user
@@ -162,6 +227,13 @@ public class ApprovalInboxPage extends TestBase
 		System.out.println("All roles rejected for the user");
 	}
 	
+	public void clickOnConfirmWithoutAddingMC() {
+		wait.until(ExpectedConditions.elementToBeClickable(confirmButton));
+		TestBase.javaScriptClickbyElement(driver, confirmButton);
+		//confirmButton.click();
+		System.out.println("confirm button clicked");
+		
+	}
 	//method to click on the confirm button after accepting/rejecting the roles requested
 	public boolean clickOnConfirm()
 	{
@@ -178,39 +250,162 @@ public class ApprovalInboxPage extends TestBase
 		return result;
 	}
 	
-	public void addMitigatingControl(String controlName)
+	public void addMitigatingControl(String controlName) throws InterruptedException
 	{
 		wait.until(ExpectedConditions.elementToBeClickable(addMitigatingControlButton));
 		addMitigatingControlButton.click();
 		wait.until(ExpectedConditions.visibilityOf(searchBoxForMC));
 		searchBoxForMC.sendKeys(controlName);
 		searchBoxForMC.sendKeys(Keys.ENTER);
-		//wait.until(ExpectedConditions.visibilityOf(mitigatingControl_Row1));
-		wait.until(ExpectedConditions.visibilityOf(firstRadioButton));
-		firstRadioButton.click();
+		Thread.sleep(5000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//td[contains(text(),'"+controlName+"')]")));
+		//wait.until(ExpectedConditions.visibilityOf(firstRadioButton));
+		driver.findElement(By.xpath("//input[contains(@title,'"+controlName+"')]")).click();
 		/*TestBase.javaScriptClickbyElement(driver, nextButton);
 		wait.until(ExpectedConditions.elementToBeClickable(submitDateButton));
 		submitDateButton.click();*/
+		wait.until(ExpectedConditions.elementToBeClickable(submitMC));
 		TestBase.javaScriptClickbyElement(driver, submitMC);
 		
 	}
-	//button[contains(text(),'Submit')]
-	//input[@id='dtsearch_myDataTablemitigatingControls']
-	public void clickPurchaseOrderEntryHeader()
+	
+	
+	/*public void clickPurchaseOrderEntryHeader()
 	{
 		TestBase.javaScriptClickbyElement(driver, purchaseOrderHeader);
+	}*/
+	public void clickOnHeaderToAddFirstMC()
+	{
+		TestBase.javaScriptClickbyElement(driver, headerPROCLNT100_1);
+	}
+	public void clickOnHeaderToAddSecondMC() 
+	{
+		TestBase.javaScriptClickbyElement(driver, headerPROCLNT100_2);
 	}
 	
-	public void addMitigatingControl2() throws InterruptedException
+	public void addMitigatingControl2(String controlName) throws InterruptedException
 	{
 		wait.until(ExpectedConditions.elementToBeClickable(addMitigatingControlButton2));
 		TestBase.javaScriptClickbyElement(driver, addMitigatingControlButton2);
-		wait.until(ExpectedConditions.elementToBeClickable(mitigatingControl_Row));
-		secondRadioButton.click();
-		TestBase.javaScriptClickbyElement(driver, nextButton);
-		wait.until(ExpectedConditions.elementToBeClickable(submitDateButton));
-		submitDateButton.click();
+		wait.until(ExpectedConditions.visibilityOf(searchBoxForMC));
+		searchBoxForMC.sendKeys(controlName);
+		searchBoxForMC.sendKeys(Keys.ENTER);
+		Thread.sleep(5000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//td[contains(text(),'"+controlName+"')]")));
+		radioButton.click();
+		wait.until(ExpectedConditions.elementToBeClickable(submitMC));
+		TestBase.javaScriptClickbyElement(driver, submitMC);
+	}
+	
+	public String checkForPopUpMessage() {
+		String message = null;
+		try{
+			if(driver.findElements(By.xpath("//div[contains(text(),'Please add mitigating controls to violations')]")).size()>0) {
+				 message = popUpMessage.getText();
+				 System.out.println(message);
+				 closeButton.click();
+			}	
+		}
+		catch(Exception e) {
+			System.out.println("pop up message to add mitigating control is not displayed");
+		}
+		return message;
+		
+	}
+	
+	//3-6-19
+	public String verifyPresenceOfSODHeader()
+	{
+		wait.until(ExpectedConditions.visibilityOf(sodHeader));
+		return sodHeader.getText();
 	}
 
+	public boolean verifyPresenceOfBusinessJustificationHeader()
+	{
+		TestBase.scrollDownToElement(driver, businessJustificationHeader);
+		if(businessJustificationHeader.getSize()!=null)
+			return true;
+		else
+			return false;
+	}
 	
-}
+	public boolean verifyPresenceOfAdditionalJustificationHeader()
+	{
+		TestBase.scrollDownToElement(driver, additionalJustificationHeader);
+		if(additionalJustificationHeader.getSize()!=null)
+			return true;
+		else
+			return false;
+	}
+	
+	public void clickOnSODApprovalTask()
+	{
+		TestBase.scrollDownToElement(driver, taskHistoryHeader);
+		sodApprovalTaskTab.click();
+	}
+	
+	public void addCommentsAndSubmit()
+	{
+		wait.until(ExpectedConditions.visibilityOf(commentsHeader));
+		commentsTextBox.sendKeys("reject role");
+		submitComments.click();
+	}
+	public void clickOnStayInCurrentRequest() throws InterruptedException
+	{
+		//Thread.sleep(3000);
+		wait.until(ExpectedConditions.visibilityOf(yesAndStayInCurrentRequestButton));
+		//yesAndStayInCurrentRequestButton.click();
+		TestBase.javaScriptClickbyElement(driver, yesAndStayInCurrentRequestButton);
+		Thread.sleep(5000);
+	}
+	
+	public String verifyMitigatingControlStatus()
+	{
+		int r1,r2;
+		wait.until(ExpectedConditions.visibilityOf(headerPROCLNT100_1));
+		headerPROCLNT100_1.click();
+		String status = mitigatingControlStatusforP106.getText();
+		if (status.contains("Mitigating Control Available"))
+			r1 = 0;
+		else if(status.contains("Mitigating Control Added"))
+			r1 = 1;
+		else
+			r1 = 2;
+		wait.until(ExpectedConditions.visibilityOf(headerPROCLNT100_2));
+		status = mitigatingControlStatusforP206.getText();
+		if (status.contains("Mitigating Control Available"))
+			r2 = 0;
+		else if(status.contains("Mitigating Control Added"))
+			r2=1;
+		else 
+			r2 = 2;
+		if(r1==0 && r2 == 0)
+			return "Mitigating Control Available";
+		else if(r1==1 && r2 ==1)
+			return "Mitigating Control Added";
+		else
+			return "Error with mitigating control status";
+			
+	}
+	
+	public void clickOnModifyApproversButton()
+	{
+		wait.until(ExpectedConditions.visibilityOf(modifyApproverButton));
+		modifyApproverButton.click();
+	}
+	public boolean searchAndAssignNewSODApprover(String newApprover) throws InterruptedException {
+		
+		wait.until(ExpectedConditions.visibilityOf(sodApproverSearchBox));
+		sodApproverSearchBox.sendKeys(newApprover);
+		sodApproverSearchBox.sendKeys(Keys.ENTER);
+		Thread.sleep(3000);
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//td[contains(text(),'"+newApprover+"')])[1]")));
+		radioButtonToselectApprover.click();
+		submitNewApprover.click();
+		wait.until(ExpectedConditions.visibilityOf(approval_inbox_side));
+		if(approval_inbox_side.getText().contains("Approval Inbox"))
+			return true;
+		else
+			return false;
+		}
+	}

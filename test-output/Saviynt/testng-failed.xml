@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Saviynt]">
-  <test thread-count="5" name="Existing_User_Modify_Account(failed)">
+  <test thread-count="5" name="Add enterprise role - r6(failed)">
     <classes>
-      <class name="com.bp.saviynt.Existing_User_Modify_Account">
+      <class name="com.bp.saviynt.Add_Enterprise_Role_R6">
         <methods>
+          <include name="validateEntitlements"/>
+          <include name="createEndUser"/>
+          <include name="createRequestAndRoleApproval"/>
           <include name="sendReport"/>
           <include name="openApplication"/>
           <include name="scheduleJob"/>
           <include name="CloseApplication"/>
         </methods>
-      </class> <!-- com.bp.saviynt.Existing_User_Modify_Account -->
+      </class> <!-- com.bp.saviynt.Add_Enterprise_Role_R6 -->
     </classes>
-  </test> <!-- Existing_User_Modify_Account(failed) -->
+  </test> <!-- Add enterprise role - r6(failed) -->
 </suite> <!-- Failed suite [Saviynt] -->

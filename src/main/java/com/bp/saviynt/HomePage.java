@@ -1,5 +1,7 @@
 package com.bp.saviynt;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,6 +17,8 @@ import com.bp.testbase.TestBase;
 
 public class HomePage extends TestBase
 {
+	WebDriverWait wait;
+	
 	@FindBy(xpath = "(//*[@class='icon-angle-down'])[1]")
 	private WebElement logoff_expand;
 	
@@ -46,7 +50,21 @@ public class HomePage extends TestBase
 	@FindBy(xpath = "//div[@id='arsRequestAccessForOthers'] //a[@class='more']")
 	private WebElement requestApplicationSpecificRoles;
 	
-	WebDriverWait wait;
+	//15-04-2019
+	@FindBy(xpath ="//div[contains(text(),'Pending Tasks')]/following::a[1]")
+	private WebElement pendingTasks;
+	
+	@FindBy(xpath="//h3[@class='page-title']") 
+	private WebElement welcomeMessage;
+	
+	@FindBy(xpath="//div[@class='message m-portlet']")
+	private WebElement userInformation;
+	
+	@FindBy(xpath="//div[@id='arsSetupDelegates']//a[contains(@class,'more')]")
+	private WebElement setUpDelegatesLnk;
+	
+	@FindBy(xpath="//div[@id='arsViewExistingAccess']//a[@class='more']")
+	private WebElement existingAccessViewLnk;
 	
 	public HomePage(WebDriver ldriver) 
 	{
@@ -113,5 +131,50 @@ public class HomePage extends TestBase
 		requestApplicationSpecificRoles.click();
 	}
 	
+	public void openPendingTasks()
+	{
+		wait.until(ExpectedConditions.visibilityOf(pendingTasks));
+		pendingTasks.click();
+	}
 	
+	public boolean verifyWelcomeMessage()
+	{
+		wait.until(ExpectedConditions.visibilityOf(welcomeMessage));
+		return welcomeMessage.isDisplayed();
+		//return welcomeMessage.getText();
+	}
+	
+	public boolean verifyUserInformation()
+	{
+		return userInformation.isDisplayed();
+	}
+	
+	// returns total number of Tiles present in Home Page
+	public int totalNumberofTiles() 
+	{
+		return driver.findElements(By.xpath("//div[@class='col-md-4 mix tile_ord mix_all']")).size();
+	}
+	
+	public void getNameOfTiles()
+	{
+		List<WebElement> tilesNameEle=driver.findElements(By.xpath("//div[@class='desc']"));
+		
+		for(WebElement e :tilesNameEle)
+		{
+			System.out.println("Tile Name: "+e.getText());
+		}	
+		
+	}
+	
+	public void openSetUpDelegates()
+	{
+		wait.until(ExpectedConditions.visibilityOf(setUpDelegatesLnk));
+		setUpDelegatesLnk.click();
+	}
+	
+	public void openViewExistingAccess()
+	{
+		wait.until(ExpectedConditions.visibilityOf(existingAccessViewLnk));
+		existingAccessViewLnk.click();
+	}
 }
