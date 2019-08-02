@@ -1,5 +1,6 @@
 package com.bp.saviynt;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -37,18 +38,18 @@ public class HomePage extends TestBase
 	@FindBy(xpath = "//a[@href='/ECM/jbpmworkflowmanagement/showmyhistoryrequests']")
 	private WebElement req_history_link;
 	
-	@FindBy(xpath = "//a[contains(text(),'HOME')]")
-	private WebElement home_link;
+	/*@FindBy(xpath = "//a[contains(text(),'HOME')]")
+	private WebElement home_link;*/
 	
-	/*@FindBy(xpath = "//a[contains(text(),'ARS')]")
-	private WebElement ars_link;  */         // instead of home
+	@FindBy(xpath = "//a[contains(text(),'ARS')]")
+	private WebElement ars_link;          // instead of home
 	
 	@FindBy(xpath = "//a[contains(text(),'ADMIN')]")
 	private WebElement adminLink;
 	
 	// 11-01-2019
 	@FindBy(xpath = "//div[@id='arsRequestAccessForOthers'] //a[@class='more']")
-	private WebElement requestApplicationSpecificRoles;
+	private WebElement requestAccessForOthers;           // previously it was requestApplicationSpecificRoles, and now changed to request access for others.
 	
 	//15-04-2019
 	@FindBy(xpath ="//div[contains(text(),'Pending Tasks')]/following::a[1]")
@@ -65,6 +66,9 @@ public class HomePage extends TestBase
 	
 	@FindBy(xpath="//div[@id='arsViewExistingAccess']//a[@class='more']")
 	private WebElement existingAccessViewLnk;
+	
+	@FindBy(xpath = "//*[contains(text(),'SOD')]")
+	private WebElement SODLink;
 	
 	public HomePage(WebDriver ldriver) 
 	{
@@ -94,18 +98,10 @@ public class HomePage extends TestBase
 		req_history_link.click();
 	}
 	
-	public void clickOnRequestHome()
-	{
-		wait.until(ExpectedConditions.elementToBeClickable(home_link));
-		home_link.click();
-		
-	}
 	public void clickOnHome()
 	{
-		/*wait.until(ExpectedConditions.elementToBeClickable(home_link));
-		home_link.click();*/
-		wait.until(ExpectedConditions.elementToBeClickable(home_link));
-		home_link.click();
+		wait.until(ExpectedConditions.elementToBeClickable(ars_link));
+		ars_link.click();
 	}
 	
 	public void openAdminTab(){
@@ -127,8 +123,8 @@ public class HomePage extends TestBase
 	//open request application specific roles link
 	public void openRequestApplicationSpecificRoles()
 	{
-		wait.until(ExpectedConditions.visibilityOf(requestApplicationSpecificRoles));
-		requestApplicationSpecificRoles.click();
+		wait.until(ExpectedConditions.visibilityOf(requestAccessForOthers));
+		requestAccessForOthers.click();
 	}
 	
 	public void openPendingTasks()
@@ -176,5 +172,72 @@ public class HomePage extends TestBase
 	{
 		wait.until(ExpectedConditions.visibilityOf(existingAccessViewLnk));
 		existingAccessViewLnk.click();
+	}
+	
+	public void clickOnSOD()
+	{
+		wait.until(ExpectedConditions.visibilityOf(SODLink));
+		SODLink.click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[contains(text(),'SOD Violation')]")));
+	}
+	
+	public boolean verifyTilesName(String TileNames)
+	{
+		int val=0;
+
+		List<WebElement> tilesNameEle=driver.findElements(By.xpath("//div[@class='desc']"));
+		ArrayList<String> definedTile = new ArrayList<String>();
+		ArrayList<String> generatedTile = new ArrayList<String>();		
+		for(String tile:TileNames.split("&"))
+		{			
+			definedTile.add(tile);
+		}		
+		for(WebElement e :tilesNameEle)
+		{
+
+			  generatedTile.add(e.getText());
+
+		}	
+
+		for(int v=0;v<generatedTile.size();v++)
+		{
+			/*if(generatedTile.get(v).contains(driver.findElement(By.xpath("//div[@id='arsViewExistingAccess']")).getText()))
+			{
+				String viewEx=driver.findElement(By.xpath("//div[@id='arsViewExistingAccess']")).getText();
+				generatedTile.remove(v);
+				generatedTile.add(viewEx.replace(viewEx, "View Existing Access"));
+			}*/
+			if(generatedTile.get(v).contains("View Existing"+"\n"+"Access")) {
+				generatedTile.remove(v);
+				generatedTile.add("View Existing Access");
+			}
+				
+		}
+
+		if(TileNames.split("&").length==tilesNameEle.size())
+		{
+	        for(String ob : definedTile)
+	        {       	
+	        	for(String ob2 : generatedTile)
+	        	{
+	        		if(ob.equalsIgnoreCase(ob2))
+	        		{
+	        			System.out.println("Matching Tile: " +ob);
+	        			val=val+1;
+	        		}
+	        	}
+	        }
+
+		}
+		else
+		{
+			System.out.println("Tiles Count Not Matches");
+			return false;
+		}
+		if(val==TileNames.split("&").length)
+		{
+			return true;
+		}
+		return false;		
 	}
 }

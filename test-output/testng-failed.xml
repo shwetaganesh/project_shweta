@@ -3,14 +3,14 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.bp.saviynt.SetUpDelegatesTest">
+      <class name="com.bp.saviynt.Validate_AddMitigatingControlButton_TaskHistory_ForERoles">
         <methods>
           <include name="sendReport"/>
           <include name="openApplication"/>
+          <include name="requestApprovalBySODApprover"/>
           <include name="CloseApplication"/>
-          <include name="setUpDelegates"/>
         </methods>
-      </class> <!-- com.bp.saviynt.SetUpDelegatesTest -->
+      </class> <!-- com.bp.saviynt.Validate_AddMitigatingControlButton_TaskHistory_ForERoles -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

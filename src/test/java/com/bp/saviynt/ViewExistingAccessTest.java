@@ -25,11 +25,18 @@ public class ViewExistingAccessTest extends TestBase {
 		HomePage home = new HomePage(driver);
 		home.openViewExistingAccess();
 		ExistingAccessPage existingrole = new ExistingAccessPage(driver);
-		String userID = existingrole.existingAccessRequest();
-		System.out.println(userID);
-		Assert.assertEquals(endUser, userID);
+		boolean result = existingrole.existingAccessRequest(endUser);
+		Assert.assertEquals(result, true);
 		logger.pass("Existing access page snapshot" , MediaEntityBuilder
 				.createScreenCaptureFromPath(Screenshot.captureScreenShot(driver).replace("Reports", "")).build());
+		result = existingrole.accessDetailsSnapShot();
+		if(result)
+			logger.pass("Access details snapshot" , MediaEntityBuilder
+				.createScreenCaptureFromPath(Screenshot.captureScreenShot(driver).replace("Reports", "")).build());	
+		else
+			logger.fail("Error in Access details" , MediaEntityBuilder
+					.createScreenCaptureFromPath(Screenshot.captureScreenShot(driver).replace("Reports", "")).build());
+		home.logoff();
 	}
 
 }

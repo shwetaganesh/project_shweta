@@ -18,7 +18,7 @@ public class SetUpDelegatesTest extends TestBase {
 		logger = extent.createTest("Set up delegates");
 		LaunchPage launch = new LaunchPage(driver);
 		String endUser = userObject.readUserName();
-		String businessJustification = "Justification For "+endUser;
+		String name = "Justification For "+endUser;
 		launch.login(endUser, password);
 		HomePage home = new HomePage(driver);
 		home.openSetUpDelegates();
@@ -26,7 +26,7 @@ public class SetUpDelegatesTest extends TestBase {
 		delegates.createDelegatesRequest();
 		// CreateDelegatesPage delegates = new CreateDelegatesPage();
 		CreateDelegatesPage createdelegates = new CreateDelegatesPage(driver);
-		createdelegates.delegatesCreateRequest(businessJustification, "description", 5);
+		createdelegates.delegatesCreateRequest(name, "description", 5);
 		Assert.assertTrue(delegates.delegatesListMethod());
 		logger.pass("Delegates ", MediaEntityBuilder
 				.createScreenCaptureFromPath(Screenshot.captureScreenShot(driver).replace("Reports", "")).build());

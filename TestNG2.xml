@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Saviynt" parallel="none">
+
+	<!-- Following are the test scripts written for persona scenarios for end 
+		user given by MICKY -->
+
+	<test
+		name="Test to validate welcome message for new user and also the elements in home page">
+		<classes>
+			<class
+				name="com.bp.saviynt.WelcomeMessageAndHomePageValidation" />
+		</classes>
+	</test>
+	<test name="Test to Request for enterprise role">
+		<classes>
+			<class name="com.bp.saviynt.RequestEnterpriseRoleTest" />
+		</classes>
+	</test>
+	<test name="Test to request for application specific role">
+		<classes>
+			<class name="com.bp.saviynt.RequestApplicationSpecificRoleTest" />
+		</classes>
+	</test>
+	<test name="Viewing existing access present for the end user">
+		<classes>
+			<class name="com.bp.saviynt.ViewExistingAccessTest" />
+		</classes>
+	</test>
+	<test name="Test to set up delegates">
+		<classes>
+			<class name="com.bp.saviynt.SetUpDelegatesTest" />
+		</classes>
+	</test>
+</suite>

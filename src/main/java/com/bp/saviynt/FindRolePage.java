@@ -59,8 +59,9 @@ public class FindRolePage extends TestBase
 	private WebElement firstRowData;*/
 	@FindBy(xpath = "//td[contains(text(),'TEST_SalesforceTest')]")
 	private WebElement firstRowData;
-	//td[contains(text(),'TEST_SalesforceTest')]
-	@FindBy(xpath = "(//h4[@class='modal-title'])[3]")
+	
+	
+	@FindBy(xpath = "//h4[@class='modal-title' and contains(text(),'Account Name')]")
 	private WebElement popUpHeader;
 	
 	@FindBy(xpath = "(//button[@class='btn green'])[2]")
@@ -104,7 +105,7 @@ public class FindRolePage extends TestBase
 		role_searchbox.clear();
 		role_searchbox.sendKeys(role_description);
 		role_searchbox.sendKeys(Keys.ENTER);
-		wait.until(ExpectedConditions.visibilityOf(firstRowData));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//td[contains(text(),'"+role_description+"')]")));
 		/*try
 		{
 			 if(addtocart_button.isDisplayed()) {
@@ -151,7 +152,7 @@ public class FindRolePage extends TestBase
 	
 	//17-01-19
 	public void clickOnModifyExistingAccount() {
-		wait.until(ExpectedConditions.visibilityOf(firstRowData));
+		wait.until(ExpectedConditions.visibilityOf(modifyExistingAccountButton));
 		modifyExistingAccountButton.click();
 		wait.until(ExpectedConditions.visibilityOf(popUpHeader));
 		popUpyesButton.click();
@@ -219,6 +220,17 @@ public class FindRolePage extends TestBase
 		addtocart_button.click();
 		wait.until(ExpectedConditions.visibilityOf(remove_cart));
 		role_searchbox.clear();
+	}
+	
+	// method to select end-point PRKCLNT100 --used for SOD scenarios in preprod
+	public void selectEndPoint(String endPoint) throws InterruptedException
+	{
+		wait.until(ExpectedConditions.visibilityOf(role_searchbox));
+		role_searchbox.clear();
+		role_searchbox.sendKeys(endPoint);
+		role_searchbox.sendKeys(Keys.ENTER);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//td[contains(@class,'sorting_1')][contains(text(),'"+endPoint+"')]")));
+		Thread.sleep(2000);
 	}
 }
 	

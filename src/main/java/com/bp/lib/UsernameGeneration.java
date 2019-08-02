@@ -25,9 +25,9 @@ public class UsernameGeneration  {
 		try {
 			Properties props = new Properties();
 			props.setProperty("userName1", uname);
-			File f = new File(".\\Test Data\\endUserName.properties");
+			File f = new File(".\\Test Data\\endUserData.properties");
 			OutputStream out = new FileOutputStream( f );
-			props.store(out, "Properties file containing end user name");
+			props.store(out, "Properties file containing end user data");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -38,7 +38,7 @@ public class UsernameGeneration  {
 	public String readUserName() throws IOException {
 		String uname = null;
 		try {
-			FileReader reader = new FileReader(".\\Test Data\\endUserName.properties");
+			FileReader reader = new FileReader(".\\Test Data\\endUserData.properties");
 			Properties p = new Properties();
 			p.load(reader);
 			uname = p.getProperty("userName1");
@@ -50,5 +50,88 @@ public class UsernameGeneration  {
 		}
 		return uname;
 	}
+	
+	public void writeRequestNumber(String requestNumber)
+	{
+		try {
+			Properties props = new Properties();
+			props.setProperty("Request_Number", requestNumber);
+			File f = new File(".\\Test Data\\endUserData.properties");
+			OutputStream out = new FileOutputStream( f );
+			props.store(out, "Properties file containing end user data");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("writing into property file failed");
+		}
+	}
+	
+	public String readRequestNumber()
+	{
+		String requestNumber = null;
+		try {
+			FileReader reader = new FileReader(".\\Test Data\\endUserData.properties");
+			Properties p = new Properties();
+			p.load(reader);
+			requestNumber = p.getProperty("Request_Number");
+			System.out.println(requestNumber);
 
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return requestNumber;
+	}
+
+	public void writeMitigationControlDetails(String riskCode,String account,String mitigatingControl)
+	{
+		try {
+			Properties props = new Properties();
+			props.setProperty("riskCode", riskCode);
+			props.setProperty("account", account);
+			props.setProperty("mitigatingControl", mitigatingControl);
+			File f = new File(".\\Test Data\\mitigationControlDetails.properties");
+			OutputStream out = new FileOutputStream( f );
+			props.store(out, "Properties file containing mitigating control details");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("writing into property file failed");
+		}
+	}
+	
+	public String readAccountCode()
+	{
+		String account = null;
+		try {
+			FileReader reader = new FileReader(".\\Test Data\\mitigationControlDetails.properties");
+			Properties p = new Properties();
+			p.load(reader);
+			account = p.getProperty("account");
+			System.out.println(account);
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return account;
+	}
+	
+	public String readRiskCode()
+	{
+		String riskCode = null;
+		try {
+			FileReader reader = new FileReader(".\\Test Data\\mitigationControlDetails.properties");
+			Properties p = new Properties();
+			p.load(reader);
+			riskCode = p.getProperty("riskCode");
+			System.out.println(riskCode);
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return riskCode;
+	}
+	
 }

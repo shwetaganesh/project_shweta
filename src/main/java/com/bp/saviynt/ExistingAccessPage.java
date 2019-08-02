@@ -14,8 +14,11 @@ public class ExistingAccessPage  extends TestBase{
 	@FindBy(xpath="//h3[contains(text(),'View Existing Access')]")
 	private WebElement existingHeader;
 	
-	@FindBy(xpath="//input[@placeholder='User']")
+	@FindBy(xpath="//input[@class='form-control change_user']")
 	private WebElement userValueIpt;
+	
+	@FindBy(xpath = "//*[@id=\"selecteduser\"]")
+	private WebElement existingAccessEndUserHeader; // header along with end user name and username
 	
 	@FindBy(xpath="//span[@class='input-group-btn']/a[1]")
 	private WebElement changeUserBtn;
@@ -26,6 +29,9 @@ public class ExistingAccessPage  extends TestBase{
 	@FindBy(xpath="//div[@id='usermodaldiv']//a[@class='btn green'][contains(text(),'Submit')]")
 	private WebElement submitUserLnk;
 	
+	@FindBy(xpath = "//div[@class='caption' and contains(text(),'ACCESS DETAILS')]")
+	private WebElement accessDetailsHeader;
+	
 	WebDriverWait wait;
 	public ExistingAccessPage(WebDriver ldriver) 
 	{
@@ -34,11 +40,25 @@ public class ExistingAccessPage  extends TestBase{
 		wait = new WebDriverWait(driver,30);	
 	}
 	
-	public String existingAccessRequest()
+	public boolean existingAccessRequest(String endUser)
 	{
 		wait.until(ExpectedConditions.visibilityOf(existingHeader));	
-		return userValueIpt.getAttribute("value");
 		
+		System.out.println(existingAccessEndUserHeader.getText());
+		String userName = existingAccessEndUserHeader.getText();
+		String userNameSplit[] = userName.split("\\s");
+		for (int i=0; i < userNameSplit.length; i++)
+		      System.out.println(userNameSplit[i]);
+		if(userNameSplit[2].contains(endUser.toUpperCase()))
+			return true;
+		else
+			return false;
+		 
+	}
+	public boolean accessDetailsSnapShot()
+	{
+		TestBase.scrollToEndOfPage(driver);
+		return accessDetailsHeader.isDisplayed();
 	}
 }
 

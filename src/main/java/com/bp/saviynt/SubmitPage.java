@@ -31,7 +31,7 @@ public class SubmitPage extends TestBase
 	@FindBy(xpath = "(//*[contains(@id,'buisnesjustifcation')])[1]")
 	private WebElement business_justification_first;
 	
-	@FindBy(xpath = "(//*[contains(text(),'Please select the role parameters for')])[1]")
+	@FindBy(xpath = "(//h4[contains(text(),'Warehouse Specialist')])[1]")
 	private WebElement expand_url_first;
 	
 	/*@FindBy(xpath = "(//a[@class='select2-choice'])[1]")

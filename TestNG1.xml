@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Saviynt" parallel="none">
+
+	<!-- Following are the test scripts written for SOD scenarios given by RUTSY -->
+
+	<test
+		name="Validate presence of Add Mitigating Control button in SOD approval step">
+		<classes>
+			<class
+				name="com.bp.saviynt.Validate_AddMitigatingControlButton_TaskHistory_ForERoles" />
+		</classes>
+	</test>
+	<test name="Forward SOD access Request to another SOD approver">
+		<classes>
+			<class name="com.bp.saviynt.Forward_SOD_Access_Request_ER" />
+		</classes>
+	</test>
+	<test name="Access request for an existing mitigated SOD risk">
+		<classes>
+			<class name="com.bp.saviynt.Mitigated_SOD_Risk_Test" />
+		</classes>
+	</test>
+	<test
+		name="Assign mitigating control and check overlapping of risks">
+		<classes>
+			<class name="com.bp.saviynt.Assign_Mitigating_Control_Test_ER" />
+		</classes>
+	</test>
+	<test
+		name="SOD recalculation, assign mitigating control and check the status of mitigating controls added">
+		<classes>
+			<class name="com.bp.saviynt.SOD_Recalculation_ER" />
+		</classes>
+	</test>
+</suite>

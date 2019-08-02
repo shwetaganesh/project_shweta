@@ -85,22 +85,20 @@ public class AdminPage extends TestBase
 	@FindBy(xpath = "//h4[contains(text(),'Select File To Upload User')]")
 	private WebElement popUpheader;
 	
-	/*@FindBy(xpath = "//span[@id='uploadFileName']//span[@id='uneditableInputfilename']")
-	private WebElement filenameTextBox;*/	
 	
-	@FindBy(xpath = "(//input[@type='text'])[4]") 
+	@FindBy(xpath = "//input[@id='username']") 
 	private WebElement userName;
 	
-	@FindBy(xpath = "(//input[@type='text'])[5]") 
+	@FindBy(xpath = "//input[@id='firstname']") 
 	private WebElement firstName;
 	
-	@FindBy(xpath = "(//input[@type='text'])[6]") 
+	@FindBy(xpath = "//input[@id='lastname']") 
 	private WebElement lastName;
 	
-	@FindBy(xpath = "(//input[@type='text'])[8]") 
+	@FindBy(xpath = "//input[@id='city']") 
 	private WebElement country;
 	
-	@FindBy(xpath = "(//input[@type='text'])[10]")
+	@FindBy(xpath = "//input[@id='email']")
 	private WebElement email;
 	
 	@FindBy(xpath = "//button[@type='button' and contains(text(),'Select Manager')]")
@@ -112,7 +110,7 @@ public class AdminPage extends TestBase
 	@FindBy(xpath = "(//input[@type='radio'])[1]")
 	private WebElement firstRadioButton;
 	
-	@FindBy(xpath = "(//a[@type='button'])[2]")
+	@FindBy(xpath = "//*[@id=\"managerbtn\"]")
 	private WebElement submitManagerButton;
 	
 	@FindBy(xpath = "//a[@onclick='checkAndCreateForm()']")
@@ -179,10 +177,10 @@ public class AdminPage extends TestBase
 	@FindBy(xpath = "(//input[@type='password'])[2]")
 	private WebElement confirmPasswordTextBox;
 	
-	@FindBy(xpath = "(//a[@type='button'])[2]")
+	@FindBy(xpath = "//a[@id='saveButton']")
 	private WebElement savePasswordButton;	
 																												
-	@FindBy(xpath = "(//button[contains(text(),'Close')])[3]")
+	@FindBy(xpath = "//button[@class='btn default closebutton']")
 	private WebElement closeButton;
 	
 	@FindBy(xpath = "//input[@id='employeeclass']")
@@ -191,6 +189,8 @@ public class AdminPage extends TestBase
 	@FindBy(xpath ="//button[@class='btn default closebutton' and contains(text(),'Close')]")
 	private WebElement close; // close button that appears when "user already exists message" is displayed
 	
+	@FindBy(xpath ="//li[@id='businessrule']//a")
+	private WebElement adminFuntion;
 	WebDriverWait wait;
 	
 	
@@ -338,10 +338,11 @@ public class AdminPage extends TestBase
 		wait.until(ExpectedConditions.visibilityOf(usersLinkLeftPanel));
 		TestBase.scrollDownToElement(driver, adminFunctionLeftHandPanel);
 		adminFunctionLeftHandPanel.click();
+		adminFuntion.click();
 		wait.until(ExpectedConditions.visibilityOf(userNameSearchBox));
 		userNameSearchBox.sendKeys(uname);
 		userNameSearchBox.sendKeys(Keys.ENTER);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//th[contains(text(),'User NTID')]")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//th[contains(text(),'User')]")));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//td[@class=' sorting_1']//a[contains(text(),'"+uname+"')]")));
 		manageButton.click();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h4[contains(text(),'Manage User')]")));
@@ -354,7 +355,7 @@ public class AdminPage extends TestBase
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Password reset successfully!')]")));
 		closeButton.click();
 		Thread.sleep(3000);
-
+		
 	}
 	
 

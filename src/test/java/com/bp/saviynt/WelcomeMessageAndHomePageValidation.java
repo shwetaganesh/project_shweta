@@ -13,7 +13,7 @@ import com.bp.lib.Screenshot;
 import com.bp.lib.UsernameGeneration;
 import com.bp.testbase.TestBase;
 
-public class WelcomeMessageAndHomePageTest  extends TestBase
+public class WelcomeMessageAndHomePageValidation  extends TestBase
 
 {
 	String password = "password";
@@ -76,6 +76,8 @@ public class WelcomeMessageAndHomePageTest  extends TestBase
 		System.out.println("Number of tiles" + home.totalNumberofTiles());
 		Assert.assertEquals(home.totalNumberofTiles(), 6, "Number of tiles are more or less");
 		home.getNameOfTiles();
+		Assert.assertTrue(home.verifyTilesName(
+				"Setup Delegates&Request History&Request Approval&Request Access For Others&Request Enterprise Roles&View Existing Access"));
 		logger.pass("Tiles in the home page" , MediaEntityBuilder
 				.createScreenCaptureFromPath(Screenshot.captureScreenShot(driver).replace("Reports", "")).build());
 		home.logoff();

@@ -108,7 +108,7 @@ public class TestBase
 			logger.fail("Test Failed. Please find the details in the screenshot and report log", MediaEntityBuilder.createScreenCaptureFromPath(path.replace("Reports","")).build());
 		}
 		
-		driver.quit();
+		//driver.quit();
 		
 		extent.flush();
 		
@@ -158,6 +158,12 @@ public class TestBase
 		JavascriptExecutor js = (JavascriptExecutor) local_driver;
 		
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+	}
+	
+	public static void scrollPage(WebDriver local_driver)
+	{
+		JavascriptExecutor js = (JavascriptExecutor) local_driver;
+        js.executeScript("javascript:window.scrollBy(250,350)");
 	}
 	
 }

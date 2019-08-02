@@ -68,6 +68,15 @@ public class RequestAccessPage  extends TestBase{
 	@FindBy(xpath="//table[@id='myDataTable41_SEL']//a[@class='btn btn-xs default red-stripe']")
 	private WebElement removeVisibleLnk;
 	
+	@FindBy(xpath = "//input[@id='dtsearch_myDataTable370_ALL']")
+	private WebElement sapRoleSearchBox;
+	
+	@FindBy(xpath ="//td[@class='center']//a[@id='addEntitlement']")
+	private WebElement addSapRoleButton;
+	
+	@FindBy(xpath ="(//td[@class='center sorting_1']//a[@class='btn btn-xs default red-stripe'])[1]")
+	private WebElement removeSapRoleButton;
+	
 	WebDriverWait wait;
 	
 	public RequestAccessPage(WebDriver ldriver) 
@@ -154,13 +163,11 @@ public class RequestAccessPage  extends TestBase{
 	}
 	
 	public void addGroup(String groupName) throws InterruptedException {
-<<<<<<< HEAD
-		
-=======
+
 		/*TestBase.scrollDownToElement(driver, firstAddGroupButton);
 		firstAddGroupButton.click();
 		wait.until(ExpectedConditions.visibilityOf(removeGroupButton));	*/
->>>>>>> refs/remotes/origin/master
+
 		TestBase.scrollDownToElement(driver, addGroupTextBox);
 		addGroupTextBox.sendKeys(groupName);
 		addGroupTextBox.sendKeys(Keys.ENTER);
@@ -183,5 +190,17 @@ public class RequestAccessPage  extends TestBase{
 		firstVisbleAddLnk.click();
 		wait.until(ExpectedConditions.visibilityOf(removeVisibleLnk));
 		
+	}
+	
+	// add sap roles for new sod scenarios
+	public void searchAndAddSapRole(String role)
+	{
+		wait.until(ExpectedConditions.visibilityOf(sapRoleSearchBox));
+		sapRoleSearchBox.sendKeys(role);
+		sapRoleSearchBox.sendKeys(Keys.ENTER);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'"+role+"')]")));
+		addSapRoleButton.click();
+		wait.until(ExpectedConditions.visibilityOf(removeSapRoleButton));
+		sapRoleSearchBox.clear();
 	}
 }

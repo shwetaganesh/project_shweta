@@ -1,185 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="8" passed="8">
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Saviynt" duration-ms="744390" started-at="2019-06-20T11:03:31Z" finished-at="2019-06-20T11:15:56Z">
+  <suite name="Default suite" duration-ms="241178" started-at="2019-08-01T10:10:10Z" finished-at="2019-08-01T10:14:11Z">
     <groups>
     </groups>
-    <test name="Verify Home page and welcome message for the end user" duration-ms="135797" started-at="2019-06-20T11:03:31Z" finished-at="2019-06-20T11:05:47Z">
-      <class name="com.bp.saviynt.WelcomeMessageAndHomePageTest">
-        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.WelcomeMessageAndHomePageTest@5b7a5baa]" name="openApplication" is-config="true" duration-ms="14823" started-at="2019-06-20T11:03:31Z" finished-at="2019-06-20T11:03:46Z">
+    <test name="Default test" duration-ms="241178" started-at="2019-08-01T10:10:10Z" finished-at="2019-08-01T10:14:11Z">
+      <class name="com.bp.saviynt.SOD_Recalculation_ASP">
+        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.SOD_Recalculation_ASP@1d296da]" name="openApplication" is-config="true" duration-ms="17735" started-at="2019-08-01T10:10:10Z" finished-at="2019-08-01T10:10:28Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openApplication -->
-        <test-method status="PASS" signature="createEndUser()[pri:1, instance:com.bp.saviynt.WelcomeMessageAndHomePageTest@5b7a5baa]" name="createEndUser" duration-ms="68838" started-at="2019-06-20T11:03:46Z" finished-at="2019-06-20T11:04:55Z">
+        <test-method status="PASS" signature="sodRejectionAndRecalculation()[pri:1, instance:com.bp.saviynt.SOD_Recalculation_ASP@1d296da]" name="sodRejectionAndRecalculation" duration-ms="223123" started-at="2019-08-01T10:10:28Z" finished-at="2019-08-01T10:14:11Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- createEndUser -->
-        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.WelcomeMessageAndHomePageTest@5b7a5baa]" name="CloseApplication" is-config="true" duration-ms="1867" started-at="2019-06-20T11:04:55Z" finished-at="2019-06-20T11:04:57Z">
+        </test-method> <!-- sodRejectionAndRecalculation -->
+        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.SOD_Recalculation_ASP@1d296da]" name="CloseApplication" is-config="true" duration-ms="280" started-at="2019-08-01T10:14:11Z" finished-at="2019-08-01T10:14:11Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=createEndUser status=SUCCESS method=WelcomeMessageAndHomePageTest.createEndUser()[pri:1, instance:com.bp.saviynt.WelcomeMessageAndHomePageTest@5b7a5baa] output={null}]]]>
+                <![CDATA[[TestResult name=sodRejectionAndRecalculation status=SUCCESS method=SOD_Recalculation_ASP.sodRejectionAndRecalculation()[pri:1, instance:com.bp.saviynt.SOD_Recalculation_ASP@1d296da] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- CloseApplication -->
-        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.WelcomeMessageAndHomePageTest@5b7a5baa]" name="openApplication" is-config="true" duration-ms="14077" started-at="2019-06-20T11:04:57Z" finished-at="2019-06-20T11:05:11Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openApplication -->
-        <test-method status="PASS" signature="verifyWelcomeMessage()[pri:2, instance:com.bp.saviynt.WelcomeMessageAndHomePageTest@5b7a5baa]" name="verifyWelcomeMessage" duration-ms="34604" started-at="2019-06-20T11:05:11Z" finished-at="2019-06-20T11:05:45Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- verifyWelcomeMessage -->
-        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.WelcomeMessageAndHomePageTest@5b7a5baa]" name="CloseApplication" is-config="true" duration-ms="1524" started-at="2019-06-20T11:05:45Z" finished-at="2019-06-20T11:05:47Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=verifyWelcomeMessage status=SUCCESS method=WelcomeMessageAndHomePageTest.verifyWelcomeMessage()[pri:2, instance:com.bp.saviynt.WelcomeMessageAndHomePageTest@5b7a5baa] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- CloseApplication -->
-      </class> <!-- com.bp.saviynt.WelcomeMessageAndHomePageTest -->
-    </test> <!-- Verify Home page and welcome message for the end user -->
-    <test name="Request for enterprise role" duration-ms="141676" started-at="2019-06-20T11:05:48Z" finished-at="2019-06-20T11:08:10Z">
-      <class name="com.bp.saviynt.RequestEnterpriseRoleTest">
-        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.RequestEnterpriseRoleTest@5aa9e4eb]" name="openApplication" is-config="true" duration-ms="13626" started-at="2019-06-20T11:05:48Z" finished-at="2019-06-20T11:06:02Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openApplication -->
-        <test-method status="PASS" signature="enterpriseRoleRequestTest()[pri:0, instance:com.bp.saviynt.RequestEnterpriseRoleTest@5aa9e4eb]" name="enterpriseRoleRequestTest" duration-ms="71793" started-at="2019-06-20T11:06:02Z" finished-at="2019-06-20T11:07:13Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- enterpriseRoleRequestTest -->
-        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.RequestEnterpriseRoleTest@5aa9e4eb]" name="CloseApplication" is-config="true" duration-ms="1484" started-at="2019-06-20T11:07:13Z" finished-at="2019-06-20T11:07:15Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=enterpriseRoleRequestTest status=SUCCESS method=RequestEnterpriseRoleTest.enterpriseRoleRequestTest()[pri:0, instance:com.bp.saviynt.RequestEnterpriseRoleTest@5aa9e4eb] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- CloseApplication -->
-        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.RequestEnterpriseRoleTest@5aa9e4eb]" name="openApplication" is-config="true" duration-ms="11832" started-at="2019-06-20T11:07:15Z" finished-at="2019-06-20T11:07:27Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openApplication -->
-        <test-method status="PASS" signature="viewRequestHistoryTest()[pri:2, instance:com.bp.saviynt.RequestEnterpriseRoleTest@5aa9e4eb]" name="viewRequestHistoryTest" duration-ms="41406" started-at="2019-06-20T11:07:27Z" finished-at="2019-06-20T11:08:08Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- viewRequestHistoryTest -->
-        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.RequestEnterpriseRoleTest@5aa9e4eb]" name="CloseApplication" is-config="true" duration-ms="1525" started-at="2019-06-20T11:08:08Z" finished-at="2019-06-20T11:08:10Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=viewRequestHistoryTest status=SUCCESS method=RequestEnterpriseRoleTest.viewRequestHistoryTest()[pri:2, instance:com.bp.saviynt.RequestEnterpriseRoleTest@5aa9e4eb] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- CloseApplication -->
-      </class> <!-- com.bp.saviynt.RequestEnterpriseRoleTest -->
-    </test> <!-- Request for enterprise role -->
-    <test name="Request for application specific role" duration-ms="341321" started-at="2019-06-20T11:08:11Z" finished-at="2019-06-20T11:13:52Z">
-      <class name="com.bp.saviynt.RequestApplicationSpecificRoleTest">
-        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.RequestApplicationSpecificRoleTest@6743e411]" name="openApplication" is-config="true" duration-ms="12351" started-at="2019-06-20T11:08:11Z" finished-at="2019-06-20T11:08:23Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openApplication -->
-        <test-method status="PASS" signature="RequestApplicatonSpecificRoles()[pri:1, instance:com.bp.saviynt.RequestApplicationSpecificRoleTest@6743e411]" name="RequestApplicatonSpecificRoles" duration-ms="68318" started-at="2019-06-20T11:08:23Z" finished-at="2019-06-20T11:09:31Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- RequestApplicatonSpecificRoles -->
-        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.RequestApplicationSpecificRoleTest@6743e411]" name="CloseApplication" is-config="true" duration-ms="1665" started-at="2019-06-20T11:09:31Z" finished-at="2019-06-20T11:09:33Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=RequestApplicatonSpecificRoles status=SUCCESS method=RequestApplicationSpecificRoleTest.RequestApplicatonSpecificRoles()[pri:1, instance:com.bp.saviynt.RequestApplicationSpecificRoleTest@6743e411] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- CloseApplication -->
-        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.RequestApplicationSpecificRoleTest@6743e411]" name="openApplication" is-config="true" duration-ms="96101" started-at="2019-06-20T11:09:33Z" finished-at="2019-06-20T11:11:09Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openApplication -->
-        <test-method status="PASS" signature="viewRequestHistoryTest()[pri:2, instance:com.bp.saviynt.RequestApplicationSpecificRoleTest@6743e411]" name="viewRequestHistoryTest" duration-ms="161161" started-at="2019-06-20T11:11:09Z" finished-at="2019-06-20T11:13:50Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- viewRequestHistoryTest -->
-        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.RequestApplicationSpecificRoleTest@6743e411]" name="CloseApplication" is-config="true" duration-ms="1711" started-at="2019-06-20T11:13:50Z" finished-at="2019-06-20T11:13:52Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=viewRequestHistoryTest status=SUCCESS method=RequestApplicationSpecificRoleTest.viewRequestHistoryTest()[pri:2, instance:com.bp.saviynt.RequestApplicationSpecificRoleTest@6743e411] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- CloseApplication -->
-      </class> <!-- com.bp.saviynt.RequestApplicationSpecificRoleTest -->
-    </test> <!-- Request for application specific role -->
-    <test name="View existing access for the user" duration-ms="35239" started-at="2019-06-20T11:13:54Z" finished-at="2019-06-20T11:14:29Z">
-      <class name="com.bp.saviynt.ViewExistingAccessTest">
-        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.ViewExistingAccessTest@6f03482]" name="openApplication" is-config="true" duration-ms="12024" started-at="2019-06-20T11:13:54Z" finished-at="2019-06-20T11:14:06Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openApplication -->
-        <test-method status="PASS" signature="viewExistingAccess()[pri:0, instance:com.bp.saviynt.ViewExistingAccessTest@6f03482]" name="viewExistingAccess" duration-ms="21564" started-at="2019-06-20T11:14:06Z" finished-at="2019-06-20T11:14:27Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- viewExistingAccess -->
-        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.ViewExistingAccessTest@6f03482]" name="CloseApplication" is-config="true" duration-ms="1651" started-at="2019-06-20T11:14:27Z" finished-at="2019-06-20T11:14:29Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=viewExistingAccess status=SUCCESS method=ViewExistingAccessTest.viewExistingAccess()[pri:0, instance:com.bp.saviynt.ViewExistingAccessTest@6f03482] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- CloseApplication -->
-      </class> <!-- com.bp.saviynt.ViewExistingAccessTest -->
-    </test> <!-- View existing access for the user -->
-    <test name="Setting up the delegates" duration-ms="85567" started-at="2019-06-20T11:14:30Z" finished-at="2019-06-20T11:15:56Z">
-      <class name="com.bp.saviynt.SetUpDelegatesTest">
-        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.SetUpDelegatesTest@1a677343]" name="openApplication" is-config="true" duration-ms="21257" started-at="2019-06-20T11:14:30Z" finished-at="2019-06-20T11:14:51Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openApplication -->
-        <test-method status="PASS" signature="setUpDelegates()[pri:0, instance:com.bp.saviynt.SetUpDelegatesTest@1a677343]" name="setUpDelegates" duration-ms="62608" started-at="2019-06-20T11:14:51Z" finished-at="2019-06-20T11:15:54Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setUpDelegates -->
-        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.SetUpDelegatesTest@1a677343]" name="CloseApplication" is-config="true" duration-ms="1700" started-at="2019-06-20T11:15:54Z" finished-at="2019-06-20T11:15:56Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=setUpDelegates status=SUCCESS method=SetUpDelegatesTest.setUpDelegates()[pri:0, instance:com.bp.saviynt.SetUpDelegatesTest@1a677343] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- CloseApplication -->
-        <test-method status="PASS" signature="sendReport()[pri:0, instance:com.bp.saviynt.SetUpDelegatesTest@1a677343]" name="sendReport" is-config="true" duration-ms="37669" started-at="2019-06-20T11:15:57Z" finished-at="2019-06-20T11:16:34Z">
+        <test-method status="PASS" signature="sendReport()[pri:0, instance:com.bp.saviynt.SOD_Recalculation_ASP@1d296da]" name="sendReport" is-config="true" duration-ms="24934" started-at="2019-08-01T10:14:12Z" finished-at="2019-08-01T10:14:37Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- sendReport -->
-      </class> <!-- com.bp.saviynt.SetUpDelegatesTest -->
-    </test> <!-- Setting up the delegates -->
-  </suite> <!-- Saviynt -->
+      </class> <!-- com.bp.saviynt.SOD_Recalculation_ASP -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>

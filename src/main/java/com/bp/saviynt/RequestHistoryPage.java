@@ -1,5 +1,6 @@
 package com.bp.saviynt;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.aventstack.extentreports.MediaEntityBuilder;
+import com.bp.lib.Screenshot;
 import com.bp.testbase.TestBase;
 
 
@@ -48,6 +51,10 @@ public class RequestHistoryPage extends TestBase
 	
 	@FindBy(xpath = "//th[contains(text(),'Creation Date')]")
 	private WebElement lastColumnInTable;
+	
+	@FindBy(xpath = "//td[10]")
+	private WebElement statusColumn;
+	
 	
 	WebDriverWait wait;
 	
@@ -161,5 +168,24 @@ public class RequestHistoryPage extends TestBase
 
 		
 		
+	}
+	public void getTaskHistorySnapShot() throws IOException
+	{
+		TestBase.scrollDownToElement(driver, task_history);
+		//task_link.click();
+		//((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		logger.pass("Task history snapshot", MediaEntityBuilder
+				.createScreenCaptureFromPath(Screenshot.captureScreenShot(driver).replace("Reports", "")).build());
+	}
+	
+	public String searchRequestNumberAndCheckStatus(String request_number)
+	{
+		wait.until(ExpectedConditions.visibilityOf(first_result_row));
+		role_search_input.clear();
+		role_search_input.sendKeys(request_number);
+		role_search_button.click();
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'"+request_number+"')]")));
+		TestBase.scrollDownToElement(driver, statusColumn);
+		return statusColumn.getText();
 	}
 }
