@@ -19,16 +19,16 @@ public class REMOVE_and_ADD_Enterprise_Role_Request  extends TestBase
 	UsernameGeneration userObject = new UsernameGeneration();
 	String role1 = excel.getData(0, 21, 1);
 	String role3 = excel.getData(0, 23, 1);
-	String request_number_all,request_number,request_number_revoke_role,requestor, end_user, line_manager, role_approver_1, role_approver_2, training_work_order_id,sod_id, admin_id;
+	String request_number_all,request_number1,request_number2,requestor, end_user, line_manager, role_approver_1, role_approver_2, training_work_order_id,sod_id, admin_id;
 	String password = "password";
 	
 	
-	@Test
+	@Test(priority=1)
 	public void TC3() throws InterruptedException, IOException 
 	{
 		logger = extent.createTest("Existing User:REMOVE and ADD Enterprise Role Request");
 		requestor = excel.getData(0, 8, 6);
-		end_user = userObject.readUserName();
+		//end_user = userObject.readUserName();
 		line_manager = excel.getData(0, 9, 8);
 		role_approver_1 = excel.getData(0, 9, 9);
 		training_work_order_id = excel.getData(0, 9, 11);
@@ -43,7 +43,7 @@ public class REMOVE_and_ADD_Enterprise_Role_Request  extends TestBase
 		home.openRequestEnterpriseRole();
 		FindUserPage userPage = new FindUserPage(driver);
 		// search for end user
-		userPage.searchEndUser(end_user);
+		userPage.searchEndUser("597091");
 		FindRolePage rolePage = new FindRolePage(driver);
 		// search for required role....remove from cart.
 		rolePage.searchAndRemoveFromCart(role1);
@@ -52,6 +52,7 @@ public class REMOVE_and_ADD_Enterprise_Role_Request  extends TestBase
 		// click on check out button
 		rolePage.clickOnCheckout();
 		SubmitPage submitObj = new SubmitPage(driver);
+		submitObj.selectParametersFromOrganisationNode();
 		// submit the request
 		request_number_all = submitObj.submitAccessAndRevokeRequest();		
 		if (request_number_all.equals(""))
@@ -65,19 +66,23 @@ public class REMOVE_and_ADD_Enterprise_Role_Request  extends TestBase
 		home.openRequestHistory();
 		RequestHistoryPage history = new RequestHistoryPage(driver);
 		// Temporary store
-		request_number = request_number_all.substring(0, mid);
-		request_number_revoke_role = request_number_all.substring(mid);
-		if (history.isRoleRevokeRequest(request_number)) 
-		{
-			String temp = request_number_revoke_role;
-			request_number_revoke_role = request_number;
-			request_number = temp;
+		//request_number = request_number_all.substring(0, mid);
+		request_number1 = request_number_all.substring(0,mid);
+		request_number2 = request_number_all.substring(mid);
+		if (history.isRoleRevokeRequest(request_number1)) 
+		{	
+			String temp = request_number1;
+			request_number1=request_number2;
+			request_number2=temp;
 		}
-		System.out.println("Request Number for TC3 is " + request_number);
+		System.out.println("Request Number for remove role TC3 is " + request_number2);
 
-		System.out.println("Request Number for TC3 remove role is " + request_number_revoke_role);
+		System.out.println("Request Number for TC3  is " + request_number1);
+		
 		// requester log out
 		home.logoff();
+		
+		launch.clickOnLoginAgain();
 		
 		// ***Login with Line Manager ***
 		launch.login(line_manager, password);
@@ -85,7 +90,7 @@ public class REMOVE_and_ADD_Enterprise_Role_Request  extends TestBase
 		home.openApprovalInbox();
 		ApprovalInboxPage approve = new ApprovalInboxPage(driver);
 		// search with the requestID
-		approve.searchRequestNumber(request_number);
+		approve.searchRequestNumber(request_number1);
 		// accept role1
 		approve.acceptFirstRole();
 		boolean result = approve.clickOnConfirm();
@@ -94,12 +99,14 @@ public class REMOVE_and_ADD_Enterprise_Role_Request  extends TestBase
 		// line manager log out
 		home.logoff();	
 		
+		launch.clickOnLoginAgain();
+		
 		//***Login as Role manager1***
 		launch.login(role_approver_1, password);
 		// open approval inbox
 		home.openApprovalInbox();
 		// search with the requestID
-		approve.searchRequestNumber(request_number);
+		approve.searchRequestNumber(request_number1);
 		// role manager1 approves first role
 		approve.acceptFirstRole();
 		result = approve.clickOnConfirm();
@@ -108,12 +115,14 @@ public class REMOVE_and_ADD_Enterprise_Role_Request  extends TestBase
 		// role manager1 log out
 		home.logoff();
 		
+		launch.clickOnLoginAgain();
+		
 		// ***Login as Training work order***
 		launch.login(training_work_order_id, password);
 		// open approval inbox
 		home.openApprovalInbox();
 		// search with the requestID
-		approve.searchRequestNumber(request_number);
+		approve.searchRequestNumber(request_number1);
 		// accept first role
 		approve.acceptFirstRole();
 		result = approve.clickOnConfirm();
@@ -124,7 +133,7 @@ public class REMOVE_and_ADD_Enterprise_Role_Request  extends TestBase
 		home.logoff();
 	}
 	
-	@Test(priority=2)
+	//@Test(priority=2)
 	public void completePendingTaskTest() throws InterruptedException {
 		logger = extent.createTest("complete pending task");
 		admin_id = "TSTTEN10";
@@ -137,10 +146,29 @@ public class REMOVE_and_ADD_Enterprise_Role_Request  extends TestBase
 		for(int i=1;i<=7;i++) 
 		{
 			taskpage.completeTheTask(end_user);
-			Thread.sleep(2000);
-			taskpage.clearSearchBox();			
+			Thread.sleep(2000);	
 		}
 		home.clickOnHome();
+		home.logoff();
+	}
+	
+	@Test(priority=2)
+	public void scheduleJob() {
+		logger = extent.createTest("Schedule job");
+		//**login as admin
+		LaunchPage launch = new LaunchPage(driver);
+		admin_id = "TSTTEN10";
+		launch.login(admin_id, password);
+		HomePage home = new HomePage(driver);
+		home.openAdminTab();
+		AdminPage adminPage = new AdminPage(driver);
+		adminPage.openJobControlPanelLink();
+		for(int i=2;i<=4;i++)
+		{
+			String systemName = excel.getData(0, 34, i);
+			adminPage.openUtilityandProvisioningJob(systemName);
+		}
+		// endpoint approver log out
 		home.logoff();
 	}
 	
@@ -154,7 +182,7 @@ public class REMOVE_and_ADD_Enterprise_Role_Request  extends TestBase
 		home.openRequestHistory();
 		RequestHistoryPage historyPage = new RequestHistoryPage(driver);
 		// search and open the request number
-		historyPage.searchRequestAndOpen(request_number);
+		historyPage.searchRequestAndOpen(request_number1);
 		// create an array list containing all the end points in the TASK Tab.
 		ArrayList<String> arlist = historyPage.clickOnTaskAndFetchEndPoints();
 		// **** Verify Access Granted or not ****
@@ -178,7 +206,7 @@ public class REMOVE_and_ADD_Enterprise_Role_Request  extends TestBase
 		// open request history
 		home.openRequestHistory();
 		// search and open the request number
-		historyPage.searchRequestAndOpen(request_number_revoke_role);
+		historyPage.searchRequestAndOpen(request_number2);
 		// create an array list containing all the end points in the TASK Tab.
 		arlist = historyPage.clickOnTaskAndFetchEndPoints();
 		// **** Verify Access Revoked or not ****

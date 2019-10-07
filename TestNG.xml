@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Saviynt" parallel="none">
 
-	<test name="Add enterprise role - r6">
+	 <test name="Add enterprise role - r6">
 		<classes>
 			<class name="com.bp.saviynt.Add_Enterprise_Role_R6" />
 		</classes>
@@ -17,7 +17,7 @@
 			<class name="com.bp.saviynt.Remove_Enterprise_Role_R6andR7" />
 		</classes>
 	</test>
-	<test name="New User: ADD Enterprise Role Request-Basic">
+	     <!--<test name="New User: ADD Enterprise Role Request-Basic">
 		<classes>
 			<class
 				name="com.bp.saviynt.ADD_Enterprise_Role_Request_Basic_Test" />
@@ -45,7 +45,7 @@
 				name="com.bp.saviynt.Existing_User_Remove_Salesforce_Application_Access" />
 		</classes>
 	</test>
-	<test
+	 <test
 		name="New User: ADD_Enterprise_Role_Request_Escalation_And_Rejection">
 		<classes>
 			<class
@@ -57,5 +57,5 @@
 			<class
 				name="com.bp.saviynt.REMOVE_and_ADD_Enterprise_Role_Request" />
 		</classes>
-	</test>
+	</test>-->
 </suite>

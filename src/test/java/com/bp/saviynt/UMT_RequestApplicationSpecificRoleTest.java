@@ -10,7 +10,7 @@ import com.bp.lib.Screenshot;
 import com.bp.lib.UsernameGeneration;
 import com.bp.testbase.TestBase;
 
-public class UMT_RequestApplicationSpecificRole extends TestBase {
+public class UMT_RequestApplicationSpecificRoleTest extends TestBase {
 	
 	String password = "password";
 	String searchItem ="Saviynt";
@@ -63,8 +63,7 @@ public class UMT_RequestApplicationSpecificRole extends TestBase {
 	{
 		logger = extent.createTest("View the request history of end user");
 		LaunchPage launch = new LaunchPage(driver);
-		String endUser = userObject.readUserName();
-		launch.login(endUser, password);
+		launch.login(userID, password);
 		HomePage home = new HomePage(driver);
 		home.openRequestHistory();
 		RequestHistoryPage history = new RequestHistoryPage(driver);

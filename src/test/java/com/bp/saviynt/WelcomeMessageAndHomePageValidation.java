@@ -43,7 +43,7 @@ public class WelcomeMessageAndHomePageValidation  extends TestBase
 		userName = adminPage.clickOnUsersAndCreateUsers(firstName, lastName, managerId);
 		String property16 = userName + "@saviynt.com";
 		System.out.println(property16);
-		adminPage.addAttributes(property16, "X|1|GMTUK|GB", userName, oldpassword);
+		adminPage.addAttributesNew(property16, "X|1|GMTUK|GB", userName, oldpassword);
 		home.logoff();
 		userObject.writeUserName(userName);
 		uname = userObject.readUserName();

@@ -76,11 +76,11 @@ public class SOD_Recalculation_ER extends TestBase {
 		approve.searchRequestNumber(requestNumber);
 		approve.acceptFirstRole();
 		approve.acceptSecondRole();
-		approve.scrollDownToFirstMCHeader();
+		approve.scrollDownToFirstMCHeader("PROCLNT100");
 		// add mitigating control for first role
 		approve.addMitigatingControl("MCP106");
 		// click on purchase order entry header
-		approve.clickOnHeaderToAddSecondMC();
+		approve.clickOnHeaderToAddSecondMC("PROCLNT100");
 		// add mitigating control for second role
 		approve.modifyMitigatingControl("MCP206");
 		Thread.sleep(2000);

@@ -138,7 +138,7 @@ public class RequestHistoryPage extends TestBase
 		role_search_button.click();
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'"+req_num+"')]")));
 		driver.findElement(By.xpath("//a[contains(text(),'"+req_num+"')]")).click();
-		if(request_type.getText().equalsIgnoreCase("Revoke Access"))
+		if(request_type.getText().equalsIgnoreCase("Remove Access"))
 			return true;
 		else
 			return false;

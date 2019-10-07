@@ -29,7 +29,7 @@ public class Add_Enterprise_Role_R6 extends TestBase {
 	String managerId = excel1.getData(0,1,3);
 	String oldpassword = excel1.getData(0,1,4); // password set using admin function during end user creation
 	
-	@Test(priority=1)
+	/*@Test(priority=1)
 	public void createEndUser() throws Exception {
 		logger = extent.createTest("New user creation");
 		//user=userObject.generateUserName();
@@ -40,10 +40,12 @@ public class Add_Enterprise_Role_R6 extends TestBase {
 		HomePage home = new HomePage(driver);
 		home.openAdminTab();
 		AdminPage adminPage = new AdminPage(driver);
-		userName = adminPage.clickOnUsersAndCreateUsers(firstName,lastName,managerId);
-		String property16 = userName+"@saviynt.com";
-		System.out.println(property16);
-		adminPage.addAttributes(property16, "X|1|GMTUK|GB",userName,oldpassword);
+		String userName = adminPage.clickOnUsersAndCreateUsersAndAddAttributes(lastName,managerId,"X|1|GMTUK|GB");
+		//String property16 = userName+"@saviynt.com";
+		//System.out.println(property16);
+		System.out.println(userName);
+		
+		adminPage.setPassword(userName,oldpassword);
 		home.logoff();
 		userObject.writeUserName(userName);
 		uname=userObject.readUserName();
@@ -53,7 +55,30 @@ public class Add_Enterprise_Role_R6 extends TestBase {
 		else
 			logger.pass("User created successfully with ID : "+userName);
 		
+	}*/
+	@Test(priority = 1)
+	public void createEndUser() throws Exception {
+		logger = extent.createTest("New user creation");
+		LaunchPage launch = new LaunchPage(driver);
+		String admin = "TSTTEN10";
+		launch.login(admin, password);
+		HomePage home = new HomePage(driver);
+		home.openAdminTab();
+		AdminPage adminPage = new AdminPage(driver);
+		userName = adminPage.clickOnUsersAndCreateUsers(firstName, lastName, managerId);
+		String property16 = userName + "@saviynt.com";
+		System.out.println(property16);
+		adminPage.addAttributesNew(property16, "X|1|GMTUK|GB", userName, oldpassword);
+		home.logoff();
+		userObject.writeUserName(userName);
+		uname = userObject.readUserName();
+		System.out.println("end user is :" + uname);
+		if (userName.equals(""))
+			Assert.assertTrue(false, "user not created");
+		else
+			logger.pass("User created successfully with ID : " + userName);
 	}
+
 	
 	@Test(priority=2)
 	public void createRequestAndRoleApproval() throws Exception 
@@ -63,9 +88,8 @@ public class Add_Enterprise_Role_R6 extends TestBase {
 		end_user = userObject.readUserName();
 		System.out.println("end user in tc5 is: "+end_user);
 		System.out.println(oldpassword);
-		role_approver = excel.getData(0, 13, 9);
-		
-		
+		role_approver = excel.getData(0, 13, 9); 
+		//role_approver="RGTSM91";
 		LaunchPage launch = new LaunchPage(driver);
 		//*** Login to application with Requester***
 		launch.login(end_user, oldpassword);
@@ -95,6 +119,7 @@ public class Add_Enterprise_Role_R6 extends TestBase {
 		// requester log out
 		home.logoff();
 		
+		launch.clickOnLoginAgain();
 		
 		//*** Login as role approver ***
 		launch.login(role_approver,password);
@@ -116,6 +141,7 @@ public class Add_Enterprise_Role_R6 extends TestBase {
 	
 	@Test(priority=3)
 	public void scheduleJob() {
+		String systemName = "TEST_SalesforceTest";
 		logger = extent.createTest("Schedule job");
 		//**login as admin
 		LaunchPage launch = new LaunchPage(driver);
@@ -125,10 +151,11 @@ public class Add_Enterprise_Role_R6 extends TestBase {
 		home.openAdminTab();
 		AdminPage adminPage = new AdminPage(driver);
 		adminPage.openJobControlPanelLink();
-		adminPage.openUtilityandProvisioningJob();
+		adminPage.openUtilityandProvisioningJob(systemName);
 		// admin log out
 		home.logoff();
 	}
+	
 	
 	@Test(priority=4)
 	public void validateEntitlements() throws IOException {

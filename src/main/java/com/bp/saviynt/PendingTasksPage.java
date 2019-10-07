@@ -1,7 +1,9 @@
 package com.bp.saviynt;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -80,7 +82,7 @@ public class PendingTasksPage  extends TestBase{
 	public void completeTheTask(String userName)
 	{
 		wait.until(ExpectedConditions.visibilityOf(searchBox));
-		//searchBox.clear();
+		searchBox.clear();
 		searchBox.sendKeys(userName);
 		searchBox.sendKeys(Keys.ENTER);
 		  try {
@@ -90,32 +92,28 @@ public class PendingTasksPage  extends TestBase{
 			wait.until(ExpectedConditions.visibilityOf(complete));
 			complete.click();
 			wait.until(ExpectedConditions.visibilityOf(commentHeadline));
-			/*if(driver.findElements(By.xpath("//input[@class='uniform' and @type='checkbox']")).size()>0)
-				{
-					checkBox.click();
-					//wait.until(ExpectedConditions.visibilityOf(submit));
-					wait.until(ExpectedConditions.elementToBeClickable(submit));
-					TestBase.javaScriptClickbyElement(driver, submit);
-				}
-			else 
-				System.out.println("More than one task of same type not present");*/
-				//wait.until(ExpectedConditions.elementToBeClickable(submit));
-			TestBase.scrollDownToElement(driver, submit);	
-			TestBase.javaScriptClickbyElement(driver, submit);
+			WebElement ele = driver.findElement(By.xpath("//textarea[@placeholder='Comments']"));
+			TestBase.scrollDownToElement(driver, ele);	
+			wait.until(ExpectedConditions.elementToBeClickable(submit));
+			submit.click();
 			
 				
 		  }
-		  catch(Exception e)
+		  catch(ElementNotInteractableException e)
+		  {
+			  System.out.println("element not interactable");  
+			  e.printStackTrace();
+		  }
+		  catch(NoSuchElementException e1)
+		  {
+			  System.out.println("no such element"); 
+			  e1.printStackTrace();
+		  }
+		  catch(Exception e2)
 		  {
 			  System.out.println("All tasks completed");
 		  }
 		}
 	
-
-	public void clearSearchBox() {
-		
-		wait.until(ExpectedConditions.visibilityOf(searchBox));
-		searchBox.clear();
-	}
 		
 	}

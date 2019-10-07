@@ -35,7 +35,6 @@ public class TestBase
 	public WebDriver driver;
 	
 	
-	
 	public ConfigReader config=new ConfigReader();
 	
 	public ExtentHtmlReporter reporter=new ExtentHtmlReporter("./Reports/TestReport.html");
@@ -71,7 +70,7 @@ public class TestBase
 		}
 		else if(browser_name.equalsIgnoreCase("Chrome"))
 		{
-			System.setProperty("webdriver.chrome.driver",config.getValue("ChromeDriver"));
+			//System.setProperty("webdriver.chrome.driver",config.getValue("ChromeDriver"));
 			WebDriverManager.chromedriver().setup();
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("--no-sandbox");

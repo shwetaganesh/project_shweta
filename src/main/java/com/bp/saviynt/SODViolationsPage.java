@@ -91,7 +91,7 @@ public class SODViolationsPage extends TestBase {
 	@FindBy(xpath = "//input[@type='checkbox' and @onclick='refreshtable(this)']")
 	private WebElement mitigatingControlCheckBox;
 	
-	@FindBy(xpath = "//*[@id=\"mcname\"]")
+	@FindBy(xpath = "//*[@id='mcname']")
 	private WebElement newMitigatingControlName;
 	
 	@FindBy(xpath = "(//*[@id=\"SODMapped\"]//td//a[contains(text(),'O005')])[1]")
@@ -99,6 +99,38 @@ public class SODViolationsPage extends TestBase {
 	
 	@FindBy(xpath = "//*[@id=\"myDataTablemitigatingControls\"]/tbody/tr/td[2]")
 	private WebElement firstRowInMitigatingControlPopUp;
+	
+	//12/09/19
+	@FindBy(xpath = "//div[@title='TOGGLE SIDEBAR']")
+	private WebElement toggleSideBar;
+	
+	@FindBy(xpath = "//a[@href='/ECM/simulationDetail/list']")
+	private WebElement simulationHeaderLeftHandSidePanel;
+	
+	//23-09-2019
+	@FindBy(xpath = "//div[@id='s2id_rulesetFilter']//a[@class='select2-choice']")
+	private WebElement rulesetFilterDropDown;
+	
+	@FindBy(xpath = "//button[contains(text(),'Advanced')]")
+	private WebElement advancedButton;
+	
+	@FindBy(xpath = "//h4[contains(text(),'Advanced Search')]")
+	private WebElement advancedSearchHeader;
+	
+	@FindBy(xpath = "//a[contains(text(),'Accounts')]")
+	private WebElement accountsTab;
+	
+	@FindBy(xpath = "//input[@id='A_NAME']")
+	private WebElement accountNameTextBox;
+	
+	@FindBy(xpath = "//button[@class='btn green' and @id='dosearch']")
+	private WebElement searchButtonForAccount;
+	
+	@FindBy(xpath = "(//span[contains(text(),'Ruleset')])[2]")
+	private WebElement rulesetHeaderSidePanel;
+	
+	@FindBy(xpath = "//a[@href='/ECM/functions/list']")
+	private WebElement functionsHeaderSidePanel;
 	
 	WebDriverWait wait;
 
@@ -110,6 +142,11 @@ public class SODViolationsPage extends TestBase {
 		wait = new WebDriverWait(driver, 40);
 	}
 
+	public void clickOnToggleSideBarandgotoSimulation()
+	{
+		toggleSideBar.click();
+		simulationHeaderLeftHandSidePanel.click();
+	}
 	public void clickOnOpenRisks() {
 		wait.until(ExpectedConditions.visibilityOf(SODViolationPageHeader));
 		open.click();
@@ -130,10 +167,12 @@ public class SODViolationsPage extends TestBase {
 	}
 
 	public ArrayList<String> selectFirstCheckBoxAndRetrieveFirstRowData() throws InterruptedException {
-		// wait.until(ExpectedConditions.visibilityOf(firstRow));
+		 wait.until(ExpectedConditions.visibilityOf(firstRow));
 		// firstCheckbox.click();
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		TestBase.javaScriptClickbyElement(driver, firstCheckbox);
+		Thread.sleep(2000);
+		//firstCheckbox.click();
 		System.out.println("first check box clicked successfully");
 		List<WebElement> firstRow = driver.findElements(By.xpath("//div[@class='page-container']//tbody//tr[1]//td"));
 		ArrayList<String> firstRowData = new ArrayList<String>();
@@ -228,8 +267,10 @@ public class SODViolationsPage extends TestBase {
 		textBox.sendKeys(Keys.ENTER);
 		wait.until(ExpectedConditions.visibilityOf(firstRow));
 		Thread.sleep(3000);
-		WebElement rowDataWithRisk = driver.findElement(By.xpath("//table[@id='SODMapped']//td//a[@title='"+riskCode+"']"));
-		TestBase.scrollDownToElement(driver, rowDataWithRisk);
+		//WebElement rowDataWithRisk = driver.findElement(By.xpath("//table[@id='SODMapped']//td//a[@title='"+riskCode+"']"));
+		TestBase.scrollDownToElement(driver, driver.findElement(By.xpath("//table[@id='SODMapped']//td//a[@title='"+riskCode+"']")));
+		driver.findElement(By.xpath("//table[@id='SODMapped']//td//a[@title='"+riskCode+"']")).getText();
+		
 	}
 	
 	public void clickOnRiskToModifyDate() throws InterruptedException
@@ -266,13 +307,13 @@ public class SODViolationsPage extends TestBase {
 	}
 	
 	
-	public String  changeMitigatingControl() throws InterruptedException
+	public void  changeMitigatingControl() throws InterruptedException
 	{
 		account = object.readAccountCode();
 		riskCode =object.readRiskCode();
 		
-		WebElement rowDataWithRisk = driver.findElement(By.xpath("//table[@id='SODMapped']//td//a[@title='"+riskCode+"']"));
-		rowDataWithRisk.click();
+		//WebElement rowDataWithRisk = driver.findElement(By.xpath("//table[@id='SODMapped']//td//a[@title='"+riskCode+"']"));
+		//rowDataWithRisk.click();
 		wait.until(ExpectedConditions.visibilityOf(selectmitigatingControlHeader));
 			wait.until(ExpectedConditions.visibilityOf(mitigatingControlSearchBox));
 			/*if(account.startsWith("CU"))
@@ -296,12 +337,12 @@ public class SODViolationsPage extends TestBase {
 	        driver.findElement(By.xpath("//td[@class='day' and contains(text(),'23')]")).click(); // variable used before was endDate
 	        driver.findElement(By.xpath("//input[@id='enddate']")).sendKeys(Keys.ESCAPE);
 	        nextButton.click(); // click on next button and application will automatically redirect to risk accepted tab.
-	        String newMC = newMitigatingControlName.getText();
+	        //String newMC = newMitigatingControlName.getText();
 	        sod.click();
 	        wait.until(ExpectedConditions.visibilityOf(textBox));
 	        riskAccepted.click();
 	        wait.until(ExpectedConditions.visibilityOf(textBox));
-			return newMC;
+			//return newMC;
 		}
 		
 	
@@ -360,8 +401,11 @@ public class SODViolationsPage extends TestBase {
 			textBox.sendKeys(Keys.ENTER);
 			wait.until(ExpectedConditions.visibilityOf(firstRowWithRiskCode));
 			if(driver.findElements(By.xpath("(//*[@id='SODMapped']//td//a[contains(text(),'O005')])[1]")).size()>0)
+			{
+				//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='SODMapped']/tbody/tr[1]/td[10][contains(text(),'"+accountName+")]")));
 				logger.pass("Mitigating control assigned for risk O005", MediaEntityBuilder
 						.createScreenCaptureFromPath(Screenshot.captureScreenShot(driver).replace("Reports", "")).build());
+			}
 			else
 				logger.fail("Mitigation control assignment fail", MediaEntityBuilder
 						.createScreenCaptureFromPath(Screenshot.captureScreenShot(driver).replace("Reports", "")).build());
@@ -374,6 +418,58 @@ public class SODViolationsPage extends TestBase {
 		}
 		
 	}
+	
+	public String getNewMCName()
+	{
+		wait.until(ExpectedConditions.visibilityOf(newMitigatingControlName));
+		String newMC = newMitigatingControlName.getAttribute("value");
+		return newMC;
+	}
+	
+	public void clickOnRulesetFilterDropDownAndFilter(String ruleSet)
+	{
+		wait.until(ExpectedConditions.visibilityOf(rulesetFilterDropDown));
+		rulesetFilterDropDown.click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'"+ruleSet+"')]")));
+		driver.findElement(By.xpath("//div[contains(text(),'"+ruleSet+"')]")).click();;
+	}
+	
+	// used for Ruleset testing.
+	// search for user and click on the risk code.
+	public void searchForUserAndClickOnRiskCode(String user) throws InterruptedException
+	{
+		
+		wait.until(ExpectedConditions.visibilityOf(textBox));
+		textBox.sendKeys(user);
+		textBox.sendKeys(Keys.ENTER);
+		Thread.sleep(3000);
+		
+		//obtain risk code from username
+		String riskCode = user.substring(6);
+		System.out.println(riskCode);
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tbody[@role='alert']//tr//td//a[contains(text(),'"+riskCode+"')]")));
+		driver.findElement(By.xpath("//tbody[@role='alert']//tr//td//a[contains(text(),'"+riskCode+"')]")).click();
+		
+	}
+	
+	public void clickOnAdvancedButton()
+	{
+		wait.until(ExpectedConditions.elementToBeClickable(advancedButton));
+		advancedButton.click();
+		wait.until(ExpectedConditions.visibilityOf(advancedSearchHeader));
+	}
+	
+	public void gotoRulesetandClickOnFunction()
+	{
+		wait.until(ExpectedConditions.visibilityOf(toggleSideBar));
+		toggleSideBar.click();
+		rulesetHeaderSidePanel.click();
+		wait.until(ExpectedConditions.visibilityOf(functionsHeaderSidePanel));
+		functionsHeaderSidePanel.click();
+	}
+	
+	
 }
 	
 	

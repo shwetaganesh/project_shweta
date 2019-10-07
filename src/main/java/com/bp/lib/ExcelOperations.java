@@ -51,4 +51,11 @@ public class ExcelOperations
 			   e.printStackTrace();
 		} 
 	}
+	
+	
+	public String getData1(int sheet_index, int row_index, int col_index) 
+	{
+		
+		return wb.getSheetAt(sheet_index).getRow(row_index).getCell(col_index).getStringCellValue();
+	}
 }

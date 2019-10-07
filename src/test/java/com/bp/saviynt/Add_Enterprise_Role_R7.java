@@ -19,19 +19,17 @@ public class Add_Enterprise_Role_R7 extends TestBase {
 	ExcelOperations excel = new ExcelOperations(".\\Test Data\\Salesforce - Test Scenarios_V3.xlsx");
 	UsernameGeneration userObject = new UsernameGeneration();
 	String role7 = excel.getData(0, 29, 1);
-	String  end_user, line_manager, role_approver, admin;
+	String  end_user,role_approver, admin;
 	String password = "password";
 	public String requestNumber;
 	
 		@Test(priority=1)
-		public void createRequestAndRoleApproval() throws Exception 
+		public void createRequest() throws Exception 
 		{
 			logger = extent.createTest("Existing User:ADD Salesforce Enterprise Role - R7");
-			//requestor = excel.getData(0, 5, 6);
 			end_user = userObject.readUserName();
 			System.out.println("end user in tc6 is:"+end_user);
 			role_approver = excel.getData(0, 13, 9);
-			
 			
 			LaunchPage launch = new LaunchPage(driver);
 			//*** Login to application with Requester***
@@ -58,7 +56,7 @@ public class Add_Enterprise_Role_R7 extends TestBase {
 			// requester log out
 			home.logoff();
 			
-			
+			launch.clickOnLoginAgain();
 			//*** Login as role approver ***
 			launch.login(role_approver,password);
 			// goto approval inbox
@@ -74,10 +72,10 @@ public class Add_Enterprise_Role_R7 extends TestBase {
 			logger.pass("Role Approver has approved the request");
 			// line manager log out
 			home.logoff();
-
-}
+		}
 		@Test(priority=2)
 		public void scheduleJob() {
+			String systemName = "TEST_SalesforceTest";
 			logger = extent.createTest("Schedule job");
 			//**login as admin
 			LaunchPage launch = new LaunchPage(driver);
@@ -87,7 +85,7 @@ public class Add_Enterprise_Role_R7 extends TestBase {
 			home.openAdminTab();
 			AdminPage adminPage = new AdminPage(driver);
 			adminPage.openJobControlPanelLink();
-			adminPage.openUtilityandProvisioningJob();
+			adminPage.openUtilityandProvisioningJob(systemName);
 			// endpoint approver log out
 			home.logoff();
 		}

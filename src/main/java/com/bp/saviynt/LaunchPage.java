@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.bp.testbase.TestBase;
 
@@ -23,10 +25,16 @@ public class LaunchPage extends TestBase
 	@FindBy(xpath = "//a[contains(text(),'Forgot your password?')]")
 	private WebElement forgot_password_link;
 	
+	@FindBy(xpath = "//*[contains(text(),'Login Again')]")
+	private WebElement loginAgainButton;
+	
+	WebDriverWait wait;
+	
 	public LaunchPage(WebDriver ldriver) 
 	{
 		driver=ldriver;
 		PageFactory.initElements(driver, this);
+		wait = new WebDriverWait(driver, 30);
 	}
 	//this method verifies presence of text field for user name
 	public boolean verifyUname()
@@ -62,5 +70,12 @@ public class LaunchPage extends TestBase
 		}
 		else
 			System.out.println("Elements not found in homepage");
+	}
+	
+	public void clickOnLoginAgain()
+	{
+		wait.until(ExpectedConditions.visibilityOf(loginAgainButton));
+		loginAgainButton.click();
+		wait.until(ExpectedConditions.visibilityOf(u_name));
 	}
 }

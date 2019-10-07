@@ -80,7 +80,8 @@ public class Existing_User_Remove_Salesforce_Application_Access extends TestBase
 			home.openAdminTab();
 			AdminPage adminPage = new AdminPage(driver);
 			adminPage.openJobControlPanelLink();
-			adminPage.openUtilityandProvisioningJob();
+			String systemName = excel.getData(0, 34, 1);
+			adminPage.openUtilityandProvisioningJob(systemName);
 			// endpoint approver log out
 			home.logoff();
 		}

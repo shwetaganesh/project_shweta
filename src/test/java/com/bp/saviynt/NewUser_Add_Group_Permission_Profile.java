@@ -33,20 +33,13 @@ public class NewUser_Add_Group_Permission_Profile extends TestBase {
 	public void createEndUser() throws Exception {
 		
 		logger = extent.createTest("Create new user");
-		/*username1=userObject.generateUserName();
-		System.out.println("random user generated :"+username1);
-		System.out.println(managerId);
-		String property16 = username1+"@saviynt.com";*/
 		LaunchPage launch = new LaunchPage(driver);
 		String admin = "TSTTEN10";
 		launch.login(admin, password);
 		HomePage home = new HomePage(driver);
 		home.openAdminTab();
 		AdminPage adminPage = new AdminPage(driver);
-		userName = adminPage.clickOnUsersAndCreateUsers(firstName,lastName,managerId);
-		String property16 = userName+"@saviynt.com";
-		System.out.println(property16);
-		adminPage.addAttributes(property16, "X|1|GMTUK|GB",userName,oldpassword);
+		String userName = adminPage.clickOnUsersAndCreateUsersAndAddAttributes(lastName,managerId,"X|1|GMTUK|GB");
 		home.logoff();
 		userObject.writeUserName(userName);
 		uname=userObject.readUserName();
@@ -58,7 +51,7 @@ public class NewUser_Add_Group_Permission_Profile extends TestBase {
 	}
 	
 	@Test(priority=2)
-	public void createRequestAndEndpointApprove() throws IOException, InterruptedException
+	public void createRequest() throws IOException, InterruptedException
 	{
 		logger = extent.createTest("New User:Request for new account");
 		requestor = excel.getData(0, 16, 6);
@@ -101,9 +94,13 @@ public class NewUser_Add_Group_Permission_Profile extends TestBase {
 		System.out.println("Request Number for TC8 is " + requestNumber);
 		// requester log out
 		home.logoff();
+		launch.clickOnLoginAgain();
+		
+		
 		
 		//** Login as endpoint approver 
 		launch.login(endPointApprover, password);
+		
 		// open approval inbox
 		home.openApprovalInbox();
 		ApprovalInboxPage approvalInbox = new ApprovalInboxPage(driver);
@@ -128,7 +125,7 @@ public class NewUser_Add_Group_Permission_Profile extends TestBase {
 		home.openAdminTab();
 		AdminPage adminPage = new AdminPage(driver);
 		adminPage.openJobControlPanelLink();
-		adminPage.openUtilityandProvisioningJob();
+		adminPage.openUtilityandProvisioningJob("TEST_SalesforceTest");
 		// endpoint approver log out
 		home.logoff();
 	}

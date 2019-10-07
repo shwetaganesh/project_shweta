@@ -13,7 +13,7 @@ import com.bp.testbase.TestBase;
 
 public class RequestAccessPage  extends TestBase{
 	
-	@FindBy(xpath = "//*[@id=\"s2id_slectedEnttype111\"]")
+	@FindBy(xpath = "//div[@id='s2id_slectedEnttype544']")
 	private WebElement selectProfileDropdown;
 	
 	@FindBy(xpath ="//div[@class='select2-result-label' and contains(text(),'BP Base')]")
@@ -99,13 +99,16 @@ public class RequestAccessPage  extends TestBase{
 		}*/
 		try {
 			if(driver.findElement(By.xpath("//span[contains(text(),'BP Base')]")).isDisplayed()) {
+				wait.until(ExpectedConditions.visibilityOf(selectProfileDropdown));
 				selectProfileDropdown.click();
+				wait.until(ExpectedConditions.visibilityOf(readOnlyProfile));
 				readOnlyProfile.click();
 				Thread.sleep(2000);
 		}
 		}
 			catch(Exception e){
 				selectProfileDropdown.click(); 
+				wait.until(ExpectedConditions.visibilityOf(bpBaseProfile));
 				bpBaseProfile.click();
 				Thread.sleep(2000);
 			}
@@ -142,9 +145,11 @@ public class RequestAccessPage  extends TestBase{
 	public void removePermissionSet(String permission) {
 		//wait.until(ExpectedConditions.visibilityOf(aaaAdminPermission));
 		//removePermissionButton.click();	
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'Read Only')]")));
 		wait.until(ExpectedConditions.visibilityOf(removePermissionTextBox));
 		removePermissionTextBox.sendKeys(permission);
 		removePermissionTextBox.sendKeys(Keys.ENTER);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"myDataTable546_SEL\"]//tbody//tr//td//span[contains(text(),'AAA_Admin')]")));
 		wait.until(ExpectedConditions.visibilityOf(removePermissionButton));
 		removePermissionButton.click();
 		removePermissionTextBox.clear();

@@ -14,6 +14,7 @@ public class UMT_WelcomeMessageAndHomePageValidation extends TestBase {
 	String userID = "navtest1";
 	String password = "password";
 
+	
 	@Test(priority = 1)
 	public void verifyWelcomeMessage() throws IOException {
 

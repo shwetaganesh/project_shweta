@@ -81,4 +81,20 @@ public class Validate_AddMitigatingControlButton_TaskHistory_For_ASPRoles extend
 		approvalInbox.verifyPresenceOfThirdAddMitigatingControlButton();
 		home.logoff();
 }
+	
+	@Test(priority=2)
+	public void validateTaskHistory() throws IOException
+	{
+		logger = extent.createTest("VAlidate presence of separate tabs for sod and role approvers in task history");
+		LaunchPage launch = new LaunchPage(driver);
+		launch.login(sodApprover, password);
+		HomePage home = new HomePage(driver);
+		home.openRequestHistory();
+		RequestHistoryPage historyPage = new RequestHistoryPage(driver);
+		// search and open the request number
+		historyPage.searchRequestAndOpen(requestNumber);
+		historyPage.getTaskHistorySnapShot();
+		home.logoff();
+		
+	}
 }

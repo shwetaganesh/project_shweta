@@ -105,6 +105,7 @@ public class FindRolePage extends TestBase
 		role_searchbox.clear();
 		role_searchbox.sendKeys(role_description);
 		role_searchbox.sendKeys(Keys.ENTER);
+		///wait.unt
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//td[contains(text(),'"+role_description+"')]")));
 		/*try
 		{

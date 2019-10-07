@@ -1,6 +1,7 @@
 package com.bp.saviynt;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -31,11 +32,16 @@ public class Extend_Mitigating_Control_Assignments extends TestBase{
 		//sodPage.clickOnRiskToModifyDate();
 		sodPage.clickOnRisk();
 		sodPage.clickOnChangeButton();
-		String newMC = sodPage.changeMitigatingControl();
+		sodPage.changeMitigatingControl();
+		//Assert.assertEquals(newMC, "MCCUTOVER");
+		//logger.pass("MCCUTOVER added successfully");
+		sodPage.searchInRiskAccepted();
+		sodPage.clickOnRisk();
+		String newMC = sodPage.getNewMCName();
 		Assert.assertEquals(newMC, "MCCUTOVER");
 		logger.pass("MCCUTOVER added successfully");
-		sodPage.searchInRiskAccepted();
 		logger.pass("change mitigating control test passed successfully", MediaEntityBuilder.createScreenCaptureFromPath(Screenshot.captureScreenShot(driver).replace("Reports", "")).build());
+		home.logoff();
 	}
 
 }

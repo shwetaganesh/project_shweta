@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.bp.saviynt.Validate_AddMitigatingControlButton_TaskHistory_ForERoles">
+      <class name="com.bp.saviynt.RuleSetTesting">
         <methods>
+          <include name="SODLoginAndRulesetComparisonUsingSimulation"/>
           <include name="sendReport"/>
           <include name="openApplication"/>
-          <include name="requestApprovalBySODApprover"/>
           <include name="CloseApplication"/>
         </methods>
-      </class> <!-- com.bp.saviynt.Validate_AddMitigatingControlButton_TaskHistory_ForERoles -->
+      </class> <!-- com.bp.saviynt.RuleSetTesting -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

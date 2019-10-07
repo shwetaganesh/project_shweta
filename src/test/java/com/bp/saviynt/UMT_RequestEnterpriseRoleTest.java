@@ -1,5 +1,7 @@
 package com.bp.saviynt;
 
+import java.io.IOException;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -20,10 +22,10 @@ public class UMT_RequestEnterpriseRoleTest extends TestBase{
 	String lastName = excel1.getData(0,1,2);
 	String managerId = excel1.getData(0,1,3);
 	String oldpassword = excel1.getData(0,1,4); // password set using admin function during end user creation
-	
+	String requestNumber;
 	
 	// creation of new user test
-	//@Test(priority = 1)
+	@Test(priority = 1)
 	public void createEndUser() throws Exception {
 		logger = extent.createTest("New user creation");
 		LaunchPage launch = new LaunchPage(driver);
@@ -65,7 +67,7 @@ public class UMT_RequestEnterpriseRoleTest extends TestBase{
 			// retrieve the request number
 			SubmitPage submitObj = new SubmitPage(driver);
 			// submit the request
-			String requestNumber = submitObj.submitAccessRequest();
+			requestNumber = submitObj.submitAccessRequest();
 			System.out.println(requestNumber);
 			if (requestNumber.equals(""))
 				Assert.assertTrue(false, "Request was not raised properly");
@@ -76,5 +78,19 @@ public class UMT_RequestEnterpriseRoleTest extends TestBase{
 			// requester log out
 			home.logoff();		
 		}
-
+		@Test(priority=2)
+		public void viewRequestHistoryTest() throws IOException
+		{
+			logger = extent.createTest("View the request history of the end user");
+			LaunchPage launch = new LaunchPage(driver);
+			String endUser = userObject.readUserName();
+			launch.login(userID, password);
+			HomePage home = new HomePage(driver);
+			home.openRequestHistory();
+			RequestHistoryPage history = new RequestHistoryPage(driver);
+			history.searchRequestAndOpen(requestNumber);
+			logger.pass("Request history snapshot ", MediaEntityBuilder
+					.createScreenCaptureFromPath(Screenshot.captureScreenShot(driver).replace("Reports", "")).build());
+			home.logoff();
+		}
 }

@@ -32,8 +32,8 @@ public class HomePage extends TestBase
 	@FindBy(xpath = "//div[contains(text(),'Request Enterprise Roles ')]/following::a[1]")
 	private WebElement req_link;
 	
-	@FindBy(xpath = "//div[@id='arsRequestApproval']//a[@class='more']")
-	private WebElement approvalInboxView;
+	@FindBy(xpath = "(//span[contains(text(),'Request Approval')])[2]")
+	private WebElement approvalInboxView; // now named as request approval. before it was approval inbox.
 	
 	@FindBy(xpath = "//a[@href='/ECM/jbpmworkflowmanagement/showmyhistoryrequests']")
 	private WebElement req_history_link;
@@ -67,8 +67,14 @@ public class HomePage extends TestBase
 	@FindBy(xpath="//div[@id='arsViewExistingAccess']//a[@class='more']")
 	private WebElement existingAccessViewLnk;
 	
-	@FindBy(xpath = "//*[contains(text(),'SOD')]")
+	@FindBy(xpath = "(//*[contains(text(),'SOD')])[1]")
 	private WebElement SODLink;
+	
+	@FindBy(xpath = "(//*[contains(text(),'Tasks')])[2]")
+	private WebElement taskHeaderLeftHandPanel;
+	
+	@FindBy(xpath = "(//*[contains(text(),'Pending Tasks')])[2]")
+	private WebElement pendingTaskLeftHandPanel;
 	
 	public HomePage(WebDriver ldriver) 
 	{
@@ -239,5 +245,12 @@ public class HomePage extends TestBase
 			return true;
 		}
 		return false;		
+	}
+	
+	public void clickOnTasksandGotoPendingTasks()
+	{
+		wait.until(ExpectedConditions.visibilityOf(taskHeaderLeftHandPanel));
+		taskHeaderLeftHandPanel.click();
+		pendingTaskLeftHandPanel.click();
 	}
 }

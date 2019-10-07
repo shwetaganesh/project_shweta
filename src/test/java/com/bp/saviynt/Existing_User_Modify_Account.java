@@ -69,6 +69,8 @@ public class Existing_User_Modify_Account  extends TestBase {
 		// requester log out
 		home.logoff();
 		
+		launch.clickOnLoginAgain();
+		
 		//** Login as endpoint approver 
 		launch.login(endPointApprover, password);
 		// open approval inbox
@@ -96,7 +98,8 @@ public class Existing_User_Modify_Account  extends TestBase {
 		home.openAdminTab();
 		AdminPage adminPage = new AdminPage(driver);
 		adminPage.openJobControlPanelLink();
-		adminPage.openUtilityandProvisioningJob();
+		String systemName = "TEST_SalesforceTest";
+		adminPage.openUtilityandProvisioningJob(systemName);
 		// endpoint approver log out
 		home.logoff();
 	}

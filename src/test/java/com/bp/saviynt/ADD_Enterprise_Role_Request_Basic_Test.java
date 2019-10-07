@@ -27,12 +27,10 @@ public class ADD_Enterprise_Role_Request_Basic_Test extends TestBase
 	public void createRequestAndRoleApproval() throws Exception 
 	{
 		logger = extent.createTest("New User:ADD Enterprise Role Request-Basic");
-		
 		requestor = excel.getData(0, 5, 6);
 		end_user = uobject.readUserName();
 		System.out.println(end_user);
-		
-		
+	
 		line_manager = excel.getData(0, 5, 8);
 		role_approver_1 = excel.getData(0, 9, 9);
 		role_approver_2 = excel.getData(0, 7, 9);
@@ -65,7 +63,9 @@ public class ADD_Enterprise_Role_Request_Basic_Test extends TestBase
 		System.out.println("Request Number for TC1 is " + request_number);
 		// requester log out
 		home.logoff();
-
+	
+		launch.clickOnLoginAgain();
+		
 		//*** Login as line manager ***
 		launch.login(line_manager,password);
 		// goto approval inbox
@@ -83,6 +83,8 @@ public class ADD_Enterprise_Role_Request_Basic_Test extends TestBase
 		logger.pass("Line Manager had approved the request");
 		// line manager log out
 		home.logoff();
+		
+		launch.clickOnLoginAgain();
 
 		// ***Login as Role manager1***
 		launch.login(role_approver_1, "password");
@@ -98,6 +100,8 @@ public class ADD_Enterprise_Role_Request_Basic_Test extends TestBase
 		// role manager1 log out
 		home.logoff();
 
+		launch.clickOnLoginAgain();
+		
 		// ***Login as Role manager2 ***
 		launch.login(role_approver_2, password);
 		// open approval inbox
@@ -111,6 +115,8 @@ public class ADD_Enterprise_Role_Request_Basic_Test extends TestBase
 		logger.pass("Second Role Manager had approved the request");
 		// role manager2 logout
 		home.logoff();
+		
+		launch.clickOnLoginAgain();
 
 		// ***Login as Training work order***
 		launch.login(training_work_order_id, password);
@@ -124,7 +130,6 @@ public class ADD_Enterprise_Role_Request_Basic_Test extends TestBase
 		approve.acceptSecondRole();
 		result = approve.clickOnConfirm();
 		Assert.assertTrue(result,"Training work order approval failed");
-		//check_TC1 = true;
 		logger.pass("Training work order had approved the request");	
 		// training work order log out
 		home.logoff();
@@ -153,7 +158,27 @@ public class ADD_Enterprise_Role_Request_Basic_Test extends TestBase
 		home.logoff();
 	}
 	
-	@Test(priority=2)
+	//@Test(priority=2)
+	public void scheduleJob() {
+		logger = extent.createTest("Schedule job");
+		//**login as admin
+		LaunchPage launch = new LaunchPage(driver);
+		admin_id = "TSTTEN10";
+		launch.login(admin_id, password);
+		HomePage home = new HomePage(driver);
+		home.openAdminTab();
+		AdminPage adminPage = new AdminPage(driver);
+		adminPage.openJobControlPanelLink();
+		for(int i=2;i<=4;i++)
+		{
+			String systemName = excel.getData(0, 34, i);
+			adminPage.openUtilityandProvisioningJob(systemName);
+		}
+		// endpoint approver log out
+		home.logoff();
+	}
+	
+	@Test(priority=3)
 	public void completePendingTaskTest() throws InterruptedException {
 		logger = extent.createTest("complete pending task");
 		admin_id = "TSTTEN10";
@@ -161,13 +186,13 @@ public class ADD_Enterprise_Role_Request_Basic_Test extends TestBase
 		//*** Login as Admin***
 		launch.login(admin_id, password);
 		HomePage home = new HomePage(driver);
-		home.openPendingTasks();
+		//home.openPendingTasks(); missing in dev
+		home.clickOnTasksandGotoPendingTasks();
 		PendingTasksPage taskpage = new PendingTasksPage(driver);
 		for(int i=1;i<=7;i++) 
 		{
 			taskpage.completeTheTask(end_user);
-			Thread.sleep(2000);
-			taskpage.clearSearchBox();			
+			Thread.sleep(5000);		
 		}
 		home.clickOnHome();
 		home.logoff();
@@ -175,6 +200,7 @@ public class ADD_Enterprise_Role_Request_Basic_Test extends TestBase
 	
 	@Test(priority=3)
 	public void validateEndpoints() throws IOException {
+		logger = extent.createTest("validate endpoints");
 		LaunchPage launch = new LaunchPage(driver);
 		// *** Login as requester ***
 		launch.login(requestor, password);

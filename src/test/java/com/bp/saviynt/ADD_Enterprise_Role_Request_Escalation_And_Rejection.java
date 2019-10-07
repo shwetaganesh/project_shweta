@@ -22,7 +22,7 @@ public class ADD_Enterprise_Role_Request_Escalation_And_Rejection extends TestBa
 	String requestNumber,requestor, end_user, line_manager, role_approver_2, training_work_order_id,sod_id, admin_id;
 	String password = "password";
 	
-	@Test
+	@Test(priority=1)
 	public void TC2() throws IOException, InterruptedException 
 	{
 		logger = extent.createTest("New User:ADD Enterprise Role Request-Escalation and Rejection");
@@ -60,6 +60,8 @@ public class ADD_Enterprise_Role_Request_Escalation_And_Rejection extends TestBa
 		// requester log out
 		home.logoff();
 
+		launch.clickOnLoginAgain();
+		
 		// ***Login as line manager ***
 		launch.login(line_manager, password);
 		// goto approval inbox
@@ -79,6 +81,8 @@ public class ADD_Enterprise_Role_Request_Escalation_And_Rejection extends TestBa
 		
 		Thread.sleep(120000);
 		
+		launch.clickOnLoginAgain();
+		
 		// ***Login as Role manager2*** (ESCALATION)
 		launch.login(role_approver_2, password);
 		// open approval inbox
@@ -94,7 +98,8 @@ public class ADD_Enterprise_Role_Request_Escalation_And_Rejection extends TestBa
 		// role manager1 log out
 		home.logoff();
 
-
+		launch.clickOnLoginAgain();
+		
 		// ***Login as Training work order***
 		launch.login(training_work_order_id, password);
 		// open approval inbox
@@ -120,13 +125,13 @@ public class ADD_Enterprise_Role_Request_Escalation_And_Rejection extends TestBa
 		//*** Login as Admin***
 		launch.login(admin_id, password);
 		HomePage home = new HomePage(driver);
-		home.openPendingTasks();
+		home.clickOnTasksandGotoPendingTasks();
 		PendingTasksPage taskpage = new PendingTasksPage(driver);
 		for(int i=1;i<=7;i++) 
 		{
 			taskpage.completeTheTask(end_user);
 			Thread.sleep(2000);
-			taskpage.clearSearchBox();			
+						
 		}
 		home.clickOnHome();
 		home.logoff();
@@ -163,7 +168,11 @@ public class ADD_Enterprise_Role_Request_Escalation_And_Rejection extends TestBa
 		home.openAdminTab();
 		AdminPage adminPage = new AdminPage(driver);
 		adminPage.openJobControlPanelLink();
-		adminPage.openUtilityandProvisioningJob();
+		for(int i=2;i<=4;i++)
+		{
+			String systemName = excel.getData(0, 34, i);
+			adminPage.openUtilityandProvisioningJob(systemName);
+		}
 		// endpoint approver log out
 		home.logoff();
 	}

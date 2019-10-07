@@ -25,7 +25,6 @@ public class Remove_Enterprise_Role_R6andR7 extends TestBase {
 	public void RemoveRoleR6andR7() throws InterruptedException, IOException {
 		
 		logger = extent.createTest("Existing User:Remove Salesforce Enterprise Role - R6 and R7");
-		//requestor = excel.getData(0, 5, 6);
 		end_user = userObject.readUserName();
 		System.out.println("end user in tc7:"+end_user);
 		role6 = excel.getData(0, 28, 1);
@@ -59,6 +58,7 @@ public class Remove_Enterprise_Role_R6andR7 extends TestBase {
 
 	@Test(priority=2)
 	public void scheduleJob() {
+		String systemName = "TEST_SalesforceTest";
 		logger = extent.createTest("Schedule job");
 		//**login as admin
 		LaunchPage launch = new LaunchPage(driver);
@@ -68,7 +68,7 @@ public class Remove_Enterprise_Role_R6andR7 extends TestBase {
 		home.openAdminTab();
 		AdminPage adminPage = new AdminPage(driver);
 		adminPage.openJobControlPanelLink();
-		adminPage.openUtilityandProvisioningJob();
+		adminPage.openUtilityandProvisioningJob(systemName);
 		// endpoint approver log out
 		home.logoff();
 	}

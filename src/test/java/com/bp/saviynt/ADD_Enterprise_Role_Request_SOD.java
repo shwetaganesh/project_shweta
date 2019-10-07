@@ -23,13 +23,12 @@ public class ADD_Enterprise_Role_Request_SOD extends TestBase
 	String password = "password";
 	String requestNumber;
 	
-	@Test
+	//@Test
 	public void TC4() throws IOException, InterruptedException
 	{	
 		logger = extent.createTest("Existing User:ADD Enterprise Role Request-SOD");
 		requestor = excel.getData(0, 10, 6);
-		//end_user = excel.getData(0, 10, 7);
-		userName = userObject.readUserName();
+		end_user = userObject.readUserName();
 		role_approver_1 = excel.getData(0,10, 9);
 		training_work_order_id = excel.getData(0, 10, 11);
 		sod_id= excel.getData(0, 10, 12);
@@ -42,7 +41,7 @@ public class ADD_Enterprise_Role_Request_SOD extends TestBase
 		home.openRequestEnterpriseRole();
 		FindUserPage userPage = new FindUserPage(driver);
 		// search for end user
-		userPage.searchEndUser(userName);
+		userPage.searchEndUser(end_user);
 		FindRolePage rolePage = new FindRolePage(driver);
 		// search for required role....add to cart.
 		//rolePage.searchandAddtoCart(role4);
@@ -65,6 +64,8 @@ public class ADD_Enterprise_Role_Request_SOD extends TestBase
 		// requester log out
 		home.logoff();
 		
+		launch.clickOnLoginAgain();
+		
 		// ***Login as Role manager1***
 		launch.login(role_approver_1, password);
 		// open approval inbox
@@ -81,6 +82,8 @@ public class ADD_Enterprise_Role_Request_SOD extends TestBase
 		logger.pass("Role Manager had approved the request");
 		// role manager1 log out
 		home.logoff();	
+		
+		launch.clickOnLoginAgain();
 		
 		// ***Login as SOD ***
 		launch.login(sod_id, password);
@@ -106,7 +109,7 @@ public class ADD_Enterprise_Role_Request_SOD extends TestBase
 		// add mitigating control for first role
 		approve.addMitigatingControl("EPOMC001");
 		// click on purchase order entry header
-		approve.clickOnHeaderToAddSecondMC();
+		approve.clickOnHeaderToAddSecondMC("PROCLNT100");
 		// add mitigating control for second role
 		approve.addMitigatingControl2("EPOMC002");
 		Thread.sleep(2000);
@@ -120,7 +123,7 @@ public class ADD_Enterprise_Role_Request_SOD extends TestBase
 	}
 	
 	@Test(priority=2)
-	public void completePendingTasks() throws InterruptedException
+	public void discontinueTasks() throws InterruptedException
 	{
 		logger = extent.createTest("Discontinue All Tasks");
 		//**login as admin
@@ -128,9 +131,9 @@ public class ADD_Enterprise_Role_Request_SOD extends TestBase
 		admin_id = "TSTTEN10";
 		launch.login(admin_id, password);
 		HomePage home = new HomePage(driver);
-		home.openPendingTasks();
+		home.clickOnTasksandGotoPendingTasks();
 		PendingTasksPage taskpage = new PendingTasksPage(driver);
-		taskpage.discontinueAllTasks(userName);
+		taskpage.discontinueAllTasks("597903");
 		Thread.sleep(2000);
 		home.logoff();
 	}

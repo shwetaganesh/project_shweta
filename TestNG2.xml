@@ -3,21 +3,21 @@
 <suite name="Saviynt" parallel="none">
 
 	<!-- Following are the test scripts written for persona scenarios for end 
-		user given by MICKY -->
+		user and UMT user given by MICKY -->
 
-	<test
+	  <test
 		name="Test to validate welcome message for new user and also the elements in home page">
 		<classes>
 			<class
 				name="com.bp.saviynt.WelcomeMessageAndHomePageValidation" />
 		</classes>
 	</test>
-	<test name="Test to Request for enterprise role">
+	<test name="Test to Request for enterprise roleby end user">
 		<classes>
 			<class name="com.bp.saviynt.RequestEnterpriseRoleTest" />
 		</classes>
 	</test>
-	<test name="Test to request for application specific role">
+	<test name="Test to request for application specific roleby end user">
 		<classes>
 			<class name="com.bp.saviynt.RequestApplicationSpecificRoleTest" />
 		</classes>
@@ -27,9 +27,36 @@
 			<class name="com.bp.saviynt.ViewExistingAccessTest" />
 		</classes>
 	</test>
-	<test name="Test to set up delegates">
+	<test name="Test to set up delegates for end user">
 		<classes>
 			<class name="com.bp.saviynt.SetUpDelegatesTest" />
+		</classes>
+	</test>
+	<test
+		name="Test to validate welcome message for UMT user and also the elements in home page">
+		<classes>
+			<class
+				name="com.bp.saviynt.UMT_WelcomeMessageAndHomePageValidation" />
+		</classes>
+	</test>
+	<test name="Test to Request for enterprise roleby UMT user">
+		<classes>
+			<class name="com.bp.saviynt.UMT_RequestEnterpriseRoleTest" />
+		</classes>
+	</test>
+	<test name="Test to request for application specific role by UMT user">
+		<classes>
+			<class name="com.bp.saviynt.UMT_RequestApplicationSpecificRoleTest" />
+		</classes>
+	</test>
+	<test name="Viewing existing access present for the UMT user">
+		<classes>
+			<class name="com.bp.saviynt.UMT_ViewExistingAccessTest" />
+		</classes>
+	</test>
+	<test name="Test to set up delegates for UMT user">
+		<classes>
+			<class name="com.bp.saviynt.UMT_SetUpDelegatesTest" />
 		</classes>
 	</test>
 </suite>

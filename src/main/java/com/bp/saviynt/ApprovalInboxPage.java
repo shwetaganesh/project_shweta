@@ -307,14 +307,15 @@ public class ApprovalInboxPage extends TestBase {
 		TestBase.javaScriptClickbyElement(driver, headerPROCLNT100_1);
 	}
 
-	public void clickOnHeaderToAddSecondMC() {
-		TestBase.scrollDownToElement(driver, headerPROCLNT100_2);
-		// headerPROCLNT100_2.click();
-		TestBase.javaScriptClickbyElement(driver, headerPROCLNT100_2);
+	public void clickOnHeaderToAddSecondMC(String systemName) {
+		WebElement header = driver.findElement(By.xpath("(//h4//span[contains(text(),'"+systemName+"')])[2]"));
+		TestBase.scrollDownToElement(driver, header);
+		TestBase.javaScriptClickbyElement(driver, header);
 	}
 
-	public void scrollDownToFirstMCHeader() {
-		TestBase.scrollDownToElement(driver, headerPROCLNT100_1);
+	public void scrollDownToFirstMCHeader(String systemName) {
+		WebElement header = driver.findElement(By.xpath("(//h4//span[contains(text(),'"+systemName+"')])[1]"));
+		TestBase.scrollDownToElement(driver, header);
 	}
 
 	public void addMitigatingControl2(String controlName) throws InterruptedException {
@@ -487,8 +488,9 @@ public class ApprovalInboxPage extends TestBase {
 
 	}
 
-	public void getSnapshotOfMitigatedRisk() throws IOException, InterruptedException {
-		TestBase.scrollDownToElement(driver, riskMCP206);
+	public void getSnapshotOfMitigatedRisk(String mitigatingControl) throws IOException, InterruptedException {
+		WebElement mc = driver.findElement(By.xpath("//td[contains(text(),'"+mitigatingControl+"')]"));
+		TestBase.scrollDownToElement(driver, mc);
 		Thread.sleep(2000);
 		logger.pass("Mitigated : MCP206", MediaEntityBuilder
 				.createScreenCaptureFromPath(Screenshot.captureScreenShot(driver).replace("Reports", "")).build());
