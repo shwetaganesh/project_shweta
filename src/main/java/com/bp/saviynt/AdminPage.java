@@ -208,7 +208,61 @@ public class AdminPage extends TestBase
 	@FindBy(xpath = "(//tbody[@role='alert']//td[@class=' sorting_1'])[1]")
 	private WebElement name;
 	
+	//10-10-2019
+	//objects for updateDL test
+	@FindBy(xpath = "//li[@id='connect']//a")
+	private WebElement connectionsLeftHandPanel;
 	
+	@FindBy(xpath = "//h3[contains(text(),'Connections')]")
+	private WebElement connectionsHeader;
+	
+	@FindBy(xpath = "//input[@type='text' and @id='dtsearch_externelconnecdata']")
+	private WebElement connectionSearchBox;
+	
+	@FindBy(xpath = "//input[@type='text' and @id='connectionname']")
+	private WebElement connectionNameTextBox;
+	
+	@FindBy(xpath = "//textarea[@name='OBJECTFILTER']")
+	private WebElement objectFilterTextBox;
+	
+	@FindBy(xpath = "//button[contains(text(),'Save & Test Connection')]")
+	private WebElement saveConnectionButton;
+	
+	@FindBy(xpath = "//*[contains(text(),'Connection was Successful')]")
+	private WebElement connectionTestSuccessMessage;
+	
+	@FindBy(xpath = "(//li//a[contains(text(),'DATA')])[2]")
+	private WebElement data;
+	
+	@FindBy(xpath = "//div//h4[contains(text(),'UserImportJob')]")
+	private WebElement userImportJob;
+	
+	@FindBy(xpath = "(//div[@id='collapse_3_4']//*[contains(text(),'Action')])[1]")
+	private WebElement actionButtonInUserImportJob;
+	
+	@FindBy(xpath = "(//*[@id='gritter-without-image2' and @class='UserImportJob'])[1]")
+	private WebElement startButtonInUserImportJob;
+	
+	@FindBy(xpath = "(//h4[contains(text(),'Enter Details')])[2]")
+	private WebElement enterDetailsPopUpHeader;
+	
+	@FindBy(xpath = "//div[contains(@id,'importsavconnectkey')]")
+	private WebElement saviyntConnectDropDown;
+	
+	@FindBy(xpath = "(//div//div[contains(text(),'No')])[2]")
+	private WebElement noOptionInSaviyntConnectDropDown;
+	
+	@FindBy(xpath = "//div[contains(@id,'s2id_externalconnkey')]")
+	private WebElement externalConnectionDropDown;
+	
+	@FindBy(xpath = "//label[contains(text(),'Job Type')]//following::a[1]")
+	private WebElement jobTypeDropDown;
+	
+	@FindBy(xpath = "//div[contains(text(),'Full Import')]")
+	private WebElement fullImport;
+	
+	@FindBy(xpath = "(//div[@class='modal-footer']//button[contains(text(),'Submit')])[2]")
+	private WebElement submitButtonForUserImport;
 	
 	WebDriverWait wait;
 	
@@ -530,5 +584,71 @@ public class AdminPage extends TestBase
 
 	}
 	
+	// click on connections, search for ISIM and click on it.
+	public void clickOnConnectionsandSearchForConnection(String connectionName)
+	{
+		wait.until(ExpectedConditions.visibilityOf(connectionsLeftHandPanel));
+		connectionsLeftHandPanel.click();
+		wait.until(ExpectedConditions.visibilityOf(connectionsHeader));
+		wait.until(ExpectedConditions.visibilityOf(connectionSearchBox));
+		connectionSearchBox.sendKeys(connectionName);
+		connectionSearchBox.sendKeys(Keys.ENTER);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table//tbody[@role='alert']//tr[1]//td[2]//a[contains(text(),'"+connectionName+"')]")));
+		driver.findElement(By.xpath("//table//tbody[@role='alert']//tr[1]//td[2]//a[contains(text(),'"+connectionName+"')]")).click();
+		
+	}
+	
+	public boolean filterUser(String connectionName)
+	{
+		wait.until(ExpectedConditions.visibilityOf(connectionNameTextBox));
+		if(connectionNameTextBox.getAttribute("value").equalsIgnoreCase(connectionName))
+		{
+			TestBase.scrollDownToElement(driver, objectFilterTextBox);
+			objectFilterTextBox.clear();
+			objectFilterTextBox.sendKeys("(uid=ishugb)");
+			TestBase.scrollToEndOfPage(driver);
+			saveConnectionButton.click();
+			wait.until(ExpectedConditions.visibilityOf(connectionTestSuccessMessage));
+			if(connectionTestSuccessMessage.getText().equalsIgnoreCase("Connection was Successful"))
+				return true;
+			else
+				return false;
+			
+		}
+		else
+			return false;
+	}
+	
+	// run the job to import user
+	public void triggerJobToImportUser() throws InterruptedException
+	{
+		wait.until(ExpectedConditions.visibilityOf(data));
+		data.click();
+		wait.until(ExpectedConditions.elementToBeClickable(userImportJob));
+		userImportJob.click();
+		wait.until(ExpectedConditions.visibilityOf(actionButtonInUserImportJob));
+		actionButtonInUserImportJob.click();
+		wait.until(ExpectedConditions.visibilityOf(startButtonInUserImportJob));
+		startButtonInUserImportJob.click();
+		wait.until(ExpectedConditions.visibilityOf(enterDetailsPopUpHeader));
+		saviyntConnectDropDown.click();
+		noOptionInSaviyntConnectDropDown.click();
+		wait.until(ExpectedConditions.visibilityOf(externalConnectionDropDown));
+		externalConnectionDropDown.click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='select2-drop']//div[1]//input[1]")));
+		driver.findElement(By.xpath("//div[@id='select2-drop']//div[1]//input[1]")).sendKeys("ISIM-PreProd");
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//div[@id='select2-drop']//div[1]//input[1]")).sendKeys(Keys.ENTER);
+		wait.until(ExpectedConditions.visibilityOf(jobTypeDropDown));
+		jobTypeDropDown.click();
+		wait.until(ExpectedConditions.visibilityOf(fullImport));
+		fullImport.click();
+		TestBase.scrollDownToElement(driver, submitButtonForUserImport);
+		submitButtonForUserImport.click();
+		
+		
+		
+		
+	}
 
 }

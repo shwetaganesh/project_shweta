@@ -49,7 +49,7 @@
               <ul>
                 <li>
                   <a href="#" class="navigator-link " panel-name="test-xml-Default_suite">
-                    <span>C:\Users\AnithaB\AppData\Local\Temp\testng-eclipse-893395062\testng-customsuite.xml</span>
+                    <span>C:\Users\AnithaB\AppData\Local\Temp\testng-eclipse--207855958\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -128,16 +128,13 @@
                   <a name="SODLoginAndRulesetComparisonUsingSimulation">
                   </a> <!-- SODLoginAndRulesetComparisonUsingSimulation -->
                   <span class="method-name">SODLoginAndRulesetComparisonUsingSimulation</span>
-                  <div class="stack-trace">org.openqa.selenium.InvalidSelectorException: invalid selector: Unable to locate an element with the xpath expression //table[@id=&apos;myDataTableFuntionsObjects&apos;]//tbody[@role=&apos;alert&apos;]//tr) because of the following error:
-SyntaxError: Failed to execute &apos;evaluate&apos; on &apos;Document&apos;: The string &apos;//table[@id=&apos;myDataTableFuntionsObjects&apos;]//tbody[@role=&apos;alert&apos;]//tr)&apos; is not a valid XPath expression.
+                  <div class="stack-trace">org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element &lt;a href=&quot;javascript:void(0)&quot; onclick=&quot;return false;&quot; class=&quot;select2-choice select2-default&quot; tabindex=&quot;-1&quot;&gt;...&lt;/a&gt; is not clickable at point (965, 221). Other element would receive the click: &lt;div id=&quot;select2-drop-mask&quot; class=&quot;select2-drop-mask&quot; style=&quot;display: block;&quot;&gt;&lt;/div&gt;
   (Session info: chrome=77.0.3865.90)
-For documentation on this error, please visit: http://seleniumhq.org/exceptions/invalid_selector_exception.html
 Build info: version: &apos;3.14.0&apos;, revision: &apos;aacccce0&apos;, time: &apos;2018-08-02T20:19:58.91Z&apos;
 System info: host: &apos;DESKTOP-HBAN9NH&apos;, ip: &apos;192.168.43.239&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_191&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 77.0.3865.90, chrome: {chromedriverVersion: 77.0.3865.40 (f484704e052e0..., userDataDir: C:\Users\AnithaB\AppData\Lo...}, goog:chromeOptions: {debuggerAddress: localhost:50611}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
-Session ID: 1db478803df5f9b28c3ea0fb38d14ab0
-*** Element info: {Using=xpath, value=//table[@id=&apos;myDataTableFuntionsObjects&apos;]//tbody[@role=&apos;alert&apos;]//tr)}
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 77.0.3865.90, chrome: {chromedriverVersion: 77.0.3865.40 (f484704e052e0..., userDataDir: C:\Users\AnithaB\AppData\Lo...}, goog:chromeOptions: {debuggerAddress: localhost:50454}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: e9838a6f9717fe025e3dd7b97eefb7da
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -148,11 +145,14 @@ Session ID: 1db478803df5f9b28c3ea0fb38d14ab0
 	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
 	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
 	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:548)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:349)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementsByXPath(RemoteWebDriver.java:428)
-	at org.openqa.selenium.By$ByXPath.findElements(By.java:348)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:310)
-	at com.bp.saviynt.FunctionsPage.compareData(FunctionsPage.java:186)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:276)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:83)
+	at sun.reflect.GeneratedMethodAccessor2.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:51)
+	at com.sun.proxy.$Proxy10.click(Unknown Source)
+	at com.bp.saviynt.FunctionsPage.compareData(FunctionsPage.java:173)
 	at com.bp.saviynt.RuleSetTesting.SODLoginAndRulesetComparisonUsingSimulation(RuleSetTesting.java:74)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -191,7 +191,7 @@ Session ID: 1db478803df5f9b28c3ea0fb38d14ab0
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\AnithaB\AppData\Local\Temp\testng-eclipse-893395062\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\AnithaB\AppData\Local\Temp\testng-eclipse--207855958\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -244,12 +244,12 @@ data.addRows(1);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'SODLoginAndRulesetComparisonUsingSimulation')
 data.setCell(0, 2, 'com.bp.saviynt.RuleSetTesting')
-data.setCell(0, 3, 240839);
+data.setCell(0, 3, 213020);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 4 minutes</span>
+              <span class="suite-total-time">Total running time: 3 minutes</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -284,15 +284,15 @@ return data;
                 <img src="failed.png">
                 </img>
                 <span class="method-name">SODLoginAndRulesetComparisonUsingSimulation</span>
-                <span class="method-start">26695 ms</span>
+                <span class="method-start">19604 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">CloseApplication([TestResult name=SODLoginAndRulesetComparisonUsingSimulation status=FAILURE method=RuleSetTesting.SO...)</span>
-                <span class="method-start">267545 ms</span>
+                <span class="method-start">232635 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-suite after">
                 <span class="method-name">sendReport</span>
-                <span class="method-start">271363 ms</span>
+                <span class="method-start">235008 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

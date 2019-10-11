@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.collections4.ListUtils;
+import org.apache.commons.lang3.Range;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -94,7 +96,7 @@ public class FunctionsPage extends TestBase {
 		wait.until(ExpectedConditions.visibilityOf(objectsTable));
 	}
 	
-	public List<String> getObjectTableData() throws InterruptedException
+	/*public List<String> getObjectTableData() throws InterruptedException
 	{
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@id,'autogen')]/a")));
 		driver.findElement(By.xpath("//*[contains(@id,'autogen')]/a")).click();
@@ -118,9 +120,9 @@ public class FunctionsPage extends TestBase {
 		System.out.println(newArray);
 		
 		return newArray;
-	}
+	}*/
 	
-	public void compareData(List<String> dataFromFunction1) throws InterruptedException
+	public boolean compareData(List<String> dataFromFunction1) throws InterruptedException
 	{
 		/*
 		 * wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
@@ -137,8 +139,13 @@ public class FunctionsPage extends TestBase {
 		 * getText(); singleRow.add(temp); } for(int k =0;k<singleRow.size();k++) {
 		 * String value = singleRow.get(k); System.out.println(value); } }
 		 */
-		for (int i = 1; i < dataFromFunction1.size(); i++) 
+		boolean status = false;
+		
+		for (int i = 1; i < dataFromFunction1.size(); i=i+5) 
 		{
+			
+			Thread.sleep(2000);
+			
 			wait.until(ExpectedConditions.visibilityOf(advancedSearchButton));
 			advancedSearchButton.click();
 			wait.until(ExpectedConditions.visibilityOf(advancedSearchHeader));
@@ -155,6 +162,12 @@ public class FunctionsPage extends TestBase {
 			i = i + 4;
 			
 			String object = dataFromFunction1.get(i);
+			if(object.isEmpty())
+			{
+				i=i+2;
+				continue;
+			}
+				
 			System.out.println(object);
 			wait.until(ExpectedConditions.visibilityOf(objectSearchbox));
 			objectSearchbox.click();
@@ -177,38 +190,42 @@ public class FunctionsPage extends TestBase {
 
 			//TestBase.scrollDownToElement(driver, searchButton);
 			searchButton.click();
-			
 			Thread.sleep(2000);
-
+			/* get the value from SOD table
+			 * remove characters within (....) 
+			 * obtain min and max value
+			 */
+			i=i+1;
+			String value  = dataFromFunction1.get(i);
+			String minMaxValue = value.replaceAll(" *\\(.+?\\)","");
+			System.out.println(minMaxValue);
+			int midpt = (minMaxValue.length())/2;
+			String min = minMaxValue.substring(0, midpt);
+			String max = minMaxValue.substring(midpt+1);
+			System.out.println(min);
+			System.out.println(max);
+			
 			wait.until(ExpectedConditions.visibilityOfElementLocated(
 					By.xpath("//table[@id='myDataTableFuntionsObjects']//tbody[@role='alert']//tr")));
 			List<WebElement> objectDetailsTable = driver
 					.findElements(By.xpath("//table[@id='myDataTableFuntionsObjects']//tbody[@role='alert']//tr"));
-			for (int index = 1; index < objectDetailsTable.size(); index++) {
+			for (int index = 1; index <= objectDetailsTable.size(); index++) {
 				int colIndex = 3;
 				while (colIndex <= 8) {
-					if ((driver
-							.findElement(By.xpath("//table[@id='myDataTableFuntionsObjects']//tbody[@role='alert']//tr["
-									+ index + "]//td[" + colIndex + "]"))).getText() == tcode) {
+					if ((driver.findElement(By.xpath("//table[@id='myDataTableFuntionsObjects']//tbody[@role='alert']//tr["+index+"]//td["+colIndex+"]"))).getText().equalsIgnoreCase(tcode)) {
 						colIndex = colIndex + 1;
-						if ((driver.findElement(
-								By.xpath("//table[@id='myDataTableFuntionsObjects']//tbody[@role='alert']//tr[" + index
-										+ "]//td[" + colIndex + "]"))).getText() == object) {
+						if ((driver.findElement(By.xpath("//table[@id='myDataTableFuntionsObjects']//tbody[@role='alert']//tr["+index+"]//td["+colIndex+"]"))).getText().equalsIgnoreCase(object)) {
 							colIndex = colIndex + 1;
-							if ((driver.findElement(
-									By.xpath("//table[@id='myDataTableFuntionsObjects']//tbody[@role='alert'])//tr["
-											+ index + "]//td[" + colIndex + "]"))).getText() == field) {
+							if ((driver.findElement(By.xpath("//table[@id='myDataTableFuntionsObjects']//tbody[@role='alert']//tr["+index+"]//td["+colIndex+"]"))).getText().equalsIgnoreCase(field)) {
 								colIndex = colIndex + 2;
-								String minValue = driver.findElement(
-										By.xpath("//table[@id='myDataTableFuntionsObjects']/tbody[@role='alert']/tr["
-												+ index + "]/td[" + colIndex + "]"))
-										.getText();
+								String minValue = driver.findElement(By.xpath("//table[@id='myDataTableFuntionsObjects']//tbody[@role='alert']//tr["+index+"]//td["+colIndex+"]")).getText();
 								colIndex = colIndex + 1;
-								String maxValue = driver.findElement(
-										By.xpath("//table[@id='myDataTableFuntionsObjects']/tbody[@role='alert']/tr["
-												+ index + "]/td[" + colIndex + "]"))
-										.getText();
-								System.out.println(minValue + " and" + maxValue);
+								String maxValue = driver.findElement(By.xpath("//table[@id='myDataTableFuntionsObjects']//tbody[@role='alert']//tr["+index+"]//td["+colIndex+"]")).getText();
+								System.out.println(minValue + " and " + maxValue);
+								/*
+								 * compare values in function table with that of SOD table
+								 */
+								status = this.compareMinMaxValues(minValue,maxValue, min, max);
 							} else
 								break;
 						} else
@@ -220,5 +237,54 @@ public class FunctionsPage extends TestBase {
 			}
 
 		}
+		return status;
+	}
+	
+	public  boolean compareMinMaxValues(String minValue,String maxValue,String min, String max)
+	{
+		char blank = ' ';
+		String blank1 = Character.toString(blank);
+		boolean status=false;
+		if(min.contains(blank1) && max.contains(blank1))
+		{
+			status = true;
+			System.out.println("min max values are blank");
+		}
+		else if(StringUtils.isNumeric(minValue) && StringUtils.isNumeric(maxValue))
+		{
+			/*if(Integer.parseInt(min)<=Integer.parseInt(minValue) && Integer.parseInt(max)<=Integer.parseInt(maxValue))
+				{
+				status = true;
+				System.out.println("min and max are numbers and  values match with the table");
+				}
+			else
+			{
+				status = false;
+				System.out.println("min and max are numbers but donot match with the table");
+			}*/
+			Range<Integer> myRange = Range.between(Integer.parseInt(minValue), Integer.parseInt(maxValue));
+			if (myRange.contains(Integer.parseInt(min)) && myRange.contains(Integer.parseInt(max))){
+				{
+					status = true;
+					System.out.println("min and max are numbers and  values match with the table");
+					}
+			}
+			else
+			{
+				status = false;
+				System.out.println("min and max are numbers but donot match with the table");
+			}
+
+		}
+		else if (min == minValue && max == maxValue)
+		{
+			status = true;
+			System.out.println("min and max values match with the table");
+		}
+		else {
+			status = false;
+			System.out.println("min and max values donot match with the table");
+		}
+		return status;
 	}
 	}

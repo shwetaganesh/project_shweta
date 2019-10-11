@@ -71,7 +71,9 @@ public class RuleSetTesting extends TestBase {
 			function.clickOnObjectTab();
 			//List<String> functionData = function.getObjectTableData();
 			
-			function.compareData(dataFromFunction1);
+			boolean status = function.compareData(dataFromFunction1);
+			softassert.assertTrue(status, "All data validated");
+			softassert.assertAll();
 						
 		}
 			
