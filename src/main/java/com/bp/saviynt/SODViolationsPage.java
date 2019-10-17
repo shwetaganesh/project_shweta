@@ -436,22 +436,43 @@ public class SODViolationsPage extends TestBase {
 	
 	// used for Ruleset testing.
 	// search for user and click on the risk code.
-	public void searchForUserAndClickOnRiskCode(String user) throws InterruptedException
+	public String searchForUserAndClickOnRiskCode(String user) throws InterruptedException
 	{
 		
 		wait.until(ExpectedConditions.visibilityOf(textBox));
 		textBox.sendKeys(user);
 		textBox.sendKeys(Keys.ENTER);
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		
 		//obtain risk code from username
 		String riskCode = user.substring(6);
 		System.out.println(riskCode);
 		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tbody[@role='alert']//tr//td//a[contains(text(),'"+riskCode+"')]")));
-		driver.findElement(By.xpath("//tbody[@role='alert']//tr//td//a[contains(text(),'"+riskCode+"')]")).click();
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table[@id='SODMapped]")));
+		int i=0;
+		while(i<=5)
+		try {
+			if(driver.findElements(By.xpath("//table[@id='SODMapped']")).size()==0)
+			{
+				i++;
+			}
+			else
+			{
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tbody[@role='alert']//tr//td//a[contains(text(),'"+riskCode+"')]")));
+				TestBase.scrollDownToElement(driver, driver.findElement(By.xpath("//tbody[@role='alert']//tr//td//a[contains(text(),'"+riskCode+"')]")));
+				driver.findElement(By.xpath("//tbody[@role='alert']//tr//td//a[contains(text(),'"+riskCode+"')]")).click();
+			}
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+		return riskCode;
+		}
 		
-	}
+		
+		
+	
 	
 	public void clickOnAdvancedButton()
 	{
@@ -465,6 +486,12 @@ public class SODViolationsPage extends TestBase {
 		wait.until(ExpectedConditions.visibilityOf(toggleSideBar));
 		toggleSideBar.click();
 		rulesetHeaderSidePanel.click();
+		wait.until(ExpectedConditions.visibilityOf(functionsHeaderSidePanel));
+		functionsHeaderSidePanel.click();
+	}
+	
+	public void clickOnFunction()
+	{
 		wait.until(ExpectedConditions.visibilityOf(functionsHeaderSidePanel));
 		functionsHeaderSidePanel.click();
 	}

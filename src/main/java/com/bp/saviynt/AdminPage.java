@@ -264,6 +264,9 @@ public class AdminPage extends TestBase
 	@FindBy(xpath = "(//div[@class='modal-footer']//button[contains(text(),'Submit')])[2]")
 	private WebElement submitButtonForUserImport;
 	
+	@FindBy(xpath = "//input[@id='companyname']")
+	private WebElement companyName;
+	
 	WebDriverWait wait;
 	
 	
@@ -647,8 +650,24 @@ public class AdminPage extends TestBase
 		submitButtonForUserImport.click();
 		
 		
+	}
+
+	public String searchForUser(String userID)
+	{
+		wait.until(ExpectedConditions.visibilityOf(usersLinkLeftPanel));
+		usersLinkLeftPanel.click();
+		wait.until(ExpectedConditions.visibilityOf(searchUserTextBox));
+		searchUserTextBox.sendKeys(userID);
+		searchUserTextBox.sendKeys(Keys.ENTER);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tbody[@role='alert']//tr[1]//td[1]//a[contains(text(),'"+userID+"')]")));
+		driver.findElement(By.xpath("//tbody[@role='alert']//tr[1]//td[1]//a[contains(text(),'"+userID+"')]")).click();
+		wait.until(ExpectedConditions.visibilityOf(userName));
+		TestBase.scrollDownToElement(driver, companyName);
+		String cName = companyName.getAttribute("value");
+		System.out.println(cName);
+		return cName;
 		
 		
 	}
-
+	
 }

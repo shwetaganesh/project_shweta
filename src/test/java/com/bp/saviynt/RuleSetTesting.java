@@ -40,16 +40,17 @@ public class RuleSetTesting extends TestBase {
 		//{
 			//String user = excel1.getData(0, i, 0);
 			//System.out.println(user);
-			sodPage.searchForUserAndClickOnRiskCode("ZTEST_F017");
+			String riskCode = sodPage.searchForUserAndClickOnRiskCode("ZTEST_F017");
 		
 			SODViolationDetailsPage detailsPage = new SODViolationDetailsPage(driver);
+			
 			String firstFunctionName = detailsPage.getFirstFunctionName();
 			detailsPage.searchAccountNameForTable1("ZTEST_F017");
-			ArrayList<String> dataFromFunction1 =  detailsPage.fetchTableDataFromFunction1();
+			ArrayList<String> dataFromFunction1 =  detailsPage.fetchTableDataFromFunction1(riskCode);
 			
-			/*String secondFunctionName = detailsPage.getSecondFunctionName();
+			String secondFunctionName = detailsPage.getSecondFunctionName();
 			detailsPage.searchAccountNameForTable2("ZTEST_F017");
-			List dataFromFunction2 = detailsPage.fetchTableDataFromFunction2();*/
+			ArrayList<String>dataFromFunction2 = detailsPage.fetchTableDataFromFunction2();
 		
 			String parentHandle = driver.getWindowHandle();
 			driver = new ChromeDriver();
@@ -69,9 +70,20 @@ public class RuleSetTesting extends TestBase {
 			function.advancedSearch(firstFunctionName);
 			function.clickOnFunction(firstFunctionName);
 			function.clickOnObjectTab();
-			//List<String> functionData = function.getObjectTableData();
+			
+			System.out.println("*** Validating object data for function : "+firstFunctionName+ " ***");
 			
 			boolean status = function.compareData(dataFromFunction1);
+			softassert.assertTrue(status, "All data validated");
+			
+			System.out.println("*** Validating object data for function : "+secondFunctionName+ " ***");
+			
+			sodPageObject.clickOnFunction();
+			function.advancedSearch(secondFunctionName);
+			function.clickOnFunction(secondFunctionName);
+			function.clickOnObjectTab();
+			
+			status = function.compareData(dataFromFunction2);
 			softassert.assertTrue(status, "All data validated");
 			softassert.assertAll();
 						

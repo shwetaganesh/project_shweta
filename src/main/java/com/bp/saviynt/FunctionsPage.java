@@ -1,9 +1,7 @@
 package com.bp.saviynt;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.lang3.Range;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
@@ -60,6 +58,8 @@ public class FunctionsPage extends TestBase {
 	@FindBy(xpath = "//div[contains(@id,'field')]//a")
 	private WebElement searchField;
 	
+	@FindBy(xpath = "//button[@onclick='clearadvForm()']")
+	private WebElement cancelButton;
 	
 	public FunctionsPage(WebDriver ldriver)
 	{
@@ -96,49 +96,8 @@ public class FunctionsPage extends TestBase {
 		wait.until(ExpectedConditions.visibilityOf(objectsTable));
 	}
 	
-	/*public List<String> getObjectTableData() throws InterruptedException
-	{
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@id,'autogen')]/a")));
-		driver.findElement(By.xpath("//*[contains(@id,'autogen')]/a")).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'100')]"))).click();
-		Thread.sleep(3000);
-		List<WebElement> tableRows = driver.findElements(By.xpath("//table[@id='myDataTableFuntionsObjects']/tbody/tr"));
-		System.out.println(tableRows.size());
-		ArrayList tableData = new ArrayList();
-		String temp;
-		for(int i=1;i<=tableRows.size();i++)
-		{
-			for(int j=2;j<=8;j++)
-			{
-				temp = driver.findElement(By.xpath("//table[@id='myDataTableFuntionsObjects']/tbody//tr["+i+"]//td["+j+"]")).getText();
-				tableData.add(temp);
-			}
-		}
-		System.out.println(tableData);
-		
-		List newArray = ListUtils.partition(tableData, 7);
-		System.out.println(newArray);
-		
-		return newArray;
-	}*/
-	
 	public boolean compareData(List<String> dataFromFunction1) throws InterruptedException
 	{
-		/*
-		 * wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
-		 * "//*[contains(@id,'autogen')]/a")));
-		 * driver.findElement(By.xpath("//*[contains(@id,'autogen')]/a")).click();
-		 * wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
-		 * "//div[contains(text(),'100')]"))).click(); Thread.sleep(3000);
-		 * List<WebElement> tableRows = driver.findElements(By.xpath(
-		 * "//table[@id='myDataTableFuntionsObjects']/tbody/tr"));
-		 * System.out.println(tableRows.size()); String temp; ArrayList<String>
-		 * singleRow = new ArrayList<String>(); for(int i=1;i<=tableRows.size();i++) {
-		 * for(int j=2;j<=8;j++) { temp = driver.findElement(By.xpath(
-		 * "//table[@id='myDataTableFuntionsObjects']/tbody//tr["+i+"]//td["+j+"]")).
-		 * getText(); singleRow.add(temp); } for(int k =0;k<singleRow.size();k++) {
-		 * String value = singleRow.get(k); System.out.println(value); } }
-		 */
 		boolean status = false;
 		
 		for (int i = 1; i < dataFromFunction1.size(); i=i+5) 
@@ -157,14 +116,16 @@ public class FunctionsPage extends TestBase {
 					.visibilityOfElementLocated(By.xpath("//div[@id='select2-drop']//div[1]//input[1]")));
 
 			driver.findElement(By.xpath("//div[@id='select2-drop']//div[1]//input[1]")).sendKeys(tcode);
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 			driver.findElement(By.xpath("//div[@id='select2-drop']//div[1]//input[1]")).sendKeys(Keys.ENTER);
 			i = i + 4;
 			
 			String object = dataFromFunction1.get(i);
 			if(object.isEmpty())
 			{
+				
 				i=i+2;
+				cancelButton.click();
 				continue;
 			}
 				
@@ -174,7 +135,7 @@ public class FunctionsPage extends TestBase {
 			wait.until(ExpectedConditions
 					.visibilityOfElementLocated(By.xpath("//div[@id='select2-drop']//div[1]//input[1]")));
 			driver.findElement(By.xpath("//div[@id='select2-drop']//div[1]//input[1]")).sendKeys(object);
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 			driver.findElement(By.xpath("//div[@id='select2-drop']//div[1]//input[1]")).sendKeys(Keys.ENTER);
 			i = i + 1;
 			
@@ -185,12 +146,11 @@ public class FunctionsPage extends TestBase {
 			wait.until(ExpectedConditions
 					.visibilityOfElementLocated(By.xpath("//div[@id='select2-drop']//div[1]//input[1]")));
 			driver.findElement(By.xpath("//div[@id='select2-drop']//div[1]//input[1]")).sendKeys(field);
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 			driver.findElement(By.xpath("//div[@id='select2-drop']//div[1]//input[1]")).sendKeys(Keys.ENTER);
 
-			//TestBase.scrollDownToElement(driver, searchButton);
 			searchButton.click();
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 			/* get the value from SOD table
 			 * remove characters within (....) 
 			 * obtain min and max value
@@ -245,23 +205,19 @@ public class FunctionsPage extends TestBase {
 		char blank = ' ';
 		String blank1 = Character.toString(blank);
 		boolean status=false;
-		if(min.contains(blank1) && max.contains(blank1))
+		if(min.contains("*") && max.contains("*"))
+		{
+			status = true;
+			System.out.println("min and max values contain *");
+		}
+		else if(min.contains(blank1) && max.contains(blank1))
 		{
 			status = true;
 			System.out.println("min max values are blank");
 		}
 		else if(StringUtils.isNumeric(minValue) && StringUtils.isNumeric(maxValue))
 		{
-			/*if(Integer.parseInt(min)<=Integer.parseInt(minValue) && Integer.parseInt(max)<=Integer.parseInt(maxValue))
-				{
-				status = true;
-				System.out.println("min and max are numbers and  values match with the table");
-				}
-			else
-			{
-				status = false;
-				System.out.println("min and max are numbers but donot match with the table");
-			}*/
+			// here range is min and max values in the object table of admin.. both values inclusive.
 			Range<Integer> myRange = Range.between(Integer.parseInt(minValue), Integer.parseInt(maxValue));
 			if (myRange.contains(Integer.parseInt(min)) && myRange.contains(Integer.parseInt(max))){
 				{
@@ -276,7 +232,7 @@ public class FunctionsPage extends TestBase {
 			}
 
 		}
-		else if (min == minValue && max == maxValue)
+		else if (min.equalsIgnoreCase(minValue) && max.equalsIgnoreCase(maxValue))
 		{
 			status = true;
 			System.out.println("min and max values match with the table");

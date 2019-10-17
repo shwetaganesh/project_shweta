@@ -72,9 +72,16 @@ public class SODViolationDetailsPage extends TestBase {
 	{
 		wait.until(ExpectedConditions.visibilityOf(searchBox1));
 		driver.findElement(By.xpath("(//span[@class='switch-right'])[1]")).click();
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		searchBox1.sendKeys(user);
 		searchBox1.sendKeys(Keys.ENTER);
+		//increase rows of table to 100
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@id,'autogen')]/a")));
+		driver.findElement(By.xpath("//*[contains(@id,'autogen')]/a")).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'100')]"))).click();
+
+		Thread.sleep(5000);
+				
 		
 	}
 	
@@ -85,72 +92,68 @@ public class SODViolationDetailsPage extends TestBase {
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//span[@class='switch-right'])[2]")));
 			WebElement toggle = driver.findElement(By.xpath("(//span[@class='switch-right'])[2]"));
 			TestBase.javaScriptClickbyElement(driver, toggle);
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 			searchBox2.sendKeys(user);
 			searchBox2.sendKeys(Keys.ENTER);
 			
+			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//*[contains(@id,'autogen')]/a)[2]")));
+			driver.findElement(By.xpath("(//*[contains(@id,'autogen')]/a)[2]")).click();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'100')]")));
+			TestBase.javaScriptClickbyElement(driver, driver.findElement(By.xpath("//div[contains(text(),'100')]")));
+			//driver.findElement(By.xpath("//div[contains(text(),'100')]")).click();
+			
+			Thread.sleep(5000);
+			
 		}
 	
-	public ArrayList<String> fetchTableDataFromFunction1() throws InterruptedException
+	public ArrayList<String> fetchTableDataFromFunction1(String riskCode) throws InterruptedException
 	{
-		//increase rows of table to 100
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@id,'autogen')]/a")));
-		driver.findElement(By.xpath("//*[contains(@id,'autogen')]/a")).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'100')]"))).click();
-		Thread.sleep(5000);
+		
+		Thread.sleep(3000);
 		// find the number of rows in the first table.
 		List<WebElement> rows = driver.findElements(By.xpath("(//table[@class='table table-striped table-hover table-bordered dataTable'])[1]/tbody/tr"));
-		System.out.println(rows.size());
-		ArrayList<String> tableData = new ArrayList();
+		
+		ArrayList<String> tableData = new ArrayList<String>();
 		String temp;
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table[@id='SODMappedDetail0']")));
+		System.out.println(rows.size());
 		for(int i=1;i<=rows.size();i++)
 		{
 			for(int j=1;j<=11;j++)
 			{
-				temp = driver.findElement(By.xpath("(//tbody[@role='alert'])[1]//tr["+i+"]//td["+j+"]")).getText();
+				temp = driver.findElement(By.xpath("//table[@id='SODMappedDetail0']//tbody[@role='alert']//tr["+i+"]//td["+j+"]")).getText();
 				tableData.add(temp);
 			}
 		}
 		System.out.println(tableData);
 		
-		/*List newList = ListUtils.partition(tableData, 11);
-	    System.out.println(newList);*/
-				
-	   
-		
 		return tableData;
 		
 	}
 	
-	public List fetchTableDataFromFunction2() throws InterruptedException
+	public ArrayList<String> fetchTableDataFromFunction2() throws InterruptedException
 	{
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//*[contains(@id,'autogen')]/a)[2]")));
-		driver.findElement(By.xpath("(//*[contains(@id,'autogen')]/a)[2]")).click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'100')]")));
-		driver.findElement(By.xpath("//div[contains(text(),'100')]")).click();
 		
-		Thread.sleep(5000);
-		// find the number of rows in the first table.
+		Thread.sleep(3000);
+		// find the number of rows in the second table.
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table[@id='SODMappedDetail1']")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table[@id='SODMappedDetail1']//tbody//tr[1]//td[1][contains(text(),'ZTEST')]")));
 		List<WebElement> rows = driver.findElements(By.xpath("(//table[@class='table table-striped table-hover table-bordered dataTable'])[2]/tbody/tr"));
 		System.out.println(rows.size());
-		ArrayList tableData2 = new ArrayList();
+		ArrayList<String>tableData2 = new ArrayList<String>();
 		String temp;
 		for(int i=1;i<=rows.size();i++)
 		{
 			for(int j=1;j<=11;j++)
 			{
-				temp = driver.findElement(By.xpath("(//tbody[@role='alert'])[2]//tr["+i+"]//td["+j+"]")).getText();
+				temp = driver.findElement(By.xpath("//table[@id='SODMappedDetail1']//tbody[@role='alert']//tr["+i+"]//td["+j+"]")).getText();
 				tableData2.add(temp);
 			}
 		}
 		System.out.println(tableData2);
-		//ArrayList newArray = (ArrayList) tableData2.subList(0, 10);
-		//System.out.println(newArray);
-		List newArray = ListUtils.partition(tableData2, 11);
-		System.out.println(newArray);
 		
-		
-		return newArray;
+		return tableData2;
 		
 	}
 	}

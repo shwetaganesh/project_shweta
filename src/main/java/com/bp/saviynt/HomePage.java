@@ -76,6 +76,9 @@ public class HomePage extends TestBase
 	@FindBy(xpath = "(//*[contains(text(),'Pending Tasks')])[2]")
 	private WebElement pendingTaskLeftHandPanel;
 	
+	@FindBy(xpath = "(//*[contains(text(),'Completed Tasks')])[2]")
+	private WebElement completedTaskLeftHandPanel;
+	
 	public HomePage(WebDriver ldriver) 
 	{
 		driver=ldriver;
@@ -252,5 +255,13 @@ public class HomePage extends TestBase
 		wait.until(ExpectedConditions.visibilityOf(taskHeaderLeftHandPanel));
 		taskHeaderLeftHandPanel.click();
 		pendingTaskLeftHandPanel.click();
+	}
+	
+	public void clickOnTasksandGotoCompletedTasks()
+	{
+		wait.until(ExpectedConditions.visibilityOf(taskHeaderLeftHandPanel));
+		taskHeaderLeftHandPanel.click();
+		wait.until(ExpectedConditions.elementToBeClickable(completedTaskLeftHandPanel));
+		completedTaskLeftHandPanel.click();
 	}
 }
