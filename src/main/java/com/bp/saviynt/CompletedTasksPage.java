@@ -38,7 +38,7 @@ import com.bp.testbase.TestBase;
 		wait = new WebDriverWait(driver,30);
 	}
 
-	public boolean verifyStatusOfTask(String userName)
+	public boolean verifyStatusOfTask(String userName) throws InterruptedException
 	{
 		boolean status;
 	wait.until(ExpectedConditions.visibilityOf(searchBox));
@@ -46,6 +46,7 @@ import com.bp.testbase.TestBase;
 	searchBox.sendKeys(userName);
 	searchBox.sendKeys(Keys.ENTER);
 	wait.until(ExpectedConditions.visibilityOf(tasksTabInLeftPanel));
+	Thread.sleep(3000);
 	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tbody[@role='alert']//tr[1]//td[6][contains(text(),'"+userName+"')]")));
 	String securitySystem = securitySystemColumnData.getText();
 	System.out.println(securitySystem);

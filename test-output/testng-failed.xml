@@ -3,14 +3,14 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.bp.saviynt.RuleSetTesting">
+      <class name="com.bp.saviynt.UpdateDLTest">
         <methods>
-          <include name="SODLoginAndRulesetComparisonUsingSimulation"/>
           <include name="sendReport"/>
           <include name="openApplication"/>
           <include name="CloseApplication"/>
+          <include name="checkCompanyNameandJobStatus"/>
         </methods>
-      </class> <!-- com.bp.saviynt.RuleSetTesting -->
+      </class> <!-- com.bp.saviynt.UpdateDLTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

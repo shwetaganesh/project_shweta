@@ -75,6 +75,7 @@ public class SODViolationDetailsPage extends TestBase {
 		Thread.sleep(3000);
 		searchBox1.sendKeys(user);
 		searchBox1.sendKeys(Keys.ENTER);
+		Thread.sleep(3000);
 		//increase rows of table to 100
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@id,'autogen')]/a")));
 		driver.findElement(By.xpath("//*[contains(@id,'autogen')]/a")).click();
@@ -90,16 +91,18 @@ public class SODViolationDetailsPage extends TestBase {
 		{
 			wait.until(ExpectedConditions.visibilityOf(searchBox2));
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//span[@class='switch-right'])[2]")));
+			
 			WebElement toggle = driver.findElement(By.xpath("(//span[@class='switch-right'])[2]"));
 			TestBase.javaScriptClickbyElement(driver, toggle);
 			Thread.sleep(3000);
+			
 			searchBox2.sendKeys(user);
 			searchBox2.sendKeys(Keys.ENTER);
-			
+			Thread.sleep(3000);
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//*[contains(@id,'autogen')]/a)[2]")));
 			driver.findElement(By.xpath("(//*[contains(@id,'autogen')]/a)[2]")).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'100')]")));
-			TestBase.javaScriptClickbyElement(driver, driver.findElement(By.xpath("//div[contains(text(),'100')]")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'100')]"))).click();
+			//TestBase.javaScriptClickbyElement(driver, driver.findElement(By.xpath("//div[contains(text(),'100')]")));
 			//driver.findElement(By.xpath("//div[contains(text(),'100')]")).click();
 			
 			Thread.sleep(5000);

@@ -11,7 +11,9 @@ import com.bp.testbase.TestBase;
 
 public class UpdateDLTest extends TestBase {
 	
-	 public String adminId, password = "password";
+	 public String adminId ;
+	 
+	 // change userid and pw before commiting to git
 	 
 	 
 	@Test(priority=1)
@@ -22,7 +24,7 @@ public class UpdateDLTest extends TestBase {
 		
 		//admin login
 		LaunchPage launch = new LaunchPage(driver);
-		launch.login("test_02", "temp1234");
+		launch.login("kegqo8", "Test02");
 		HomePage home = new HomePage(driver);
 		//goto admin tab
 		home.openAdminTab();
@@ -48,7 +50,7 @@ public class UpdateDLTest extends TestBase {
 			
 			//admin login
 			LaunchPage launch = new LaunchPage(driver);
-			launch.login("test_02", "temp1234");
+			launch.login("kegqo8", "Test02");
 			HomePage home = new HomePage(driver);
 			//goto admin tab
 			home.openAdminTab();
@@ -67,7 +69,7 @@ public class UpdateDLTest extends TestBase {
 		 	logger = extent.createTest("check company name update and run provisioning job");
 		 	
 		 	LaunchPage launch = new LaunchPage(driver);
-			launch.login("test_02", "temp1234");
+			launch.login("kegqo8", "Test02");
 			HomePage home = new HomePage(driver);
 			//goto admin tab
 			home.openAdminTab();

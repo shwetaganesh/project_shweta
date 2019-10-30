@@ -1,28 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="1" ignored="0" total="1" passed="0">
+<testng-results skipped="0" failed="1" ignored="0" total="3" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="1616921" started-at="2019-10-17T16:29:53 IST" finished-at="2019-10-17T16:56:50 IST">
+  <suite name="Default suite" duration-ms="398308" started-at="2019-10-18T13:13:16 IST" finished-at="2019-10-18T13:19:54 IST">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="1616921" started-at="2019-10-17T16:29:53 IST" finished-at="2019-10-17T16:56:50 IST">
-      <class name="com.bp.saviynt.RuleSetTesting">
-        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.RuleSetTesting@394df057]" name="openApplication" is-config="true" duration-ms="14772" started-at="2019-10-17T16:29:53 IST" finished-at="2019-10-17T16:30:08 IST">
+    <test name="Default test" duration-ms="398308" started-at="2019-10-18T13:13:16 IST" finished-at="2019-10-18T13:19:54 IST">
+      <class name="com.bp.saviynt.UpdateDLTest">
+        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.UpdateDLTest@3e57cd70]" name="openApplication" is-config="true" duration-ms="12832" started-at="2019-10-18T13:13:16 IST" finished-at="2019-10-18T13:13:29 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openApplication -->
-        <test-method status="FAIL" signature="SODLoginAndRulesetComparisonUsingSimulation()[pri:0, instance:com.bp.saviynt.RuleSetTesting@394df057]" name="SODLoginAndRulesetComparisonUsingSimulation" duration-ms="1600772" started-at="2019-10-17T16:30:08 IST" finished-at="2019-10-17T16:56:49 IST">
-          <exception class="java.lang.AssertionError">
+        <test-method status="PASS" signature="adminLoginAndImportUserTest()[pri:1, instance:com.bp.saviynt.UpdateDLTest@3e57cd70]" name="adminLoginAndImportUserTest" duration-ms="22344" started-at="2019-10-18T13:13:29 IST" finished-at="2019-10-18T13:13:51 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- adminLoginAndImportUserTest -->
+        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.UpdateDLTest@3e57cd70]" name="CloseApplication" is-config="true" duration-ms="389" started-at="2019-10-18T13:13:51 IST" finished-at="2019-10-18T13:13:51 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=adminLoginAndImportUserTest status=SUCCESS method=UpdateDLTest.adminLoginAndImportUserTest()[pri:1, instance:com.bp.saviynt.UpdateDLTest@3e57cd70] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CloseApplication -->
+        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.UpdateDLTest@3e57cd70]" name="openApplication" is-config="true" duration-ms="10152" started-at="2019-10-18T13:13:51 IST" finished-at="2019-10-18T13:14:02 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openApplication -->
+        <test-method status="PASS" signature="runJobToImportUser()[pri:2, instance:com.bp.saviynt.UpdateDLTest@3e57cd70]" name="runJobToImportUser" duration-ms="31670" started-at="2019-10-18T13:14:02 IST" finished-at="2019-10-18T13:14:33 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runJobToImportUser -->
+        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.UpdateDLTest@3e57cd70]" name="CloseApplication" is-config="true" duration-ms="167" started-at="2019-10-18T13:14:33 IST" finished-at="2019-10-18T13:14:33 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=runJobToImportUser status=SUCCESS method=UpdateDLTest.runJobToImportUser()[pri:2, instance:com.bp.saviynt.UpdateDLTest@3e57cd70] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CloseApplication -->
+        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.UpdateDLTest@3e57cd70]" name="openApplication" is-config="true" duration-ms="10323" started-at="2019-10-18T13:14:33 IST" finished-at="2019-10-18T13:14:44 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openApplication -->
+        <test-method status="FAIL" signature="checkCompanyNameandJobStatus()[pri:3, instance:com.bp.saviynt.UpdateDLTest@3e57cd70]" name="checkCompanyNameandJobStatus" duration-ms="309439" started-at="2019-10-18T13:14:44 IST" finished-at="2019-10-18T13:19:53 IST">
+          <exception class="org.openqa.selenium.TimeoutException">
             <message>
-              <![CDATA[The following asserts failed:
-All data validated did not expect to find [true] but found [false]]]>
+              <![CDATA[Expected condition failed: waiting for visibility of element located by By.xpath: //tbody[@role='alert']//tr[1]//td[6][contains(text(),'ishugb')] (tried for 30 second(s) with 500 milliseconds interval)]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: The following asserts failed:
-All data validated did not expect to find [true] but found [false]
-at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:47)
-at org.testng.asserts.SoftAssert.assertAll(SoftAssert.java:31)
-at com.bp.saviynt.RuleSetTesting.SODLoginAndRulesetComparisonUsingSimulation(RuleSetTesting.java:88)
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //tbody[@role='alert']//tr[1]//td[6][contains(text(),'ishugb')] (tried for 30 second(s) with 500 milliseconds interval)
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:113)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:283)
+at com.bp.saviynt.CompletedTasksPage.verifyStatusOfTask(CompletedTasksPage.java:49)
+at com.bp.saviynt.UpdateDLTest.checkCompanyNameandJobStatus(UpdateDLTest.java:89)
 at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -51,28 +88,41 @@ at org.testng.TestNG.run(TestNG.java:1000)
 at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+Caused by: org.openqa.selenium.NoSuchElementException: Cannot locate an element using By.xpath: //tbody[@role='alert']//tr[1]//td[6][contains(text(),'ishugb')]
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.14.0', revision: 'aacccce0', time: '2018-08-02T20:19:58.91Z'
+System info: host: 'DESKTOP-HBAN9NH', ip: '9.204.98.20', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_191'
+Driver info: driver.version: unknown
+at org.openqa.selenium.support.ui.ExpectedConditions.lambda$findElement$0(ExpectedConditions.java:896)
+at java.util.Optional.orElseThrow(Optional.java:290)
+at org.openqa.selenium.support.ui.ExpectedConditions.findElement(ExpectedConditions.java:895)
+at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:44)
+at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:206)
+at org.openqa.selenium.support.ui.ExpectedConditions$7.apply(ExpectedConditions.java:202)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:260)
+... 30 more
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- SODLoginAndRulesetComparisonUsingSimulation -->
-        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.RuleSetTesting@394df057]" name="CloseApplication" is-config="true" duration-ms="1312" started-at="2019-10-17T16:56:49 IST" finished-at="2019-10-17T16:56:50 IST">
+        </test-method> <!-- checkCompanyNameandJobStatus -->
+        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.UpdateDLTest@3e57cd70]" name="CloseApplication" is-config="true" duration-ms="932" started-at="2019-10-18T13:19:53 IST" finished-at="2019-10-18T13:19:54 IST">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=SODLoginAndRulesetComparisonUsingSimulation status=FAILURE method=RuleSetTesting.SODLoginAndRulesetComparisonUsingSimulation()[pri:0, instance:com.bp.saviynt.RuleSetTesting@394df057] output={null}]]]>
+                <![CDATA[[TestResult name=checkCompanyNameandJobStatus status=FAILURE method=UpdateDLTest.checkCompanyNameandJobStatus()[pri:3, instance:com.bp.saviynt.UpdateDLTest@3e57cd70] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- CloseApplication -->
-        <test-method status="PASS" signature="sendReport()[pri:0, instance:com.bp.saviynt.RuleSetTesting@394df057]" name="sendReport" is-config="true" duration-ms="11450" started-at="2019-10-17T16:56:53 IST" finished-at="2019-10-17T16:57:05 IST">
+        <test-method status="PASS" signature="sendReport()[pri:0, instance:com.bp.saviynt.UpdateDLTest@3e57cd70]" name="sendReport" is-config="true" duration-ms="28533" started-at="2019-10-18T13:19:55 IST" finished-at="2019-10-18T13:20:24 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- sendReport -->
-      </class> <!-- com.bp.saviynt.RuleSetTesting -->
+      </class> <!-- com.bp.saviynt.UpdateDLTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

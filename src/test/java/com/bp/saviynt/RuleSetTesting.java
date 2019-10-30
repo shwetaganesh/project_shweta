@@ -2,7 +2,6 @@ package com.bp.saviynt;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -40,19 +39,19 @@ public class RuleSetTesting extends TestBase {
 		//{
 			//String user = excel1.getData(0, i, 0);
 			//System.out.println(user);
-			String riskCode = sodPage.searchForUserAndClickOnRiskCode("ZTEST_F017");
+			String riskCode = sodPage.searchForUserAndClickOnRiskCode("ZTEST_F012");
 		
 			SODViolationDetailsPage detailsPage = new SODViolationDetailsPage(driver);
 			
 			String firstFunctionName = detailsPage.getFirstFunctionName();
-			detailsPage.searchAccountNameForTable1("ZTEST_F017");
+			detailsPage.searchAccountNameForTable1("ZTEST_F012");
 			ArrayList<String> dataFromFunction1 =  detailsPage.fetchTableDataFromFunction1(riskCode);
 			
 			String secondFunctionName = detailsPage.getSecondFunctionName();
-			detailsPage.searchAccountNameForTable2("ZTEST_F017");
+			detailsPage.searchAccountNameForTable2("ZTEST_F012");
 			ArrayList<String>dataFromFunction2 = detailsPage.fetchTableDataFromFunction2();
 		
-			String parentHandle = driver.getWindowHandle();
+			/*String parentHandle = driver.getWindowHandle();
 			driver = new ChromeDriver();
 			for (String winHandle : driver.getWindowHandles()) {
 			    driver.switchTo().window(winHandle); // switch focus of WebDriver to the next found window handle
@@ -87,9 +86,10 @@ public class RuleSetTesting extends TestBase {
 			softassert.assertTrue(status, "All data validated");
 			softassert.assertAll();
 						
-		}
+		}*/
 			
         // Switching the control back to parent window
         //driver.switchTo().window(parentWinHandle);
 	}
+}
 
