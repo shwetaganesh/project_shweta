@@ -267,6 +267,47 @@ public class AdminPage extends TestBase
 	@FindBy(xpath = "//input[@id='companyname']")
 	private WebElement companyName;
 	
+	//7/11/19 -- xpaths for bp1 license mgmt test
+	
+	@FindBy(xpath = "(//*[contains(text(),'Identity Repository')])[2]")
+	private WebElement identityRepositoryLeftHandPanel;
+	
+	@FindBy(xpath = "//label[contains(text(),'Employee Class')]")
+	private WebElement employeeClassLabel;
+	
+	@FindBy(xpath = "(//label[starts-with(text(),'Status')]/following::div//a//span)[1]")
+	private WebElement statusValue;
+	
+	@FindBy(xpath = "//div[@id='select2-drop']//div[1]//input[1]")
+	private WebElement statusValueTextBox;
+	
+	@FindBy(xpath = "//input[@id='customproperty11']")
+	private WebElement customProperty11TextBox;
+	
+	@FindBy(xpath = "//input[@id='customproperty50']")
+	private WebElement customProperty50TextBox;
+	
+	@FindBy(xpath = "//input[@id='customproperty63']")
+	private WebElement customProperty63TextBox;
+	
+	@FindBy(xpath = "//input[@id='customproperty64']")
+	private WebElement customProperty64TextBox;
+	
+	@FindBy(xpath = "//input[@id='customproperty65']")
+	private WebElement customProperty65TextBox;
+	
+	@FindBy(xpath ="//input[@id='customproperty1']")
+	private WebElement customProperty1TextBox;
+	
+	@FindBy(xpath ="//a[@href='/ECM/accounts/list']")
+	private WebElement accountsLeftHandPanel;
+	
+	
+	
+	
+	
+	
+	
 	WebDriverWait wait;
 	
 	
@@ -652,7 +693,7 @@ public class AdminPage extends TestBase
 		
 	}
 
-	public String searchForUser(String userID)
+	public String searchForUserAndGetCompanyName(String userID)
 	{
 		wait.until(ExpectedConditions.visibilityOf(usersLinkLeftPanel));
 		usersLinkLeftPanel.click();
@@ -669,5 +710,138 @@ public class AdminPage extends TestBase
 		
 		
 	}
+	
+	public void searchForUserAndClickOnUser(String userID)
+	{
+		wait.until(ExpectedConditions.visibilityOf(usersLinkLeftPanel));
+		usersLinkLeftPanel.click();
+		wait.until(ExpectedConditions.visibilityOf(searchUserTextBox));
+		searchUserTextBox.sendKeys(userID);
+		searchUserTextBox.sendKeys(Keys.ENTER);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tbody[@role='alert']//tr[1]//td[1]//a[contains(text(),'"+userID+"')]")));
+		driver.findElement(By.xpath("//tbody[@role='alert']//tr[1]//td[1]//a[contains(text(),'"+userID+"')]")).click();
+		wait.until(ExpectedConditions.visibilityOf(userName));
+	}
+	
+	public boolean verifyEmployeeClassAndStatus()
+	{
+		boolean result1 = false,result2 = false;
+		TestBase.scrollDownToElement(driver, employeeClassLabel);
+		String empClass = employeeClass.getAttribute("value");
+		if(empClass.equalsIgnoreCase("Employee") || empClass.equalsIgnoreCase("Internal Partner"))
+		{
+			result1 = true;
+		}
+		
+		String status = statusValue.getText();
+		System.out.println(status);
+		if(status.contains("Active"))
+		{
+			result2 = true;
+		}
+		if(result1&&result2)
+			return true;
+		else
+			return false;
+		
+	}
+	
+	public void clearEmployeeClassValue()
+	{
+		employeeClass.clear();
+		TestBase.scrollDownToElement(driver, update);
+		update.click();
+	}
+	
+	public void changeUserStatusAndUpdate() throws InterruptedException
+	{
+		//TestBase.scrollDownToElement(driver, employeeClassLabel);
+		wait.until(ExpectedConditions.visibilityOf(employeeClassLabel));
+		String empClass = employeeClass.getAttribute("value");
+		if(empClass.equalsIgnoreCase("Employee") || empClass.equalsIgnoreCase("Internal Partner"))
+		{
+			String status = statusValue.getText();
+			System.out.println(status);
+			if(status.contains("Inactive"))
+			{
+				//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//label[contains(text(),'Start Date')]")));
+				TestBase.scrollDownToElement(driver, driver.findElement(By.xpath("//label[contains(text(),'Start Date')]")));
+				statusValue.click();
+				wait.until(ExpectedConditions.visibilityOf(statusValueTextBox));
+				statusValueTextBox.sendKeys("Active");
+				Thread.sleep(3000);
+				statusValueTextBox.sendKeys(Keys.ENTER);
+				TestBase.scrollDownToElement(driver, update);
+				update.click();
+			}
+		}
+	}
+	
+	public void clickOnOtherAttributesTab()
+	{
+		wait.until(ExpectedConditions.elementToBeClickable(otherAttributesTab));
+		otherAttributesTab.click();
+	}
+	
+	public void addCustomProperties(String CP11,String CP50,String CP63,String CP64,String CP65)
+	{
+		wait.until(ExpectedConditions.visibilityOf(customProperty11TextBox));
+		if(CP50.contains("ID") )
+		{
+			if(!(customProperty1TextBox.getAttribute("value").contains("UP")))
+				customProperty1TextBox.sendKeys("UP");
+		}
+		
+		if(!(customProperty11TextBox.getAttribute("value").contains(CP11)))
+		{
+			customProperty11TextBox.clear();
+			customProperty11TextBox.sendKeys(CP11);
+		}
+		
+		
+		TestBase.scrollDownToElement(driver, customProperty50TextBox);
+		if(!(customProperty50TextBox.getAttribute("value").contains(CP50)))
+		{	
+			customProperty50TextBox.clear();
+			customProperty50TextBox.sendKeys(CP50);
+		}
+		
+		if(!(customProperty63TextBox.getAttribute("value").contains(CP63)))
+		{	
+			customProperty63TextBox.clear();
+			customProperty63TextBox.sendKeys(CP63);
+		}
+		if(!(customProperty64TextBox.getAttribute("value").contains(CP64)))
+		{	
+			customProperty64TextBox.clear();
+			customProperty64TextBox.sendKeys(CP64);
+		}
+		if(!(customProperty65TextBox.getAttribute("value").contains(CP65)))
+		{	
+			customProperty65TextBox.clear();
+			customProperty65TextBox.sendKeys(CP65);
+		}
+		
+	}
+	
+	public void clickOnUpdate()
+	{
+		wait.until(ExpectedConditions.elementToBeClickable(updateButton));
+		updateButton.click();
+	}
+	
+	public void clickOnIdentityRepository()
+	{
+		wait.until(ExpectedConditions.visibilityOf(identityRepositoryLeftHandPanel));
+		identityRepositoryLeftHandPanel.click();
+	}
+	
+	public void clickOnAccountsLeftHandPanel()
+	{
+		wait.until(ExpectedConditions.visibilityOf(accountsLeftHandPanel));
+		accountsLeftHandPanel.click();
+	}
+	
+	
 	
 }

@@ -18,9 +18,9 @@ public class RuleSetTesting extends TestBase {
 	String sodUserID,password = "password";
 	
 	@Test
-	public void SODLoginAndRulesetComparisonUsingSimulation() throws InterruptedException, IOException
+	public void SODLoginAndRulesetComparisonTest() throws InterruptedException, IOException
 	{
-		String adminID = "TSTTEN10";
+		
 		logger = extent.createTest("Rule set comparison");
 		SoftAssert softassert = new SoftAssert();
 		sodUserID= excel.getData(0, 10, 12);
@@ -35,21 +35,58 @@ public class RuleSetTesting extends TestBase {
 		SODViolationsPage sodPage = new SODViolationsPage(driver);
 		// filter recorder based on ruleset.
 		sodPage.clickOnRulesetFilterDropDownAndFilter("PXECLNT100");
-		//for(int i=1;i<3;i++)
-		//{
-			//String user = excel1.getData(0, i, 0);
-			//System.out.println(user);
-			String riskCode = sodPage.searchForUserAndClickOnRiskCode("ZTEST_F012");
+		for(int i=61;i<=72;i++)
+		{
+			String user = excel1.getData(0, i, 0);
+			System.out.println(user);
+			String riskCode = sodPage.searchForUserAndClickOnRiskCode(user);
 		
 			SODViolationDetailsPage detailsPage = new SODViolationDetailsPage(driver);
 			
 			String firstFunctionName = detailsPage.getFirstFunctionName();
-			detailsPage.searchAccountNameForTable1("ZTEST_F012");
-			ArrayList<String> dataFromFunction1 =  detailsPage.fetchTableDataFromFunction1(riskCode);
+			 detailsPage.searchAccountNameForTable1(user);
 			
+			//ArrayList<String> dataFromFunction1 =  detailsPage.fetchTableDataFromFunction1(riskCode);
+			 System.out.println("*** Validating object data for function : "+firstFunctionName+ " ***");
+			 boolean result = detailsPage.DataComparisonInTable1();
+			 if(result) {
+				 System.out.println("all data in range");
+			 	logger.pass("All values in range for the function: "+firstFunctionName+" in risk "+user);
+			 }
+			 else {
+				 logger.fail("All values not in range for the function : "+firstFunctionName+" in risk "+user);
+			 }
+			
+			 
 			String secondFunctionName = detailsPage.getSecondFunctionName();
-			detailsPage.searchAccountNameForTable2("ZTEST_F012");
-			ArrayList<String>dataFromFunction2 = detailsPage.fetchTableDataFromFunction2();
+			detailsPage.searchAccountNameForTable2(user);
+			System.out.println("*** Validating object data for function : "+secondFunctionName+ " ***");
+			 result =detailsPage.DataComparisonInTable2();
+			 if(result) {
+				 System.out.println("all data in range");
+			 	logger.pass("All values in range for the function: "+ secondFunctionName+" in risk "+user);
+			 }
+			 else {
+				 logger.fail("All values not in range for the function : "+secondFunctionName+" in risk "+user);
+			 }
+			 TestBase.scrollUp(driver);
+			detailsPage.clickOnSOD();
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			 //ArrayList<String>dataFromFunction2 = detailsPage.fetchTableDataFromFunction2();
 		
 			/*String parentHandle = driver.getWindowHandle();
 			driver = new ChromeDriver();
@@ -91,5 +128,6 @@ public class RuleSetTesting extends TestBase {
         // Switching the control back to parent window
         //driver.switchTo().window(parentWinHandle);
 	}
+}
 }
 

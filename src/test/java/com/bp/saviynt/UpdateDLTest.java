@@ -74,7 +74,7 @@ public class UpdateDLTest extends TestBase {
 			//goto admin tab
 			home.openAdminTab();
 			AdminPage adminPage = new AdminPage(driver);
-			String companyName = adminPage.searchForUser("ishugb");	
+			String companyName = adminPage.searchForUserAndGetCompanyName("ishugb");	
 			
 			home.openAdminTab();
 			adminPage.openJobControlPanelLink();

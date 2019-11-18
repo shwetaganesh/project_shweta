@@ -448,6 +448,8 @@ public class SODViolationsPage extends TestBase {
 		String riskCode = user.substring(6);
 		System.out.println(riskCode);
 		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tbody[@role='alert']//tr//td[contains(text(),'admin')]")));
+		
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table[@id='SODMapped]")));
 		int i=0;
 		while(i<=5)
