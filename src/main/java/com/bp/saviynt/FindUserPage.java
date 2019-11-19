@@ -27,6 +27,9 @@ public class FindUserPage extends TestBase
 	@FindBy(xpath = "//button[@onclick='requestnow()' and @class='btn green']")
 	private WebElement next_green_button;
 	
+	@FindBy(xpath = "//tbody//td[contains(text(),'No data available in table')]")
+	private WebElement noDataAvaialableMessage;
+	
 	WebDriverWait wait;
 	
 	public FindUserPage(WebDriver ldriver) 
@@ -46,6 +49,23 @@ public class FindUserPage extends TestBase
 		Thread.sleep(2000); //  explicit wait  did not help
 		first_radio_button.click();
 		next_green_button.click();
+	}
+	
+	public void searchForEndUser(String endUser)
+	{
+		wait.until(ExpectedConditions.visibilityOf(searchbox_user));
+		searchbox_user.sendKeys(endUser);
+		searchbox_user.sendKeys(Keys.ENTER);
+		
+	}
+	
+	public boolean getErrorMessage()
+	{
+		wait.until(ExpectedConditions.visibilityOf(noDataAvaialableMessage));
+		if(noDataAvaialableMessage.isDisplayed())
+			return true;
+		else
+			return false;
 	}
 
 }

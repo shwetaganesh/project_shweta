@@ -24,8 +24,28 @@ public class UMT_RequestEnterpriseRoleTest extends TestBase{
 	String oldpassword = excel1.getData(0,1,4); // password set using admin function during end user creation
 	String requestNumber;
 	
+	
+	@Test
+	public void requestEnterpriseRoleForExternalPerson() throws InterruptedException, IOException
+	{
+		logger = extent.createTest("Test to validate if, UMT user is able to raise request for an external end user");
+		
+		LaunchPage launch = new LaunchPage(driver);
+		//*** Login to application as end user***
+		launch.login(userID, password);
+		HomePage home = new HomePage(driver);
+		home.openRequestEnterpriseRole();
+		FindUserPage userPage = new FindUserPage(driver);
+		userPage.searchForEndUser("adr4y1");
+		boolean result = userPage.getErrorMessage();
+		Assert.assertEquals(true, result);
+		logger.pass("unable to raise request for external end user",MediaEntityBuilder
+				.createScreenCaptureFromPath(Screenshot.captureScreenShot(driver).replace("Reports", "")).build());
+		home.logoff();
+	}
+	
 	// creation of new user test
-	@Test(priority = 1)
+	//@Test(priority = 1)
 	public void createEndUser() throws Exception {
 		logger = extent.createTest("New user creation");
 		LaunchPage launch = new LaunchPage(driver);
@@ -48,7 +68,7 @@ public class UMT_RequestEnterpriseRoleTest extends TestBase{
 			logger.pass("User created successfully with ID : " + userName);
 
 	}
-		@Test(priority=2)
+		//@Test(priority=2)
 		public void requestEnterpriseRole() throws Exception
 		{
 			logger = extent.createTest("Request enterprise role for an end user by the UMT user");
@@ -78,7 +98,7 @@ public class UMT_RequestEnterpriseRoleTest extends TestBase{
 			// requester log out
 			home.logoff();		
 		}
-		@Test(priority=2)
+		//@Test(priority=2)
 		public void viewRequestHistoryTest() throws IOException
 		{
 			logger = extent.createTest("View the request history of the end user");

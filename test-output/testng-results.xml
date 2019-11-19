@@ -1,74 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="3" passed="3">
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="430857" started-at="2019-11-18T14:37:30 IST" finished-at="2019-11-18T14:44:41 IST">
+  <suite name="Default suite" duration-ms="41979" started-at="2019-11-19T10:06:32 IST" finished-at="2019-11-19T10:07:14 IST">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="430857" started-at="2019-11-18T14:37:30 IST" finished-at="2019-11-18T14:44:41 IST">
-      <class name="com.bp.saviynt.BP1LicenseManagement_NegativeTests">
-        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.BP1LicenseManagement_NegativeTests@3e57cd70]" name="openApplication" is-config="true" duration-ms="13095" started-at="2019-11-18T14:37:30 IST" finished-at="2019-11-18T14:37:43 IST">
+    <test name="Default test" duration-ms="41979" started-at="2019-11-19T10:06:32 IST" finished-at="2019-11-19T10:07:14 IST">
+      <class name="com.bp.saviynt.UMT_RequestEnterpriseRoleTest">
+        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.UMT_RequestEnterpriseRoleTest@55fe41ea]" name="openApplication" is-config="true" duration-ms="12798" started-at="2019-11-19T10:06:32 IST" finished-at="2019-11-19T10:06:45 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openApplication -->
-        <test-method status="PASS" signature="checkUserStatusAndUpdateTest()[pri:1, instance:com.bp.saviynt.BP1LicenseManagement_NegativeTests@3e57cd70]" name="checkUserStatusAndUpdateTest" duration-ms="124886" started-at="2019-11-18T14:37:43 IST" finished-at="2019-11-18T14:39:48 IST">
+        <test-method status="PASS" signature="requestEnterpriseRoleForExternalPerson()[pri:0, instance:com.bp.saviynt.UMT_RequestEnterpriseRoleTest@55fe41ea]" name="requestEnterpriseRoleForExternalPerson" duration-ms="28667" started-at="2019-11-19T10:06:45 IST" finished-at="2019-11-19T10:07:14 IST">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- checkUserStatusAndUpdateTest -->
-        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.BP1LicenseManagement_NegativeTests@3e57cd70]" name="CloseApplication" is-config="true" duration-ms="430" started-at="2019-11-18T14:39:48 IST" finished-at="2019-11-18T14:39:49 IST">
+        </test-method> <!-- requestEnterpriseRoleForExternalPerson -->
+        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.UMT_RequestEnterpriseRoleTest@55fe41ea]" name="CloseApplication" is-config="true" duration-ms="451" started-at="2019-11-19T10:07:14 IST" finished-at="2019-11-19T10:07:14 IST">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=checkUserStatusAndUpdateTest status=SUCCESS method=BP1LicenseManagement_NegativeTests.checkUserStatusAndUpdateTest()[pri:1, instance:com.bp.saviynt.BP1LicenseManagement_NegativeTests@3e57cd70] output={null}]]]>
+                <![CDATA[[TestResult name=requestEnterpriseRoleForExternalPerson status=SUCCESS method=UMT_RequestEnterpriseRoleTest.requestEnterpriseRoleForExternalPerson()[pri:0, instance:com.bp.saviynt.UMT_RequestEnterpriseRoleTest@55fe41ea] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- CloseApplication -->
-        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.BP1LicenseManagement_NegativeTests@3e57cd70]" name="openApplication" is-config="true" duration-ms="18364" started-at="2019-11-18T14:39:49 IST" finished-at="2019-11-18T14:40:07 IST">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openApplication -->
-        <test-method status="PASS" signature="changeEmployeeStatusAndUpdateUserTest()[pri:2, instance:com.bp.saviynt.BP1LicenseManagement_NegativeTests@3e57cd70]" name="changeEmployeeStatusAndUpdateUserTest" duration-ms="139278" started-at="2019-11-18T14:40:07 IST" finished-at="2019-11-18T14:42:26 IST">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- changeEmployeeStatusAndUpdateUserTest -->
-        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.BP1LicenseManagement_NegativeTests@3e57cd70]" name="CloseApplication" is-config="true" duration-ms="198" started-at="2019-11-18T14:42:26 IST" finished-at="2019-11-18T14:42:27 IST">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=changeEmployeeStatusAndUpdateUserTest status=SUCCESS method=BP1LicenseManagement_NegativeTests.changeEmployeeStatusAndUpdateUserTest()[pri:2, instance:com.bp.saviynt.BP1LicenseManagement_NegativeTests@3e57cd70] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- CloseApplication -->
-        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.BP1LicenseManagement_NegativeTests@3e57cd70]" name="openApplication" is-config="true" duration-ms="9519" started-at="2019-11-18T14:42:27 IST" finished-at="2019-11-18T14:42:36 IST">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openApplication -->
-        <test-method status="PASS" signature="changeUserStatusAndCheckTaskCreationTest()[pri:3, instance:com.bp.saviynt.BP1LicenseManagement_NegativeTests@3e57cd70]" name="changeUserStatusAndCheckTaskCreationTest" duration-ms="124689" started-at="2019-11-18T14:42:36 IST" finished-at="2019-11-18T14:44:41 IST">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- changeUserStatusAndCheckTaskCreationTest -->
-        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.BP1LicenseManagement_NegativeTests@3e57cd70]" name="CloseApplication" is-config="true" duration-ms="353" started-at="2019-11-18T14:44:41 IST" finished-at="2019-11-18T14:44:41 IST">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=changeUserStatusAndCheckTaskCreationTest status=SUCCESS method=BP1LicenseManagement_NegativeTests.changeUserStatusAndCheckTaskCreationTest()[pri:3, instance:com.bp.saviynt.BP1LicenseManagement_NegativeTests@3e57cd70] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- CloseApplication -->
-        <test-method status="PASS" signature="sendReport()[pri:0, instance:com.bp.saviynt.BP1LicenseManagement_NegativeTests@3e57cd70]" name="sendReport" is-config="true" duration-ms="11814" started-at="2019-11-18T14:44:42 IST" finished-at="2019-11-18T14:44:54 IST">
+        <test-method status="PASS" signature="sendReport()[pri:0, instance:com.bp.saviynt.UMT_RequestEnterpriseRoleTest@55fe41ea]" name="sendReport" is-config="true" duration-ms="8589" started-at="2019-11-19T10:07:14 IST" finished-at="2019-11-19T10:07:23 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- sendReport -->
-      </class> <!-- com.bp.saviynt.BP1LicenseManagement_NegativeTests -->
+      </class> <!-- com.bp.saviynt.UMT_RequestEnterpriseRoleTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
