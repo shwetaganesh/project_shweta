@@ -34,7 +34,6 @@ public class TestBase
 {
 	public WebDriver driver;
 	
-	
 	public ConfigReader config=new ConfigReader();
 	
 	public ExtentHtmlReporter reporter=new ExtentHtmlReporter("./Reports/TestReport.html");

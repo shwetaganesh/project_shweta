@@ -303,7 +303,8 @@ public class AdminPage extends TestBase
 	private WebElement accountsLeftHandPanel;
 	
 	
-	
+	@FindBy(xpath ="//a[@role='presentation' and contains(text(),'Roles')]")
+	private WebElement rolesTab;
 	
 	
 	
@@ -842,6 +843,65 @@ public class AdminPage extends TestBase
 		accountsLeftHandPanel.click();
 	}
 	
+	public void removeCustomProperties(String CP50,String CP63,String CP64,String CP65)
+	{
+		wait.until(ExpectedConditions.visibilityOf(customProperty11TextBox));
+		
+		
+		if(CP50.contains("ID") )
+		{
+			if((customProperty1TextBox.getAttribute("value").contains("UP")))
+				customProperty1TextBox.clear();
+		}
+		
+		TestBase.scrollDownToElement(driver, customProperty50TextBox);
+		
+		if((customProperty50TextBox.getAttribute("value").contains(CP50)))
+		{	
+			customProperty50TextBox.clear();
+		}
+		
+		if((customProperty63TextBox.getAttribute("value").contains(CP63)))
+		{	
+			customProperty63TextBox.clear();
+		}
+		if((customProperty64TextBox.getAttribute("value").contains(CP64)))
+		{	
+			customProperty64TextBox.clear();
+		}
+		if((customProperty65TextBox.getAttribute("value").contains(CP65)))
+		{	
+			customProperty65TextBox.clear();
+		}
+	}
+	
+	public void addCustomProperty1(String value)
+	{
+		wait.until(ExpectedConditions.visibilityOf(customProperty1TextBox));
+		if(customProperty1TextBox.getAttribute("value").isEmpty())
+		{
+			customProperty1TextBox.sendKeys(value);
+		}
+		else
+		{
+			customProperty1TextBox.clear();
+			customProperty1TextBox.sendKeys(value);
+		}
+		
+
+	}
+	
+	public void removeCustomProperty1()
+	{
+		wait.until(ExpectedConditions.visibilityOf(customProperty1TextBox));
+		customProperty1TextBox.clear();
+	}
+	
+	public void clickOnRolesTab()
+	{
+		wait.until(ExpectedConditions.visibilityOf(rolesTab));
+		rolesTab.click();
+	}
 	
 	
 }

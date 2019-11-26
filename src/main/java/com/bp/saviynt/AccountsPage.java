@@ -49,6 +49,9 @@ public class AccountsPage extends TestBase{
 	/*@FindBy(xpath = "//div[@id='select2-drop']//div[1]//input[1]")
 	private WebElement searchFor*/
 	
+	@FindBy(xpath = "//a[contains(text(),'memberOf')]")
+	private WebElement memberOfLabel;
+	
 	WebDriverWait wait;
 	
 	public AccountsPage(WebDriver ldriver)
@@ -101,6 +104,7 @@ public class AccountsPage extends TestBase{
 	{
 		boolean result=false;
 		try {
+		wait.until(ExpectedConditions.visibilityOf(memberOfLabel));
 		wait.until(ExpectedConditions.visibilityOf(expandMemberOf));
 		expandMemberOf.click();
 		}
@@ -126,11 +130,23 @@ public class AccountsPage extends TestBase{
 		{
 			for(String s2 : entitlementArray)
 			{
-				if(s1.contains(s2))
+				if(s2.contains(s1))
 					result = true;
 			}
 		}
 		
 		return result;
+	}
+	
+	public boolean checkPresenceOfEntitlements()
+	{
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Entitlements Hierarchy')]")));
+		List<WebElement> memberOf = driver.findElements(By.xpath("//a[contains(text(),'memberOf')]"));
+		if(memberOf.size()>0)
+		{
+			return false;
+		}
+		else
+			return true;
 	}
 }

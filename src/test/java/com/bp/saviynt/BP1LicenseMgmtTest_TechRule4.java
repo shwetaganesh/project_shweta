@@ -10,7 +10,7 @@ import com.aventstack.extentreports.MediaEntityBuilder;
 import com.bp.lib.Screenshot;
 import com.bp.testbase.TestBase;
 
-public class BP1LicenseMgmtTest_TechRule1 extends TestBase{
+public class BP1LicenseMgmtTest_TechRule4 extends TestBase{
 	
 	String admin = "TSTTEN10";
 	String password = "password";
@@ -23,10 +23,10 @@ public class BP1LicenseMgmtTest_TechRule1 extends TestBase{
 		
 		//ListOfEntitlement.add("G SLP O365 Users");
 		
-		ListOfEntitlement.add("G GBL WTP0365LICENSING");
-		ListOfEntitlement.add("G O365 Exo licensing");
+		ListOfEntitlement.add("G GBL O365 Client Voyager Users");
+		ListOfEntitlement.add("G O365 EXO Licensing2");
 		
-		logger =extent.createTest("Bp1 license mgmt test for :AAD|Win10|Remote|ChinaTurkeyIndonesia");
+		logger =extent.createTest("Bp1 license mgmt test for :AAD|Voyegar|Remote|ChinaTurkeyIndonesia");
 		
 		
 		LaunchPage launch = new LaunchPage(driver);
@@ -36,14 +36,14 @@ public class BP1LicenseMgmtTest_TechRule1 extends TestBase{
 		homePage.openAdminTab();
 		
 		AdminPage adminPage = new AdminPage(driver);
-		adminPage.searchForUserAndClickOnUser("zzzul1");
+		adminPage.searchForUserAndClickOnUser("zzzfv1");
 		
 		boolean status = adminPage.verifyEmployeeClassAndStatus();
 		if(status)
 		{
 			TestBase.scrollUp(driver);
 			adminPage.clickOnOtherAttributesTab();
-			adminPage.addCustomProperties("SLP","CN","Win10","True","RemoteUserMailbox");
+			adminPage.addCustomProperties("SLP","CN","Voyager","True","RemoteUserMailbox");
 			
 			adminPage.clickOnUpdate();
 			
@@ -54,8 +54,8 @@ public class BP1LicenseMgmtTest_TechRule1 extends TestBase{
 		
 			homePage.clickOnTasksandGotoPendingTasks();
 			PendingTasksPage pendingTask = new PendingTasksPage(driver);
-			pendingTask.advancedSearch("AAD License Mgmt Logical","zzzul1");
-			pendingTask.getPendingTaskDetails("zzzul1",ListOfEntitlement);
+			pendingTask.advancedSearch("AAD License Mgmt Logical","zzzfv1");
+			pendingTask.getPendingTaskDetails("zzzfv1",ListOfEntitlement);
 			homePage.clickOnHome();
 			homePage.openAdminTab();
 			
@@ -70,8 +70,8 @@ public class BP1LicenseMgmtTest_TechRule1 extends TestBase{
 			adminPage.clickOnIdentityRepository();
 			adminPage.clickOnAccountsLeftHandPanel();
 			AccountsPage accountPage = new AccountsPage(driver);
-			accountPage.advancedSearch("zzzul1");
-			accountPage.clickOnUser("zzzul1");
+			accountPage.advancedSearch("zzzfv1");
+			accountPage.clickOnUser("zzzfv1");
 			accountPage.clickOnEntitlementHierarchy();
 			
 			boolean result = accountPage.expandMemberOfTreeAndGetEntitlements(ListOfEntitlement);
@@ -89,11 +89,11 @@ public class BP1LicenseMgmtTest_TechRule1 extends TestBase{
 	public void checkCreationOfRemoveAccessTasks() throws InterruptedException, IOException
 	{
 		ArrayList<String> ListOfEntitlement = new ArrayList<String>();
-		ListOfEntitlement.add("G GBL WTP0365LICENSING");
+		ListOfEntitlement.add("G GBL O365 Client Voyager Users");
 		//ListOfEntitlement.add("G SLP O365 Users");
-		ListOfEntitlement.add("G O365 Exo licensing");
+		ListOfEntitlement.add("G O365 EXO Licensing2");
 		
-		logger =extent.createTest("Bp1 license mgmt test for :AAD|Win10|Remote|ChinaTurkeyIndonesia... removal test");
+		logger =extent.createTest("Bp1 license mgmt test for :AAD|Voyegar|Remote|ChinaTurkeyIndonesia... removal test");
 		
 		
 		LaunchPage launch = new LaunchPage(driver);
@@ -103,14 +103,14 @@ public class BP1LicenseMgmtTest_TechRule1 extends TestBase{
 		homePage.openAdminTab();
 		
 		AdminPage adminPage = new AdminPage(driver);
-		adminPage.searchForUserAndClickOnUser("zzzul1");
+		adminPage.searchForUserAndClickOnUser("zzzfv1");
 		
 		boolean status = adminPage.verifyEmployeeClassAndStatus();
 		if(status)
 		{
 			TestBase.scrollUp(driver);
 			adminPage.clickOnOtherAttributesTab();
-			adminPage.removeCustomProperties("CN","Win10","True","RemoteUserMailbox");
+			adminPage.removeCustomProperties("CN","Voyager","True","RemoteUserMailbox");
 			adminPage.clickOnUpdate();
 			
 			//wait for update to complete and task to be created for the user
@@ -120,8 +120,8 @@ public class BP1LicenseMgmtTest_TechRule1 extends TestBase{
 		
 			homePage.clickOnTasksandGotoPendingTasks();
 			PendingTasksPage pendingTask = new PendingTasksPage(driver);
-			pendingTask.advancedSearch("AAD License Mgmt Logical","zzzul1");
-			pendingTask.getPendingTaskDetails("zzzul1",ListOfEntitlement);
+			pendingTask.advancedSearch("AAD License Mgmt Logical","zzzfv1");
+			pendingTask.getPendingTaskDetails("zzzfv1",ListOfEntitlement);
 			homePage.clickOnHome();
 			homePage.openAdminTab();
 			
@@ -136,8 +136,8 @@ public class BP1LicenseMgmtTest_TechRule1 extends TestBase{
 			adminPage.clickOnIdentityRepository();
 			adminPage.clickOnAccountsLeftHandPanel();
 			AccountsPage accountPage = new AccountsPage(driver);
-			accountPage.advancedSearch("zzzul1");
-			accountPage.clickOnUser("zzzul1");
+			accountPage.advancedSearch("zzzfv1");
+			accountPage.clickOnUser("zzzfv1");
 			accountPage.clickOnEntitlementHierarchy();
 			
 			boolean result = accountPage.checkPresenceOfEntitlements();
@@ -148,7 +148,3 @@ public class BP1LicenseMgmtTest_TechRule1 extends TestBase{
 	}
 	}
 }
-
-	
-	
-

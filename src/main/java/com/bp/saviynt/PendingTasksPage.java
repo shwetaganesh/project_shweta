@@ -1,5 +1,6 @@
 package com.bp.saviynt;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -109,6 +110,7 @@ public class PendingTasksPage  extends TestBase{
 	
 	public void completeTheTask(String userName)
 	{
+		
 		wait.until(ExpectedConditions.visibilityOf(searchBox));
 		searchBox.clear();
 		searchBox.sendKeys(userName);
@@ -137,10 +139,7 @@ public class PendingTasksPage  extends TestBase{
 			  System.out.println("no such element"); 
 			  e1.printStackTrace();
 		  }
-		  catch(Exception e2)
-		  {
-			  System.out.println("All tasks completed");
-		  }
+		 
 		}
 	
 	
@@ -191,39 +190,87 @@ public class PendingTasksPage  extends TestBase{
 			
 		}
 		
-		public void getPendingTaskDetails(String user)
+		public void getPendingTaskDetails(String user,ArrayList<String> ListOfEntitlement) throws InterruptedException
 		{
+			Thread.sleep(3000);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tbody[@role='alert']//tr[1]//td[5][contains(text(),'"+user+"')]")));
 			List<WebElement> numberOfRows = driver.findElements(By.xpath("//table[@id='usersList']//tbody//tr"));
 			System.out.println(numberOfRows.size());
 			
-			for(int i=1;i<=numberOfRows.size();i++)
-			{
-				for(int j=2;j<=9;j++) {
+		for (int i = 1; i <= numberOfRows.size(); i++) {
+			for (int j = 2; j <= 9; j++) {
+
+				String taskNumber = driver
+						.findElement(By.xpath("//table[@id='usersList']//tbody//tr[" + i + "]//td[2]")).getText();
+				j = j + 1;
+				String taskType = driver
+						.findElement(By.xpath("//table[@id='usersList']//tbody//tr[" + i + "]//td[" + j + "]//div//p"))
+						.getText();
+				j = j + 6;
+				String entitlementName = driver
+						.findElement(By.xpath("//table[@id='usersList']//tbody//tr[" + i + "]//td[" + j + "]"))
+						.getText();
 				
-				String taskNumber = driver.findElement(By.xpath("//table[@id='usersList']//tbody//tr["+i+"]//td[2]")).getText();
-				j=j+1;
-				String taskType = driver.findElement(By.xpath("//table[@id='usersList']//tbody//tr["+i+"]//td["+j+"]//div//p")).getText();
-				j=j+6;
-				String entitlementName = driver.findElement(By.xpath("//table[@id='usersList']//tbody//tr["+i+"]//td["+j+"]")).getText();
-				System.out.println(entitlementName);
+
+				 entitlementName = entitlementName.replaceAll("\r","").replaceAll("\n", " ");
+				 System.out.println(entitlementName);
 				
-				//entitlementName = entitlementName.replaceAll("\r","").replaceAll("\n", " ");
-				if(taskType.contains("New Account"))
-				{
-					System.out.println("new account created");
-				}
-				else if(taskType.contains("Add Access") )
-				{
-					System.out.println("Add access task created");
+				for (int index = 0; index < ListOfEntitlement.size(); index++) {
+					
+					if (taskType.contains("New Account")) {
+						System.out.println("new account created");
+						break;
+					}
+					
+					else if (taskType.contains("Add Access"))
+					{
+						if(entitlementName.contains(ListOfEntitlement.get(index))) {
+						System.out.println("Add access task created for " + entitlementName);
+						break;
+						}
+						
+					}
+					else if (taskType.contains("Remove Access"))
+					{
+						if(entitlementName.contains(ListOfEntitlement.get(index))){
+					
+						System.out.println("Remove access task created for " + entitlementName);
+						break;
+						}
+						
+					else {
+						System.out.println("Tasks not created for " + entitlementName);
+					
+					}
+
 				}
 				
-				else if(taskType.contains("Remove Access"))
-				{
-					System.out.println("Remove access task created");
-				}
-				}
+			}
 		}
 	}
+	
+}
+		
+		public void completePendingTasks(String user) throws InterruptedException
+		{
+			wait.until(ExpectedConditions.visibilityOf(tasksTabInLeftPanel));
+			
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tbody[@role='alert']//tr[1]//td[5][contains(text(),'"+user+"')]")));
+			List<WebElement> table = driver.findElements(By.xpath("//table[@id='usersList']//tbody//tr"));
+			int tableSize = table.size();
+			for(int i=1;i<=tableSize;i++)
+			{
+				wait.until(ExpectedConditions.visibilityOf(actionDropdown));
+				actionDropdown.click();
+				wait.until(ExpectedConditions.visibilityOf(complete));
+				complete.click();
+				wait.until(ExpectedConditions.visibilityOf(commentHeadline));
+				WebElement ele = driver.findElement(By.xpath("//textarea[@placeholder='Comments']"));
+				TestBase.scrollDownToElement(driver, ele);	
+				wait.until(ExpectedConditions.elementToBeClickable(submit));
+				submit.click();
+				Thread.sleep(5000);
+			}
+		}
 		
 }

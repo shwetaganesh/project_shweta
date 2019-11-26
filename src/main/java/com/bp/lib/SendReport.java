@@ -24,7 +24,6 @@ public class SendReport
 		email.setSSLOnConnect(true);
 		
 		
-		//email.addTo("shankar.duddu@in.ibm.com","Shankar Duddu");
 		email.addTo("anitabrao95@gmail.com","Anitha");
 		//email.addTo("Suzhen.Moey@bp.com","Su Zhen");
 		email.setFrom("extentreport@gmail.com", "Saviynt QA Report");	
