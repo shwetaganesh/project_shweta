@@ -22,10 +22,10 @@ import com.bp.testbase.TestBase;
 public class RequestHistoryPage extends TestBase
 {
 	@FindBy(xpath = "//input[@id='dtsearch_sample2']")
-	private WebElement role_search_input;
+	private WebElement request_search_input;
 	
 	@FindBy(xpath = "//button[@id='search_sample2']")
-	private WebElement role_search_button;
+	private WebElement request_search_button;
 	
 	@FindBy(xpath = "//tr[@class='odd']/child::td[10]/child::span")
 	private WebElement verify_req_status;
@@ -71,9 +71,9 @@ public class RequestHistoryPage extends TestBase
 		
 	//boolean verify_endpoints=true;
 	wait.until(ExpectedConditions.visibilityOf(first_result_row));
-	role_search_input.clear();
-	role_search_input.sendKeys(request_number);
-	role_search_button.click();
+	request_search_input.clear();
+	request_search_input.sendKeys(request_number);
+	request_search_button.click();
 	wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'"+request_number+"')]")));
 	driver.findElement(By.xpath("//a[contains(text(),'"+request_number+"')]")).click();
 	}
@@ -133,9 +133,9 @@ public class RequestHistoryPage extends TestBase
 	public boolean isRoleRevokeRequest(String req_num)
 	{
 		wait.until(ExpectedConditions.visibilityOf(first_result_row));
-		role_search_input.clear();
-		role_search_input.sendKeys(req_num);
-		role_search_button.click();
+		request_search_input.clear();
+		request_search_input.sendKeys(req_num);
+		request_search_button.click();
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'"+req_num+"')]")));
 		driver.findElement(By.xpath("//a[contains(text(),'"+req_num+"')]")).click();
 		if(request_type.getText().equalsIgnoreCase("Remove Access"))
@@ -181,11 +181,33 @@ public class RequestHistoryPage extends TestBase
 	public String searchRequestNumberAndCheckStatus(String request_number)
 	{
 		wait.until(ExpectedConditions.visibilityOf(first_result_row));
-		role_search_input.clear();
-		role_search_input.sendKeys(request_number);
-		role_search_button.click();
+		request_search_input.clear();
+		request_search_input.sendKeys(request_number);
+		request_search_button.click();
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'"+request_number+"')]")));
 		TestBase.scrollDownToElement(driver, statusColumn);
 		return statusColumn.getText();
+	}
+	
+	public boolean checkRequestedForUser()
+	{
+		wait.until(ExpectedConditions.visibilityOf(request_search_input));
+		wait.until(ExpectedConditions.visibilityOf(first_result_row));
+		List<WebElement> table = driver.findElements(By.xpath("//table[@id='sample2']//tbody//tr"));
+		int size = table.size();
+		boolean result = false;
+		for(int i=1;i<=size;i++)
+		{
+			String requestedForUser = driver.findElement(By.xpath("//table[@id='sample2']//tbody//tr["+i+"]//td[3]")).getText();
+			if(requestedForUser.contains("L2TEST11") || requestedForUser.contains("L2TEST12"))
+			{
+				result = true;
+			}
+			else
+				break;
+		}
+		
+		return result;
+		
 	}
 }

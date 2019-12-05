@@ -3,14 +3,14 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.bp.saviynt.RulesTesting">
+      <class name="com.bp.saviynt.UMT_L2Manager_RequestEnterpriseRole">
         <methods>
           <include name="sendReport"/>
           <include name="openApplication"/>
-          <include name="validateRoleRemoval"/>
+          <include name="requestEnterpriseRoleForNormalUserTest"/>
           <include name="CloseApplication"/>
         </methods>
-      </class> <!-- com.bp.saviynt.RulesTesting -->
+      </class> <!-- com.bp.saviynt.UMT_L2Manager_RequestEnterpriseRole -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

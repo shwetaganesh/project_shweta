@@ -1,5 +1,8 @@
 package com.bp.saviynt;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -29,6 +32,9 @@ public class FindUserPage extends TestBase
 	
 	@FindBy(xpath = "//tbody//td[contains(text(),'No data available in table')]")
 	private WebElement noDataAvaialableMessage;
+	
+	@FindBy(xpath = "//table[@id='myDataTable']")
+	private WebElement usersListTable;
 	
 	WebDriverWait wait;
 	
@@ -66,6 +72,32 @@ public class FindUserPage extends TestBase
 			return true;
 		else
 			return false;
+	}
+	
+	public boolean checkUsersDisplayed(ArrayList<String>ListOfUsers)
+	{
+		boolean result = false;
+		wait.until(ExpectedConditions.visibilityOf(searchbox_user));
+		wait.until(ExpectedConditions.visibilityOf(usersListTable));
+		List<WebElement> table = driver.findElements(By.xpath("//table[@id='myDataTable']//tbody//tr"));
+		int size = table.size();
+		ArrayList<String> usersList = new ArrayList<String>();
+		for(int i=1;i<=size;i++)
+		{
+			String temp = driver.findElement(By.xpath("//table[@id='myDataTable']//tbody//tr["+i+"]//td[2]")).getText();
+			usersList.add(temp);
+		}
+		
+		for(String s1 : ListOfUsers)
+		{
+			for(String s2 : usersList)
+			{
+				if(s2.contains(s1))
+					result = true;
+			}
+		}
+		
+		return result;
 	}
 
 }

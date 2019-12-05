@@ -113,10 +113,20 @@ public class SubmitPage extends TestBase
 		//select_down_arrow.click();
 		Select orgNode = new Select(driver.findElement(By.xpath("//select[@title='OrganizationNode']")));
 		orgNode.selectByVisibleText("50000002:BP Exploration & Production");
-		//wait.until(ExpectedConditions.elementToBeClickable(select_value));
-		//select_value.click();
+		//orgNode.selectByIndex(2);
 	}
 	
+	public void selectBusinessCategory() throws InterruptedException
+	{
+		wait.until(ExpectedConditions.visibilityOf(business_justification_first));
+
+		Thread.sleep(20000);
+		wait.until(ExpectedConditions.elementToBeClickable(expand_url_first));
+		expand_url_first.click();
+		Select category = new Select(driver.findElement(By.xpath("//select[@title='businessCategory']")));
+		category.selectByIndex(2);
+		
+	}
 	public String returnRequestNumber() {
 		String requestNumber = "";
 		wait.until(ExpectedConditions.visibilityOf(req_number));

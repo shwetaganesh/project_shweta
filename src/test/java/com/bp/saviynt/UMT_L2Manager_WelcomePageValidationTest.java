@@ -56,7 +56,7 @@ public class UMT_L2Manager_WelcomePageValidationTest extends TestBase{
 		home.logoff();
 	}
 	
-	@Test(priority = 1)
+	@Test(priority = 3)
 	public void verifyHomePageAndWelcomeMessageForSecondManager() throws IOException {
 
 		logger = extent.createTest("Second manager log in, verify the home page and welcome message");

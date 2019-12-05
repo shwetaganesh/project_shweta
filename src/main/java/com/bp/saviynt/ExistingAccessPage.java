@@ -1,5 +1,6 @@
 package com.bp.saviynt;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,19 +21,32 @@ public class ExistingAccessPage  extends TestBase{
 	@FindBy(xpath = "//*[@id=\"selecteduser\"]")
 	private WebElement existingAccessEndUserHeader; // header along with end user name and username
 	
-	@FindBy(xpath="//span[@class='input-group-btn']/a[1]")
+	@FindBy(xpath="//div[@class='input-group']//span//button")
 	private WebElement changeUserBtn;
 	
 	@FindBy(xpath="//div[@class='radio']//input[@name='userkey']")
 	private WebElement userRadioBtn;
 	
 	@FindBy(xpath="//div[@id='usermodaldiv']//a[@class='btn green'][contains(text(),'Submit')]")
-	private WebElement submitUserLnk;
+	private WebElement submitUserButton;
 	
 	@FindBy(xpath = "//div[@class='caption' and contains(text(),'ACCESS DETAILS')]")
 	private WebElement accessDetailsHeader;
 	
+	@FindBy(xpath = "//h4[contains(text(),'Select User')]")
+	private WebElement selectUserHeader;
+	
+	@FindBy(xpath = "//table[@id='myDataTable']//tbody//tr[1]//td[1]//div[@class='radio']")
+	private WebElement firstRadioButton;
+	
+	@FindBy(xpath = "//table[@id='myDataTable']//tbody//tr[2]//td[1]//div[@class='radio']")
+	private WebElement secondRadioButton;
+	
+	@FindBy(xpath ="//a[contains(text(),'ENTERPRISE ROLE ')]")
+	private WebElement enterpriseRolesTab;
+	
 	WebDriverWait wait;
+	
 	public ExistingAccessPage(WebDriver ldriver) 
 	{
 		driver=ldriver;
@@ -59,6 +73,36 @@ public class ExistingAccessPage  extends TestBase{
 	{
 		TestBase.scrollToEndOfPage(driver);
 		return accessDetailsHeader.isDisplayed();
+	}
+	
+	public void changeUser(String user)
+	{
+		wait.until(ExpectedConditions.visibilityOf(existingHeader));
+		wait.until(ExpectedConditions.visibilityOf(existingAccessEndUserHeader));
+		
+		changeUserBtn.click();
+		
+		wait.until(ExpectedConditions.visibilityOf(selectUserHeader));
+		if(user.contains("L2TEST11"))
+			firstRadioButton.click();
+		else
+			secondRadioButton.click();
+		
+		submitUserButton.click();
+		wait.until(ExpectedConditions.visibilityOf(existingHeader));
+		
+	}
+	
+	public boolean checkEnterpriseRoles(String role)
+	
+	{
+		TestBase.scrollDownToElement(driver, enterpriseRolesTab);
+		String roleName = driver.findElement(By.xpath("//table[@id='existingAccessRole']//tbody//tr[1]//td[1]")).getText();
+		
+		if(roleName.equalsIgnoreCase(role))
+			return true;
+		else
+			return false;
 	}
 }
 
