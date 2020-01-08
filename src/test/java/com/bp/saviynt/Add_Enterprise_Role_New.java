@@ -93,7 +93,8 @@ public class Add_Enterprise_Role_New extends TestBase {
 			//open job control panel
 			adminpage.openJobControlPanelLink();
 			// open utility link
-			adminpage.openUtilityandTriggerChain();
+			JobControlPanelPage jobControlPanel = new JobControlPanelPage(driver);
+			jobControlPanel.openUtilityandTriggerChain();
 			logger.pass("Job Trigger Scheduled Successfully");
 			//log off
 			home.logoff();

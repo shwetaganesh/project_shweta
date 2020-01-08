@@ -152,7 +152,8 @@ public class ADD_Enterprise_Role_Request_Basic_Test extends TestBase
 		//open job control panel
 		adminpage.openJobControlPanelLink();
 		// open utility link
-		adminpage.openUtilityandTriggerChain();
+		JobControlPanelPage jobControlPanel = new JobControlPanelPage(driver);
+		jobControlPanel.openUtilityandTriggerChain();
 		logger.pass("Job Trigger Scheduled Successfully");
 		//log off
 		home.logoff();
@@ -172,7 +173,8 @@ public class ADD_Enterprise_Role_Request_Basic_Test extends TestBase
 		for(int i=2;i<=4;i++)
 		{
 			String systemName = excel.getData(0, 34, i);
-			adminPage.openUtilityandProvisioningJob(systemName);
+			JobControlPanelPage jobControlPanel = new JobControlPanelPage(driver);
+			jobControlPanel.openUtilityandProvisioningJob(systemName);
 		}
 		// endpoint approver log out
 		home.logoff();

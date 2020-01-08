@@ -99,7 +99,8 @@ public class Existing_User_Modify_Account  extends TestBase {
 		AdminPage adminPage = new AdminPage(driver);
 		adminPage.openJobControlPanelLink();
 		String systemName = "TEST_SalesforceTest";
-		adminPage.openUtilityandProvisioningJob(systemName);
+		JobControlPanelPage jobControlPanel = new JobControlPanelPage(driver);
+		jobControlPanel.openUtilityandProvisioningJob(systemName);
 		// endpoint approver log out
 		home.logoff();
 	}

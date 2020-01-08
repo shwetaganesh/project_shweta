@@ -125,7 +125,8 @@ public class NewUser_Add_Group_Permission_Profile extends TestBase {
 		home.openAdminTab();
 		AdminPage adminPage = new AdminPage(driver);
 		adminPage.openJobControlPanelLink();
-		adminPage.openUtilityandProvisioningJob("TEST_SalesforceTest");
+		JobControlPanelPage jobControlPanel = new JobControlPanelPage(driver);
+		jobControlPanel.openUtilityandProvisioningJob("TEST_SalesforceTest");
 		// endpoint approver log out
 		home.logoff();
 	}

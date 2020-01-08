@@ -23,49 +23,6 @@ public class AdminPage extends TestBase
 	@FindBy(xpath = "//div[@id='jobstatus']//*[@class='block']")
 	private WebElement jobStatusTitle;
 	
-	@FindBy(xpath = "//a[contains(text(),'UTILITY')]")
-	private WebElement utilityLink;
-	
-	@FindBy(xpath = "//*[contains(text(),'Trigger Chain Job')]")
-	private WebElement triggerJobLink;
-	
-	@FindBy(xpath = "//a[contains(text(),'PROV')]")
-	private WebElement provLink;
-	
-	/*@FindBy(xpath = "(//div[@id='collapse_0_22']//div[@class='col-md-1' ]//*[contains(text(),'Action')])[1]")
-	private WebElement actionButton;*/
-	
-	@FindBy(xpath = "(//div[@id='collapse_0_23']//*[contains(text(),'Action')])[1]")
-	private WebElement actionButtonInProvisioningJob;
-	
-	@FindBy(xpath = "(//div[@id='collapse_0_21']//*[contains(text(),'Action')])[1]")
-	private WebElement actionButtonInTriggerChain;
-	
-	@FindBy(xpath ="//div[@class='btn-group pull-right open']//*[contains(text(),'Edit Trigger')]")
-	private WebElement editTrigger;
-	
-	@FindBy(xpath = "//button[@class='btn green' and contains(text(),'Run Now')]")
-	private WebElement runButton;
-	
-	//14/01/19
-	@FindBy(xpath ="//*[contains(text(),'Provisioning Job')]")
-	private WebElement provisioningJobLink;
-	
-	
-	/*@FindBy(xpath ="(//*[contains(text(),'Provisioning Job')]/following::a[contains(text(),'PROV')])[1]")  // job name changing everytime.
-	private WebElement provisioningText;*/
-	@FindBy(xpath ="(//*[contains(text(),'Provisioning Job')]/following::a[1])[1]")
-	private WebElement provisioningText;
-	
-	@FindBy(xpath ="(//*[@id='gritter-without-image2' and @class='WSRetryJob'])[1]")
-	private WebElement startButton;
-	
-	@FindBy(xpath ="//li[@class='select2-search-field']//input[@type='text']")
-	private WebElement selectSystemTextBox;
-	
-	@FindBy(xpath ="(//button[@class='btn green' and contains(text(),'Submit')])[2]")
-	private WebElement submitButton;
-	
 	//06-03-2019
 	@FindBy(xpath = "//li[@id='users']//a")
 	private WebElement usersLinkLeftPanel;
@@ -94,6 +51,15 @@ public class AdminPage extends TestBase
 	
 	@FindBy(xpath = "//input[@id='lastname']") 
 	private WebElement lastName;
+	
+	@FindBy(xpath = "//input[@id='city']") 
+	private WebElement cityName;
+	
+	@FindBy(xpath = "//input[@id='street']")
+	private WebElement streetName;
+	
+	@FindBy(xpath = "//input[@id='phonenumber']")
+	private WebElement phoneNumber;
 	
 	@FindBy(xpath = "//input[@id='city']") 
 	private WebElement country;
@@ -136,7 +102,7 @@ public class AdminPage extends TestBase
 	private WebElement updateButton;
 	
 	@FindBy(xpath = "//a[@onclick='validateAndSubmit()']")
-	private WebElement update;						// update button that appears once department name is entered. 
+	private WebElement update;						// update button that appears under USER DETAILS tab. 
 	
 	@FindBy(xpath = "//input[@id='departmentname']")
 	private WebElement departmentName;
@@ -231,38 +197,6 @@ public class AdminPage extends TestBase
 	@FindBy(xpath = "//*[contains(text(),'Connection was Successful')]")
 	private WebElement connectionTestSuccessMessage;
 	
-	@FindBy(xpath = "(//li//a[contains(text(),'DATA')])[2]")
-	private WebElement data;
-	
-	@FindBy(xpath = "//div//h4[contains(text(),'UserImportJob')]")
-	private WebElement userImportJob;
-	
-	@FindBy(xpath = "(//div[@id='collapse_3_4']//*[contains(text(),'Action')])[1]")
-	private WebElement actionButtonInUserImportJob;
-	
-	@FindBy(xpath = "(//*[@id='gritter-without-image2' and @class='UserImportJob'])[1]")
-	private WebElement startButtonInUserImportJob;
-	
-	@FindBy(xpath = "(//h4[contains(text(),'Enter Details')])[2]")
-	private WebElement enterDetailsPopUpHeader;
-	
-	@FindBy(xpath = "//div[contains(@id,'importsavconnectkey')]")
-	private WebElement saviyntConnectDropDown;
-	
-	@FindBy(xpath = "(//div//div[contains(text(),'No')])[2]")
-	private WebElement noOptionInSaviyntConnectDropDown;
-	
-	@FindBy(xpath = "//div[contains(@id,'s2id_externalconnkey')]")
-	private WebElement externalConnectionDropDown;
-	
-	@FindBy(xpath = "//label[contains(text(),'Job Type')]//following::a[1]")
-	private WebElement jobTypeDropDown;
-	
-	@FindBy(xpath = "//div[contains(text(),'Full Import')]")
-	private WebElement fullImport;
-	
-	@FindBy(xpath = "(//div[@class='modal-footer']//button[contains(text(),'Submit')])[2]")
-	private WebElement submitButtonForUserImport;
 	
 	@FindBy(xpath = "//input[@id='companyname']")
 	private WebElement companyName;
@@ -299,6 +233,15 @@ public class AdminPage extends TestBase
 	@FindBy(xpath ="//input[@id='customproperty1']")
 	private WebElement customProperty1TextBox;
 	
+	@FindBy(xpath ="//input[@id='customproperty2']")
+	private WebElement customProperty2TextBox;
+	
+	@FindBy(xpath ="//input[@id='customproperty3']")
+	private WebElement customProperty3TextBox;
+	
+	@FindBy(xpath ="//input[@id='customproperty4']")
+	private WebElement customProperty4TextBox;
+	
 	@FindBy(xpath ="//a[@href='/ECM/accounts/list']")
 	private WebElement accountsLeftHandPanel;
 	
@@ -306,8 +249,14 @@ public class AdminPage extends TestBase
 	@FindBy(xpath ="//a[@role='presentation' and contains(text(),'Roles')]")
 	private WebElement rolesTab;
 	
+	@FindBy(xpath="//a[@role='presentation' and contains(text(),'Accounts')]")
+	private WebElement accountsTab;
 	
+	@FindBy(xpath = "//table[@id='sample2']//tbody//tr[1]//td[3]")
+	private WebElement securitySystemColumn;
 	
+	@FindBy(xpath = "//table[@id='sample2']//tbody")
+	private WebElement accountsTable;
 	
 	WebDriverWait wait;
 	
@@ -324,38 +273,43 @@ public class AdminPage extends TestBase
 		wait.until(ExpectedConditions.visibilityOf(firstRowInTable));
 		TestBase.javaScriptClickbyElement(driver, jobControlPanelLink);
 	}
-	
-	public void openUtilityandTriggerChain()
+
+	/*
+	 * this method clicks on Users under the Identity Repository and goto
+	 * Actions-->Click on Create User
+	 */
+	public void clickOnUserandCreateUserButton()
 	{
-		wait.until(ExpectedConditions.visibilityOf(utilityLink));
-		utilityLink.click();
-		TestBase.scrollDownToElement(driver, triggerJobLink);
-		triggerJobLink.click();
-		wait.until(ExpectedConditions.visibilityOf(provLink));
-		wait.until(ExpectedConditions.visibilityOf(actionButtonInTriggerChain));
-		actionButtonInTriggerChain.click();
-		editTrigger.click();
-		wait.until(ExpectedConditions.visibilityOf(runButton));
-		runButton.click();
+		wait.until(ExpectedConditions.visibilityOf(usersLinkLeftPanel));
+		usersLinkLeftPanel.click();
+		wait.until(ExpectedConditions.visibilityOf(searchUserTextBox));
+		actionsbutton.click();
+		wait.until(ExpectedConditions.visibilityOf(createUsers));
+		createUsers.click();
+		wait.until(ExpectedConditions.visibilityOf(usersLinkLeftPanel));
 	}
 	
-	public void openUtilityandProvisioningJob(String systemName)
+	public String createUser(String fname,String lname,String city,String street,String phone,String manager)
 	{
-		wait.until(ExpectedConditions.visibilityOf(utilityLink));
-		utilityLink.click();
-		TestBase.scrollDownToElement(driver, provisioningJobLink);
-		provisioningJobLink.click();
-		wait.until(ExpectedConditions.visibilityOf(provisioningText));
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(),'Provisioning Job')]/following::a[1]")));
-		actionButtonInProvisioningJob.click();
-		wait.until(ExpectedConditions.visibilityOf(startButton));
-		startButton.click();
-		wait.until(ExpectedConditions.visibilityOf(selectSystemTextBox));
-		selectSystemTextBox.sendKeys(systemName);
-		selectSystemTextBox.sendKeys(Keys.ENTER);
-		wait.until(ExpectedConditions.visibilityOf(submitButton));
-		submitButton.click();		
-		
+		firstName.sendKeys(fname);
+		lastName.sendKeys(lname);
+		cityName.sendKeys(city);
+		streetName.sendKeys(street);
+		phoneNumber.sendKeys(phone);
+		TestBase.scrollDownToElement(driver, selectManagerButton);
+		selectManagerButton.click();
+		wait.until(ExpectedConditions.visibilityOf(searchManagerTextBox));
+		searchManagerTextBox.sendKeys(manager);
+		searchManagerTextBox.sendKeys(Keys.ENTER);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//td[contains(text(),'"+manager+"')]")));
+		driver.findElement(By.xpath("//input[@type='radio' and @label='"+manager+"']")).click();
+		TestBase.scrollDownToElement(driver, submitManagerButton);
+		submitManagerButton.click();
+		wait.until(ExpectedConditions.visibilityOf(createButton));
+		createButton.click();
+		wait.until(ExpectedConditions.visibilityOf(userName));
+		String user = userName.getAttribute("value");
+		return user;
 	}
 	public String clickOnUsersAndCreateUsersAndAddAttributes(String lname,String managerId,String property24) throws InterruptedException {
 		
@@ -664,35 +618,7 @@ public class AdminPage extends TestBase
 			return false;
 	}
 	
-	// run the job to import user
-	public void triggerJobToImportUser() throws InterruptedException
-	{
-		wait.until(ExpectedConditions.visibilityOf(data));
-		data.click();
-		wait.until(ExpectedConditions.elementToBeClickable(userImportJob));
-		userImportJob.click();
-		wait.until(ExpectedConditions.visibilityOf(actionButtonInUserImportJob));
-		actionButtonInUserImportJob.click();
-		wait.until(ExpectedConditions.visibilityOf(startButtonInUserImportJob));
-		startButtonInUserImportJob.click();
-		wait.until(ExpectedConditions.visibilityOf(enterDetailsPopUpHeader));
-		saviyntConnectDropDown.click();
-		noOptionInSaviyntConnectDropDown.click();
-		wait.until(ExpectedConditions.visibilityOf(externalConnectionDropDown));
-		externalConnectionDropDown.click();
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='select2-drop']//div[1]//input[1]")));
-		driver.findElement(By.xpath("//div[@id='select2-drop']//div[1]//input[1]")).sendKeys("ISIM-PreProd");
-		Thread.sleep(2000);
-		driver.findElement(By.xpath("//div[@id='select2-drop']//div[1]//input[1]")).sendKeys(Keys.ENTER);
-		wait.until(ExpectedConditions.visibilityOf(jobTypeDropDown));
-		jobTypeDropDown.click();
-		wait.until(ExpectedConditions.visibilityOf(fullImport));
-		fullImport.click();
-		TestBase.scrollDownToElement(driver, submitButtonForUserImport);
-		submitButtonForUserImport.click();
-		
-		
-	}
+	
 
 	public String searchForUserAndGetCompanyName(String userID)
 	{
@@ -897,11 +823,71 @@ public class AdminPage extends TestBase
 		customProperty1TextBox.clear();
 	}
 	
+	public void addCustomProperty65(String value)
+	{
+		wait.until(ExpectedConditions.visibilityOf(customProperty1TextBox));
+		TestBase.scrollDownToElement(driver, customProperty65TextBox);
+		customProperty65TextBox.sendKeys(value);
+	}
+	
 	public void clickOnRolesTab()
 	{
 		wait.until(ExpectedConditions.visibilityOf(rolesTab));
 		rolesTab.click();
 	}
 	
+	public void addEmployeeClassAndUserDetailsUpdate()
+	{
+		TestBase.scrollDownToElement(driver, employeeClassLabel);
+		employeeClass.sendKeys("Employee");
+		wait.until(ExpectedConditions.elementToBeClickable(update));
+		update.click();
+	}
+	
+	public void addCustomProperties(String cp1,String cp2,String cp3,String cp4,String cp11,String cp50)
+	{
+		wait.until(ExpectedConditions.visibilityOf(customProperty1TextBox));
+		customProperty1TextBox.sendKeys(cp1);
+		customProperty2TextBox.sendKeys(cp2);
+		customProperty3TextBox.sendKeys(cp3);
+		customProperty4TextBox.sendKeys(cp4);
+		customProperty11TextBox.sendKeys(cp11);
+		TestBase.scrollDownToElement(driver, customProperty50TextBox);
+		
+	}
+	
+	public void clickOnAccountsTab()
+	{
+		wait.until(ExpectedConditions.elementToBeClickable(accountsTab));
+		accountsTab.click();
+		
+	}
+	
+	public boolean validateCreationOfBP1Account()
+	{
+		wait.until(ExpectedConditions.visibilityOf(accountsTable));
+		wait.until(ExpectedConditions.visibilityOf(securitySystemColumn));
+		
+		String system = securitySystemColumn.getText();
+		if(system.contains("BP1-Testsing"))
+			return true;
+		else
+			return false;
+	}
+	
+	/*
+	 * upn is nothing but email id for the user this method adds email into the
+	 * EMAIL textbox under user details tab
+	 */
+	
+	public void addUPNValueAndUpdate(String upnValue)
+	{
+		wait.until(ExpectedConditions.visibilityOf(otherAttributesTab));
+		wait.until(ExpectedConditions.visibilityOf(email));
+		email.sendKeys(upnValue);
+		TestBase.scrollDownToElement(driver, update);
+		update.click();
+		
+	}
 	
 }

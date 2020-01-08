@@ -151,7 +151,8 @@ public class Add_Enterprise_Role_R6 extends TestBase {
 		home.openAdminTab();
 		AdminPage adminPage = new AdminPage(driver);
 		adminPage.openJobControlPanelLink();
-		adminPage.openUtilityandProvisioningJob(systemName);
+		JobControlPanelPage jobControlPanel = new JobControlPanelPage(driver);
+		jobControlPanel.openUtilityandProvisioningJob(systemName);
 		// admin log out
 		home.logoff();
 	}

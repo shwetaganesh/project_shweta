@@ -56,7 +56,8 @@ public class UpdateDLTest extends TestBase {
 			home.openAdminTab();
 			AdminPage adminPage = new AdminPage(driver);
 			adminPage.openJobControlPanelLink();
-			adminPage.triggerJobToImportUser();
+			JobControlPanelPage jobControlPanel = new JobControlPanelPage(driver);
+			jobControlPanel.triggerJobToImportUser("");
 			
 			home.logoff();		
 	 }
@@ -78,7 +79,8 @@ public class UpdateDLTest extends TestBase {
 			
 			home.openAdminTab();
 			adminPage.openJobControlPanelLink();
-			adminPage.openUtilityandProvisioningJob("BP1 ActiveDirectory_TEST");
+			JobControlPanelPage jobControlPanel = new JobControlPanelPage(driver);
+			jobControlPanel.openUtilityandProvisioningJob("BP1 ActiveDirectory_TEST");
 			
 			Thread.sleep(180000);
 			

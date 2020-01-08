@@ -79,6 +79,9 @@ public class HomePage extends TestBase
 	@FindBy(xpath = "(//*[contains(text(),'Completed Tasks')])[2]")
 	private WebElement completedTaskLeftHandPanel;
 	
+	@FindBy(xpath = "//a[contains(text(),'ANALYTICS')]")
+	private WebElement analyticsTab;
+	
 	public HomePage(WebDriver ldriver) 
 	{
 		driver=ldriver;
@@ -263,5 +266,12 @@ public class HomePage extends TestBase
 		taskHeaderLeftHandPanel.click();
 		wait.until(ExpectedConditions.elementToBeClickable(completedTaskLeftHandPanel));
 		completedTaskLeftHandPanel.click();
+	}
+	
+	// click on analytics tab in home page
+	public void clickOnAnalyticsTab()
+	{
+		wait.until(ExpectedConditions.visibilityOf(analyticsTab));
+		analyticsTab.click();
 	}
 }

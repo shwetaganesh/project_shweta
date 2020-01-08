@@ -60,7 +60,8 @@ public class BP1LicenseMgmtTest_TechRule2 extends TestBase{
 			homePage.openAdminTab();
 			
 			adminPage.openJobControlPanelLink();
-			adminPage.openUtilityandProvisioningJob("BP1 ActiveDirectory_TEST");
+			JobControlPanelPage jobControlPanel = new JobControlPanelPage(driver);
+			jobControlPanel.openUtilityandProvisioningJob("BP1 ActiveDirectory_TEST");
 			//wait for job to complete.
 			Thread.sleep(120000);
 			
@@ -126,7 +127,8 @@ public void checkCreationOfRemoveAccessTasks() throws InterruptedException, IOEx
 		homePage.openAdminTab();
 		
 		adminPage.openJobControlPanelLink();
-		adminPage.openUtilityandProvisioningJob("BP1 ActiveDirectory_TEST");
+		JobControlPanelPage jobControlPanel = new JobControlPanelPage(driver);
+		jobControlPanel.openUtilityandProvisioningJob("BP1 ActiveDirectory_TEST");
 		//wait for job to complete.
 		Thread.sleep(120000);
 		

@@ -166,7 +166,8 @@ public class REMOVE_and_ADD_Enterprise_Role_Request  extends TestBase
 		for(int i=2;i<=4;i++)
 		{
 			String systemName = excel.getData(0, 34, i);
-			adminPage.openUtilityandProvisioningJob(systemName);
+			JobControlPanelPage jobControlPanel = new JobControlPanelPage(driver);
+			jobControlPanel.openUtilityandProvisioningJob(systemName);
 		}
 		// endpoint approver log out
 		home.logoff();

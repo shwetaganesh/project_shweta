@@ -60,7 +60,8 @@ public class BP1LicenseMgmtTest_TechRule5 extends TestBase {
 			homePage.openAdminTab();
 			
 			adminPage.openJobControlPanelLink();
-			adminPage.openUtilityandProvisioningJob("BP1 ActiveDirectory_TEST");
+			JobControlPanelPage jobControlPanel = new JobControlPanelPage(driver);
+			jobControlPanel.openUtilityandProvisioningJob("BP1 ActiveDirectory_TEST");
 			//wait for job to complete.
 			Thread.sleep(120000);
 			
@@ -125,7 +126,8 @@ public class BP1LicenseMgmtTest_TechRule5 extends TestBase {
 			homePage.openAdminTab();
 			
 			adminPage.openJobControlPanelLink();
-			adminPage.openUtilityandProvisioningJob("BP1 ActiveDirectory_TEST");
+			JobControlPanelPage jobControlPanel = new JobControlPanelPage(driver);
+			jobControlPanel.openUtilityandProvisioningJob("BP1 ActiveDirectory_TEST");
 			//wait for job to complete.
 			Thread.sleep(120000);
 			

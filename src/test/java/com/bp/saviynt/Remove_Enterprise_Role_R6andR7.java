@@ -68,7 +68,8 @@ public class Remove_Enterprise_Role_R6andR7 extends TestBase {
 		home.openAdminTab();
 		AdminPage adminPage = new AdminPage(driver);
 		adminPage.openJobControlPanelLink();
-		adminPage.openUtilityandProvisioningJob(systemName);
+		JobControlPanelPage jobControlPanel= new JobControlPanelPage(driver);
+		jobControlPanel.openUtilityandProvisioningJob(systemName);
 		// endpoint approver log out
 		home.logoff();
 	}

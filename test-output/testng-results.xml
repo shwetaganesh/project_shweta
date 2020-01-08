@@ -2,35 +2,35 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="25608" started-at="2019-12-04T12:42:32 IST" finished-at="2019-12-04T12:42:57 IST">
+  <suite name="Default suite" duration-ms="60476" started-at="2020-01-08T18:54:44 IST" finished-at="2020-01-08T18:55:45 IST">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="25608" started-at="2019-12-04T12:42:32 IST" finished-at="2019-12-04T12:42:57 IST">
-      <class name="com.bp.saviynt.UMT_L2Manager_ViewRequestHistory">
-        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.UMT_L2Manager_ViewRequestHistory@3e57cd70]" name="openApplication" is-config="true" duration-ms="13813" started-at="2019-12-04T12:42:32 IST" finished-at="2019-12-04T12:42:45 IST">
+    <test name="Default test" duration-ms="60476" started-at="2020-01-08T18:54:44 IST" finished-at="2020-01-08T18:55:45 IST">
+      <class name="com.bp.saviynt.SaviyntAnalytics_ViewAnalyticsTest">
+        <test-method status="PASS" signature="openApplication()[pri:0, instance:com.bp.saviynt.SaviyntAnalytics_ViewAnalyticsTest@3e57cd70]" name="openApplication" is-config="true" duration-ms="25830" started-at="2020-01-08T18:54:44 IST" finished-at="2020-01-08T18:55:10 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openApplication -->
-        <test-method status="PASS" signature="checkRequestHistory()[pri:0, instance:com.bp.saviynt.UMT_L2Manager_ViewRequestHistory@3e57cd70]" name="checkRequestHistory" duration-ms="11369" started-at="2019-12-04T12:42:45 IST" finished-at="2019-12-04T12:42:57 IST">
+        <test-method status="PASS" signature="viewAnalyticsTest()[pri:0, instance:com.bp.saviynt.SaviyntAnalytics_ViewAnalyticsTest@3e57cd70]" name="viewAnalyticsTest" duration-ms="33731" started-at="2020-01-08T18:55:10 IST" finished-at="2020-01-08T18:55:44 IST">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- checkRequestHistory -->
-        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.UMT_L2Manager_ViewRequestHistory@3e57cd70]" name="CloseApplication" is-config="true" duration-ms="380" started-at="2019-12-04T12:42:57 IST" finished-at="2019-12-04T12:42:57 IST">
+        </test-method> <!-- viewAnalyticsTest -->
+        <test-method status="PASS" signature="CloseApplication(org.testng.ITestResult)[pri:0, instance:com.bp.saviynt.SaviyntAnalytics_ViewAnalyticsTest@3e57cd70]" name="CloseApplication" is-config="true" duration-ms="825" started-at="2020-01-08T18:55:44 IST" finished-at="2020-01-08T18:55:45 IST">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=checkRequestHistory status=SUCCESS method=UMT_L2Manager_ViewRequestHistory.checkRequestHistory()[pri:0, instance:com.bp.saviynt.UMT_L2Manager_ViewRequestHistory@3e57cd70] output={null}]]]>
+                <![CDATA[[TestResult name=viewAnalyticsTest status=SUCCESS method=SaviyntAnalytics_ViewAnalyticsTest.viewAnalyticsTest()[pri:0, instance:com.bp.saviynt.SaviyntAnalytics_ViewAnalyticsTest@3e57cd70] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- CloseApplication -->
-        <test-method status="PASS" signature="sendReport()[pri:0, instance:com.bp.saviynt.UMT_L2Manager_ViewRequestHistory@3e57cd70]" name="sendReport" is-config="true" duration-ms="21025" started-at="2019-12-04T12:42:57 IST" finished-at="2019-12-04T12:43:18 IST">
+        <test-method status="PASS" signature="sendReport()[pri:0, instance:com.bp.saviynt.SaviyntAnalytics_ViewAnalyticsTest@3e57cd70]" name="sendReport" is-config="true" duration-ms="19625" started-at="2020-01-08T18:55:47 IST" finished-at="2020-01-08T18:56:06 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- sendReport -->
-      </class> <!-- com.bp.saviynt.UMT_L2Manager_ViewRequestHistory -->
+      </class> <!-- com.bp.saviynt.SaviyntAnalytics_ViewAnalyticsTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
