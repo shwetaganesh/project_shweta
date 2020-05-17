@@ -82,6 +82,9 @@ public class HomePage extends TestBase
 	@FindBy(xpath = "//a[contains(text(),'ANALYTICS')]")
 	private WebElement analyticsTab;
 	
+	@FindBy(xpath = "//a[contains(text(),'Attestations')]")
+	private WebElement attestationsHeading;
+	
 	public HomePage(WebDriver ldriver) 
 	{
 		driver=ldriver;
@@ -273,5 +276,10 @@ public class HomePage extends TestBase
 	{
 		wait.until(ExpectedConditions.visibilityOf(analyticsTab));
 		analyticsTab.click();
+	}
+	public void clickOnAttestationsTab()
+	{
+		wait.until(ExpectedConditions.visibilityOf(attestationsHeading));
+		attestationsHeading.click();
 	}
 }

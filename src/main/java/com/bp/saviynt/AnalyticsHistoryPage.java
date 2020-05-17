@@ -40,6 +40,13 @@ public class AnalyticsHistoryPage extends TestBase {
 	@FindBy(xpath = "//a[contains(text(),'AD - ISIM Connection')]")
 	private WebElement ISIMConnectionLink;
 	
+	@FindBy(xpath ="//div[@class='caption'])[2]")
+	private WebElement runHistoryListHeader;
+	
+	@FindBy(xpath ="//table[@id='analyticsConfigList']//tbody//tr[1]//td[3]//a")
+	private WebElement firstRowItemInRunHistoryList;
+	
+	
 	public AnalyticsHistoryPage(WebDriver ldriver)
 	{
 		driver = ldriver;
@@ -80,5 +87,12 @@ public class AnalyticsHistoryPage extends TestBase {
 			return false;
 	}
 	
+	public void  fetchReportDetails()
+	{
+		TestBase.scrollDownToElement(driver, runHistoryListHeader);
+		wait.until(ExpectedConditions.visibilityOf(firstRowItemInRunHistoryList));
+		firstRowItemInRunHistoryList.click();
+
+	}
 
 }

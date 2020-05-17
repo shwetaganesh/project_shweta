@@ -64,8 +64,8 @@ public class LaunchPage extends TestBase
 		{
 			u_name.sendKeys(username);
 			pwd.sendKeys(password);
-			login_button.click();
-			
+			//login_button.click();
+			TestBase.javaScriptClickbyElement(driver, login_button);
 			System.out.println("Login done with User id "+username);
 		}
 		else

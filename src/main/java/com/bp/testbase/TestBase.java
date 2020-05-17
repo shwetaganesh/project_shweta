@@ -164,5 +164,11 @@ public class TestBase
         js.executeScript("javascript:window.scrollBy(250,350)");
 	}
 	
+	public static void reduceBrowserResolution(WebDriver local_driver)
+    {
+        JavascriptExecutor js = (JavascriptExecutor) local_driver;
+        js.executeScript("document.body.style.zoom='90%';");
+    }
+	
 }
 

@@ -14,7 +14,7 @@ public class AnalyticsHistoryDetailsPage extends TestBase {
 	
 	WebDriverWait wait;
 	
-	@FindBy(xpath = "//h3[contains(text(),'Analytics History  : AD - ISIM Connection')]")
+	@FindBy(xpath = "//h3[contains(text(),'Analytics History')]")
 	private WebElement pageHeader;
 	
 	
